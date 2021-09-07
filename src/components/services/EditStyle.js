@@ -70,7 +70,7 @@ export default function EditStyle() {
                 }
                 <div className="new-style-code new-style-fields">
                     <label htmlFor="styleCode">Style Code: </label>
-                    <input type="text" id="styleCode" autoComplete="off" placeholder="Style Code" value={style.styleCode} disabled
+                    <input type="text" id="styleCode" autoComplete="off" placeholder="Style Code" value={style.styleCode} disabled={true}
                     // onChange={(e) => {
                     //     if (!styleCodeValidator(e.target.value) && e.target.value.length) {
                     //         setStyleCodeErr("Invalid Style Code!!")
