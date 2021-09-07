@@ -27,7 +27,7 @@ export default function Header() {
                                 <Link className="nav-link" to="/register">Signup</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/addstyle">+ STYLE</Link>
+                                <Link className="nav-link" to="/style/add">+ STYLE</Link>
                             </li>
 
                         </ul>
