@@ -8,7 +8,7 @@ export default function Product(props) {
     return ( 
             <div className="main-product-card"> 
                 <Link to={`/style/edit/${ele._id}`}> 
-                    <img src={ele.frontImgUrl} alt="" />
+                    <img src={ele.frontImageUrl} alt="" />
                     <p>{ele.styleCode}</p>
                 </Link>
             </div> 

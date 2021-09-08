@@ -21,10 +21,10 @@ export default function Header() {
                                 <Link className="nav-link" to="/">Home</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/about">About</Link>
+                                <Link className="nav-link" to="/register">Signup</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/register">Signup</Link>
+                                <Link className="nav-link" to="/addsize">+ SIZE</Link>
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link" to="/style/add">+ STYLE</Link>

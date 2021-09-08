@@ -5,6 +5,7 @@ import { BrowserRouter, Route } from "react-router-dom"
 import AddStyle from './components/services/AddStyle';
 import AddSkus from './components/services/AddSkus';
 import EditStyle from './components/services/EditStyle';
+import AddSize from './components/services/AddSize';
 
 function App() {
   return (
@@ -22,6 +23,9 @@ function App() {
         </Route>
         <Route exact path="/">
           <Home />
+        </Route>
+        <Route exact path="/addsize">
+          <AddSize/>
         </Route>
       </div>
     </BrowserRouter>

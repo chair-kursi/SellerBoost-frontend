@@ -11,9 +11,9 @@ export default function EditStyle() {
 
     const [styleCode, setStyleCode] = useState(null);
     const [styleCodeErr, setStyleCodeErr] = useState(null);
-    const [frontImg, setFrontImg] = useState(null);
-    const [backImg, setBackImg] = useState(null);
-    const [zoomImg, setZoomImg] = useState(null);
+    const [frontImageUrl, setFrontImageUrl] = useState(null);
+    const [backImageUrl, setBackImageUrl] = useState(null);
+    const [zoomImageUrl, setZoomImageUrl] = useState(null);
     const [color, setColor] = useState(null);
     const [name, setName] = useState(null);
     const [nameErr, setNameErr] = useState(null);
@@ -25,23 +25,27 @@ export default function EditStyle() {
     const updateStyle = async () => {
         setSuccess(null);
         setNoSuccess(null);
-        if (!frontImg || !backImg || !zoomImg || !color || !name) {
-            setNoSuccess("Please fill all details to proceed.")
+        if (!frontImageUrl || !backImageUrl || !zoomImageUrl || !color || !name) {
+            setNoSuccess("Please fill all details to proceed.");
+            return;
+        }
+        if (frontImageUrl === style.frontImageUrl && backImageUrl === style.backImageUrl && zoomImageUrl === style.zoomImageUrl && color === style.color && name === style.name) {
+            setNoSuccess("Everything is already Updated");
             return;
         }
         let data = {
-            frontImg: frontImg,
-            backImg: backImg,
-            zoomImg: zoomImg,
+            frontImageUrl: frontImageUrl,
+            backImageUrl: backImageUrl,
+            zoomImageUrl: zoomImageUrl,
             color: color,
             name: name
         };
         const updatedData = await axios({
-            method: "post",
-            url: "http://localhost:3002/style/update/"+ params.styleCode,
+            method: "patch",
+            url: "http://localhost:3002/style/update/" + params.styleCode,
             data: data
         });
- 
+
         if (updatedData.status)
             setSuccess("Style Updated Successfully.")
 
@@ -53,6 +57,11 @@ export default function EditStyle() {
             url: "http://localhost:3002/style/" + params.styleCode
         });
         setStyle(stylesArr.data[0]);
+        setFrontImageUrl(stylesArr.data[0].frontImageUrl)
+        setBackImageUrl(stylesArr.data[0].backImageUrl)
+        setZoomImageUrl(stylesArr.data[0].zoomImageUrl)
+        setColor(stylesArr.data[0].color)
+        setName(stylesArr.data[0].name)
     }
 
     useEffect(() => {
@@ -70,15 +79,7 @@ export default function EditStyle() {
                 }
                 <div className="new-style-code new-style-fields">
                     <label htmlFor="styleCode">Style Code: </label>
-                    <input type="text" id="styleCode" autoComplete="off" placeholder="Style Code" value={style.styleCode} disabled={true}
-                    // onChange={(e) => {
-                    //     if (!styleCodeValidator(e.target.value) && e.target.value.length) {
-                    //         setStyleCodeErr("Invalid Style Code!!")
-                    //         setStyleCode(null)
-                    //     }
-                    //     else setStyleCodeErr(null)
-                    //     setStyleCode(e.target.value)
-                    // }}
+                    <input type="text" id="styleCode" autoComplete="off" placeholder="Style Code" value={style.styleCode} disabled={true} 
                     />
                 </div>
                 {
@@ -88,14 +89,16 @@ export default function EditStyle() {
 
                 <div className="new-style-name new-style-fields">
                     <label htmlFor="styleName">Name: </label>
-                    <input type="text" id="styleName" autoComplete="off" placeholder="Name" onChange={(e) => {
-                        if (e.target.value && !nameValidator(e.target.value)) {
-                            setNameErr("Enter Valid Name")
-                            setName(null)
-                        }
-                        else setNameErr(null)
-                        setName(e.target.value)
-                    }} />
+                    <input type="text" id="styleName" autoComplete="off" value={name} placeholder="Name"
+                        onChange={(e) => {
+                            if (e.target.value && !nameValidator(e.target.value)) {
+                                setNameErr("Enter Valid Name")
+                                setName(null)
+                            }
+                            else setNameErr(null)
+                            setName(e.target.value)
+                        }}
+                    />
                 </div>
                 {
                     nameErr ?
@@ -103,22 +106,22 @@ export default function EditStyle() {
                 }
                 <div className="new-style-color new-style-fields">
                     <label htmlFor="styleName">Color: </label>
-                    <input type="text" id="styleColor" autoComplete="off" placeholder="Color" onChange={(e) => setColor(e.target.value)} />
+                    <input type="text" id="styleColor" autoComplete="off" placeholder="Color" value={color} onChange={(e) => setColor(e.target.value)} />
                 </div>
 
                 <div className="new-style-front-img new-style-fields">
                     <label htmlFor="frontImg">Front Image: </label>
-                    <input type="text" id="frontImg" autoComplete="off" placeholder="Front Image" onChange={(e) => setFrontImg(e.target.value)} />
+                    <input type="text" id="frontImg" autoComplete="off" placeholder="Front Image" value={frontImageUrl} onChange={(e) => setFrontImageUrl(e.target.value)} />
                 </div>
 
                 <div className="new-style-back-img new-style-fields">
                     <label htmlFor="backImg">Back Image: </label>
-                    <input type="text" id="backImg" autoComplete="off" placeholder="Back Image" onChange={(e) => setBackImg(e.target.value)} />
+                    <input type="text" id="backImg" autoComplete="off" placeholder="Back Image" value={backImageUrl} onChange={(e) => setBackImageUrl(e.target.value)} />
                 </div>
 
                 <div className="new-style-zoom-img new-style-fields">
                     <label htmlFor="zoomImg">Zoom Image: </label>
-                    <input type="text" id="zoomImg" autoComplete="off" placeholder="Zoom Image" onChange={(e) => setZoomImg(e.target.value)} />
+                    <input type="text" id="zoomImg" autoComplete="off" placeholder="Zoom Image" value={zoomImageUrl} onChange={(e) => setZoomImageUrl(e.target.value)} />
                 </div>
                 <button className="new-style-fields" onClick={updateStyle}>Update</button>
             </div>

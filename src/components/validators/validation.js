@@ -1,3 +1,6 @@
+import validator from 'validator'
+
+
 const isAlphaNumeric = (str) => {
     for (let i = 0; i < str.length; i++) {
         var c = str.charCodeAt(i);
@@ -26,8 +29,7 @@ export const styleCodeValidator = (code) => {
         for (let i = 0; i < code.length; i++) {
             var c = code.charCodeAt(i);
             if (!(c > 47 && c < 58) &&
-                !(c > 64 && c < 91) &&
-                // !(c > 96 && c < 123) && // lower alpha (a-z)
+                !(c > 64 && c < 91) && 
                 code[i] !== '-' &&
                 code[i] !== ':') {
                 return false;
@@ -43,6 +45,33 @@ export const nameValidator = (name) => {
     for (let i = 0; i < name.length; i++) {
         if (name[i] !== '-' && name[i] !== ' ' && name[i] !== ':' && !isAlphaNumeric(name[i]))
             return false;
+    }
+    return true;
+}
+
+
+export function urlValidator(str) {
+    return validator.isURL(str)
+}
+
+export function sizeCodeValidator(str){
+    if(str.length<3 || str.length>10)
+    return false;
+    for(let i=0;i<str.length;i++)
+    {
+        if(!validator.isAlphanumeric(str[i]) &&  str[i]!==':' &&str[i]!=='-' && str[i]!=='_')
+        return false 
+    }
+    return true;
+}
+
+export function sizeNameValidator(s){
+    if(s.length>50 || s.length<5)
+    return false;
+    for(let i=0;i<s.length;i++)
+    {
+        if(!validator.isAlphanumeric(s[i]) && s[i]!=='-' && s[i]!==':' && s[i]!=='-' && s[i]!=='_' && s[i]!=='.' && s[i]!==']' && s[i]!=='[' && s[i]!=='}' && s[i]!=='{' && s[i]!==')' && s[i]!=='(')
+        return false
     }
     return true;
 }
