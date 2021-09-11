@@ -1,0 +1,30 @@
+.main-product-card {
+  cursor: pointer;
+  width: 240px;
+  margin-top: -40px;
+  margin-right: 40px;
+  text-decoration: none;
+  margin-bottom: 40px;
+}
+
+.main-product-card img {
+  width: 100%;
+
+  height: 300px;
+  object-fit: contain;
+}
+.main-product-card img:hover {
+  transform: scale(1.05);
+  transition: all ease-in-out 0.5s;
+}
+.stylecode {
+  text-decoration: none;
+}
+.details {
+  background-color: lightgrey;
+  border-bottom-right-radius: 20px;
+  height: 130px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}

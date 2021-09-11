@@ -1,38 +1,74 @@
-import React, { useState } from 'react'
-import '../../css/header.css'
-import { Link } from "react-router-dom"
-
+import React, { useState } from "react";
+import "../../css/header.css";
+import { Link } from "react-router-dom";
 
 export default function Header() {
+  return (
+    <div className="nav">
+      <div className="container">
+        {" "}
+        <div title="404" className="titl">
+          <Link to="/">
+            <h1>Stylobug </h1>
+          </Link>
+        </div>
+        <div className="items">
+          <div className="item">
+            {" "}
+            <Link to="/">
+              {" "}
+              <p>HOME</p>
+            </Link>
+          </div>
 
-    const [toggle, setToggle] = useState(false)
+          <div className="item">
+            {" "}
+            <Link to="/register">
+              {" "}
+              <p>SIGN UP</p>{" "}
+            </Link>
+          </div>
 
+          <div className="item">
+            {" "}
+            <Link to="/addsize">
+              <p>Add Size</p>{" "}
+            </Link>
+          </div>
 
-    return ( 
-            <div className="header-main">
-                <nav className="navbar navbar-light fixed-top navbar-expand-md navbar-no-bg">
-                    <Link className="navbar-brand" to="/"> StyloBug</Link>
-                    <button className={`navbar-toggler ${!toggle ? "collapsed" : ""}`} type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon" onClick={() => { console.log("clicked"); setToggle(!toggle) }}></span>
-                    </button>
-                    <div className={`collapse navbar-collapse ${toggle ? "nav-top-ul-li-text-align show" : ''}`} id="navbarNav">
-                        <ul className="navbar-nav ml-auto nav-top-ul">
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/">Home</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/register">Signup</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/addsize">+ SIZE</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/style/add">+ STYLE</Link>
-                            </li>
+          <div className="item">
+            <Link to="/style/add">
+              <p>+ STYLE</p>
+            </Link>
+          </div>
+        </div>
+      </div>
 
-                        </ul>
-                    </div>
-                </nav>
-            </div>  
-    )
+      {/* <ul className="container">
+        <Link to="/">
+          {" "}
+          <div title="404" className="title">
+            Stylobug
+          </div>
+        </Link>
+
+        <li className="item">
+          {" "}
+          <Link to="/">Home</Link>
+        </li>
+        <li className="item">
+          {" "}
+          <Link to="/register">Signup</Link>
+        </li>
+        <li className="item">
+          {" "}
+          <Link to="/addsize">+ SIZE</Link>
+        </li>
+        <li className="item">
+          {" "}
+          <Link to="/style/add">+ STYLE</Link>
+        </li>
+      </ul> */}
+    </div>
+  );
 }

@@ -1,31 +1,60 @@
-import './App.css';
-import Header from './components/common/Header';
-import Home from './components/common/Home';
-import { BrowserRouter, Route } from "react-router-dom"
-import AddStyle from './components/services/AddStyle';
-import AddSkus from './components/services/AddSkus';
-import EditStyle from './components/services/EditStyle';
-import AddSize from './components/services/AddSize';
+import React, { useState } from "react";
+
+import "./App.css";
+
+import Home from "./components/common/Home";
+import { BrowserRouter, Route } from "react-router-dom";
+import AddStyle from "./components/services/AddStyle";
+import AddSkus from "./components/services/AddSkus";
+import EditStyle from "./components/services/EditStyle";
+import AddSize from "./components/services/AddSize";
+import Sidebar from "./components/common/Sidebar";
+import Modal from "react-modal";
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    height: "600px",
+    width: "1100px",
+    transform: "translate(-50%, -50%)",
+  },
+};
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <Header />
         <Route exact path="/style/add">
-          <AddStyle />
+          <Modal isOpen="true" style={customStyles}>
+            <AddStyle />
+          </Modal>
         </Route>
         <Route exact path="/style/edit/:styleCode">
-          <EditStyle />
+          <Modal isOpen="true" style={customStyles}>
+            <EditStyle />
+          </Modal>
         </Route>
         <Route exact path="/style/add/:clientId">
-          <AddSkus />
+          <Modal isOpen="true" style={customStyles}>
+            <AddSkus />
+          </Modal>
+        </Route>
+
+        <Route exact path="/addsize">
+          <Modal isOpen="true" style={customStyles}>
+            <AddSize />
+          </Modal>
         </Route>
         <Route exact path="/">
-          <Home />
-        </Route>
-        <Route exact path="/addsize">
-          <AddSize/>
+          <div className="sidebar">
+            <Sidebar />
+          </div>
+          <div className="home">
+            <Home />
+          </div>
         </Route>
       </div>
     </BrowserRouter>

@@ -1,4 +1,54 @@
-@import url('https://fonts.googleapis.com/css2?family=Encode+Sans+SC&display=swap');
+a {
+  text-decoration: none;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  margin-top: 0;
+  border-bottom: 1px solid lightgrey;
+  margin-bottom: 60px;
+}
+.items {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+.item {
+  margin-right: 40px;
+}
+.item a {
+  text-decoration: none;
+}
+.titl a {
+  text-decoration: none;
+  color: #11493e;
+}
+.titl h1 {
+  font-weight: 550;
+}
+.item {
+  background-color: #191919;
+  width: 120px;
+  border-radius: 30px;
+}
+.item:hover {
+  background-color: #cecece;
+  transition: all ease-in-out 0.3s;
+}
+.item p {
+  margin-top: 15px;
+  color: white;
+}
+/* @import url('https://fonts.googleapis.com/css2?family=Encode+Sans+SC&display=swap');
 
 .header-main {
     background-color: #f8f9fa;
@@ -62,4 +112,4 @@
     max-width: 760px;
     margin: 20px auto;
     color: #8181ff;
-}
+} */
