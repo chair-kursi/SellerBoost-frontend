@@ -80,118 +80,115 @@ export default function AddStyle() {
       ) : null}
 
       <div className="inputs">
-        <div className="side5">
-          <div className="itemss">
-            <label htmlFor="styleCode">Style Code: </label>
-            <input
-              type="text"
-              id="styleCode"
-              placeholder="Style Code"
-              onChange={(e) => {
-                setStyleCode(e.target.value);
-                if (
-                  !styleCodeValidator(e.target.value) &&
-                  e.target.value.length
-                ) {
-                  setStyleCodeErr("Invalid Style Code!!");
-                  setStyleCode(null);
-                } else setStyleCodeErr(null);
-              }}
-            />
-          </div>
-          {styleCodeErr ? <p>{styleCodeErr}</p> : null}
-
-          <div className="itemss">
-            <label htmlFor="styleName">Name: </label>
-            <input
-              type="text"
-              id="styleName"
-              placeholder="Name"
-              onChange={(e) => {
-                setName(e.target.value);
-                if (e.target.value && !nameValidator(e.target.value)) {
-                  setNameErr("Enter Valid Name");
-                  setName(null);
-                } else setNameErr(null);
-              }}
-            />
-          </div>
-          {nameErr ? <p>{nameErr}</p> : null}
-          <div className="itemss">
-            <label htmlFor="styleName">Color: </label>
-            <input
-              type="text"
-              id="styleColor"
-              placeholder="Color"
-              onChange={(e) => setColor(e.target.value)}
-            />
-          </div>
-
-          <div className="itemss">
-            <label htmlFor="frontImageUrl">Front Image: </label>
-            <input
-              type="text"
-              id="frontImageUrl"
-              placeholder="Front Image"
-              onChange={(e) => {
-                setBackImageUrl(e.target.value);
-                if (!urlValidator(e.target.value) && e.target.value) {
-                  setFrontImageUrlErr("Enter Valid Url");
-                  setBackImageUrl(null);
-                } else setFrontImageUrlErr(null);
-              }}
-            />
-          </div>
-          {frontImageUrlErr ? <p>{frontImageUrlErr}</p> : null}
+        <div className="itemss">
+          <label htmlFor="styleCode">Style Code: </label>
+          <input
+            type="text"
+            id="styleCode"
+            placeholder="Style Code"
+            onChange={(e) => {
+              setStyleCode(e.target.value);
+              if (
+                !styleCodeValidator(e.target.value) &&
+                e.target.value.length
+              ) {
+                setStyleCodeErr("Invalid Style Code!!");
+                setStyleCode(null);
+              } else setStyleCodeErr(null);
+            }}
+          />
         </div>
-        <div className="side6">
-          <div className="itemss">
-            <label htmlFor="backImageUrl">Back Image: </label>
-            <input
-              type="text"
-              id="backImageUrl"
-              placeholder="Back Image"
-              onChange={(e) => {
-                setFrontImageUrl(e.target.value);
-                if (!urlValidator(e.target.value) && e.target.value) {
-                  setBackImageUrlErr("Enter Valid Url");
-                  setFrontImageUrl(null);
-                } else setBackImageUrlErr(null);
-              }}
-            />
-          </div>
-          {backImageUrlErr ? <p>{backImageUrlErr}</p> : null}
+        {styleCodeErr ? <p>{styleCodeErr}</p> : null}
 
-          <div className="itemss">
-            <label htmlFor="zoomImageUrl">Zoom Image: </label>
-            <input
-              type="text"
-              id="zoomImageUrl"
-              placeholder="Zoom Image"
-              onChange={(e) => {
-                setZoomImageUrl(e.target.value);
-                if (!urlValidator(e.target.value) && e.target.value) {
-                  setZoomImageUrlErr("Enter Valid Url");
-                  setZoomImageUrl(null);
-                } else setZoomImageUrlErr(null);
-              }}
-            />
-          </div>
-          {zoomImageUrlErr ? <p>{zoomImageUrlErr}</p> : null}
-          <div className="itemss">
-            <label htmlFor="hasSize">Has Size: </label>
-            <input
-              type="text"
-              id="hasSize"
-              placeholder="Has Size (T/F)"
-              onChange={(e) => setHasSize(e.target.value)}
-            />
-          </div>
-
-          <button className="butt" onClick={saveNewStyle}>
-            Add Style
-          </button>
+        <div className="itemss">
+          <label htmlFor="styleName">Name: </label>
+          <input
+            type="text"
+            id="styleName"
+            placeholder="Name"
+            onChange={(e) => {
+              setName(e.target.value);
+              if (e.target.value && !nameValidator(e.target.value)) {
+                setNameErr("Enter Valid Name");
+                setName(null);
+              } else setNameErr(null);
+            }}
+          />
         </div>
+        {nameErr ? <p>{nameErr}</p> : null}
+        <div className="itemss">
+          <label htmlFor="styleName">Color: </label>
+          <input
+            type="text"
+            id="styleColor"
+            placeholder="Color"
+            onChange={(e) => setColor(e.target.value)}
+          />
+        </div>
+
+        <div className="itemss">
+          <label htmlFor="frontImageUrl">Front Image: </label>
+          <input
+            type="text"
+            id="frontImageUrl"
+            placeholder="Front Image"
+            onChange={(e) => {
+              setBackImageUrl(e.target.value);
+              if (!urlValidator(e.target.value) && e.target.value) {
+                setFrontImageUrlErr("Enter Valid Url");
+                setBackImageUrl(null);
+              } else setFrontImageUrlErr(null);
+            }}
+          />
+        </div>
+        {frontImageUrlErr ? <p>{frontImageUrlErr}</p> : null}
+
+        <div className="itemss">
+          <label htmlFor="backImageUrl">Back Image: </label>
+          <input
+            type="text"
+            id="backImageUrl"
+            placeholder="Back Image"
+            onChange={(e) => {
+              setFrontImageUrl(e.target.value);
+              if (!urlValidator(e.target.value) && e.target.value) {
+                setBackImageUrlErr("Enter Valid Url");
+                setFrontImageUrl(null);
+              } else setBackImageUrlErr(null);
+            }}
+          />
+        </div>
+        {backImageUrlErr ? <p>{backImageUrlErr}</p> : null}
+
+        <div className="itemss">
+          <label htmlFor="zoomImageUrl">Zoom Image: </label>
+          <input
+            type="text"
+            id="zoomImageUrl"
+            placeholder="Zoom Image"
+            onChange={(e) => {
+              setZoomImageUrl(e.target.value);
+              if (!urlValidator(e.target.value) && e.target.value) {
+                setZoomImageUrlErr("Enter Valid Url");
+                setZoomImageUrl(null);
+              } else setZoomImageUrlErr(null);
+            }}
+          />
+        </div>
+        {zoomImageUrlErr ? <p>{zoomImageUrlErr}</p> : null}
+        <div className="itemss">
+          <label htmlFor="hasSize">Has Size: </label>
+          <input
+            type="text"
+            id="hasSize"
+            placeholder="Has Size (T/F)"
+            onChange={(e) => setHasSize(e.target.value)}
+          />
+        </div>
+
+        <button className="butt" onClick={saveNewStyle}>
+          Add Style
+        </button>
       </div>
     </div>
   );

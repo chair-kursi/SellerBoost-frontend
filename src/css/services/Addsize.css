@@ -19,22 +19,27 @@
 }
 .container3_item {
   display: flex;
-  flex-direction: column;
-  margin-bottom: 20px;
+  margin-right: 20px;
+  width: 100%;
+  margin-right: 30px;
+}
+.container3_items {
+  display: flex;
 }
 .container3_item label {
   font-size: 20px;
   color: black;
-  width: 100%;
-
+  margin-right: 20px;
   font-weight: 400;
+  width: 150px;
 }
 .container3_item input {
   border: none;
   height: 50px;
   border-bottom: 0.2px solid lightgrey;
-  width: 100%;
+  margin-top: -10px;
   margin-bottom: 20px;
+  width: 100%;
 }
 .container3_item input:hover {
   border-bottom: 3px solid #191919;
