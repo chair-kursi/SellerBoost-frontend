@@ -37,13 +37,13 @@ function App() {
             <EditStyle />
           </Modal>
         </Route>
-        <Route exact path="/style/add/:clientId">
+        <Route exact path="/sku/add/skuCode">
           <Modal isOpen="true" style={customStyles}>
             <AddSkus />
           </Modal>
         </Route>
 
-        <Route exact path="/addsize">
+        <Route exact path="/size/add">
           <Modal isOpen="true" style={customStyles}>
             <AddSize />
           </Modal>

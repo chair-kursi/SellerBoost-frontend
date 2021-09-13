@@ -5,6 +5,7 @@ import Header from "../common/Header";
 import "../../css/home.css";
 export default function Home() {
   const [styles, setStyles] = useState(null);
+  const [client, setClient] = useState(null);
 
   const getStyles = async () => {
     const stylesArr = await axios({
@@ -14,13 +15,16 @@ export default function Home() {
     setStyles(stylesArr.data);
   };
 
+  // clientId;
+  // console.log(styles);
+
   useEffect(() => {
     getStyles();
   }, []);
 
   return (
     <div className="Home">
-      <Header />
+      <Header client={styles} />
       <div className="banner-page">
         <div className="side1">
           <h2>

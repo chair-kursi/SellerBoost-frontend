@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../../css/header.css";
 import { Link } from "react-router-dom";
 
-export default function Header() {
+export default function Header({ client }) {
   return (
     <div className="nav">
       <div className="container">
@@ -31,14 +31,19 @@ export default function Header() {
 
           <div className="item">
             {" "}
-            <Link to="/addsize">
-              <p>Add Size</p>{" "}
+            <Link to="/size/add">
+              <p>+ Size</p>{" "}
             </Link>
           </div>
 
           <div className="item">
             <Link to="/style/add">
               <p>+ STYLE</p>
+            </Link>
+          </div>
+          <div className="item">
+            <Link to="/sku/add/skuCode">
+              <p>+ SKU</p>
             </Link>
           </div>
         </div>

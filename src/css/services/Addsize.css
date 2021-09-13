@@ -1,0 +1,49 @@
+.container3 {
+  padding: 60px 40px;
+  flex: 1;
+}
+
+.head2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 42px;
+}
+.head2 h2 span {
+  font-size: 50px;
+  color: #11493e;
+  font-weight: 700;
+}
+.head2 h2 {
+  font-size: 40px;
+}
+.container3_item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+.container3_item label {
+  font-size: 20px;
+  color: black;
+  width: 100%;
+
+  font-weight: 400;
+}
+.container3_item input {
+  border: none;
+  height: 50px;
+  border-bottom: 0.2px solid lightgrey;
+  width: 100%;
+  margin-bottom: 20px;
+}
+.container3_item input:hover {
+  border-bottom: 3px solid #191919;
+}
+
+.container3_item input::placeholder {
+  font-size: 20px;
+  color: #808080;
+}
+.container3_item input:focus {
+  outline: none;
+}

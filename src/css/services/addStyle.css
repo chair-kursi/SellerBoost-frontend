@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 40px;
 }
 
 .close {
@@ -15,7 +16,7 @@
   border-radius: 90%;
 }
 .container1 {
-  padding: 10px 40px;
+  padding: 0px 40px;
 }
 .head h2 {
   font-size: 40px;
@@ -39,12 +40,12 @@
 .side6 {
   flex: 0.5;
   margin-left: 50px;
+  margin-bottom: 40px;
 }
 .itemss label {
-  font-size: 18px;
-
+  font-size: 20px;
+  color: black;
   width: 100%;
-  color: #808080;
 
   font-weight: 400;
 }
@@ -59,8 +60,8 @@
 }
 
 .itemss input::placeholder {
-  color: black;
   font-size: 20px;
+  color: #808080;
 }
 .itemss input:focus {
   outline: none;
@@ -86,7 +87,9 @@
   background-color: #cecece;
   transition: all ease-in-out 0.3s;
   cursor: pointer;
+  border: none;
 }
+
 /* .add-style {
      margin: 200px 0 100px 0;
      display: flex;

@@ -1,0 +1,33 @@
+.container2 {
+  padding: 0 40px;
+}
+.side7 {
+  flex: 0.5;
+  border-right: 1px solid lightgrey;
+  margin-bottom: 110px;
+}
+.side8 {
+  flex: 0.5;
+  margin-left: 50px;
+}
+.inputsss {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
+  margin-top: 40px;
+}
+.head1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 42px;
+}
+.head1 h2 span {
+  font-size: 50px;
+  color: #11493e;
+  font-weight: 700;
+}
+.head1 h2 {
+  font-size: 40px;
+}
