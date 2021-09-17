@@ -102,25 +102,6 @@ export default function AddSkus() {
           />
         </div>
 
-        <div className="itemss">
-          <label htmlFor="backImg">Created: </label>
-          <input
-            type="text"
-            id="backImg"
-            placeholder="Back Image"
-            onChange={(e) => setBackImg(e.target.value)}
-          />
-        </div>
-
-        <div className="itemss">
-          <label htmlFor="zoomImg">Updated: </label>
-          <input
-            type="text"
-            id="zoomImg"
-            placeholder="Zoom Image"
-            onChange={(e) => setZoomImg(e.target.value)}
-          />
-        </div>
         <button className="butt">Add Sku</button>
       </div>
     </div>

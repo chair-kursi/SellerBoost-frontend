@@ -9,6 +9,7 @@ import AddSkus from "./components/services/AddSkus";
 import EditStyle from "./components/services/EditStyle";
 import AddSize from "./components/services/AddSize";
 import Sidebar from "./components/common/Sidebar";
+import Dashboard from "./components/services/Dashboard";
 import Modal from "react-modal";
 const customStyles = {
   content: {
@@ -48,6 +49,11 @@ function App() {
             <AddSize />
           </Modal>
         </Route>
+
+        <Route exact path="/Dashboard">
+          <Dashboard />
+        </Route>
+
         <Route exact path="/">
           <div className="sidebar">
             <Sidebar />

@@ -13,7 +13,7 @@ export default function Header({ client }) {
           </Link>
         </div>
         <div className="items">
-          <div className="item">
+          {/* <div className="item">
             {" "}
             <Link to="/">
               {" "}
@@ -27,12 +27,12 @@ export default function Header({ client }) {
               {" "}
               <p>SIGN UP</p>{" "}
             </Link>
-          </div>
+          </div> */}
 
           <div className="item">
             {" "}
             <Link to="/size/add">
-              <p>+ Size</p>{" "}
+              <p>+ SIZE</p>{" "}
             </Link>
           </div>
 
@@ -44,6 +44,11 @@ export default function Header({ client }) {
           <div className="item">
             <Link to="/sku/add/skuCode">
               <p>+ SKU</p>
+            </Link>
+          </div>
+          <div className="item">
+            <Link to="/Dashboard">
+              <p>DASHBOARD</p>
             </Link>
           </div>
         </div>
