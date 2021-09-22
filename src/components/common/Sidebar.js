@@ -40,7 +40,15 @@ function Sidebar() {
         <li className="list">
           <a href="">
             <span className="icon">
-              <SettingsOutlinedIcon />
+              {/* <SettingsOutlinedIcon /> */}
+              <lord-icon
+                src="https://cdn.lordicon.com/hdiorcun.json"
+                trigger="loop"
+                colors="primary:#ffffff,secondary:#08a88a"
+                // colors="primary:#121331,secondary:#08a88a"
+                stroke={120}
+                // style={{ width: "100px", height: "250px" }}
+              ></lord-icon>
             </span>
             <span className="title">MarketPlace Health</span>
           </a>
