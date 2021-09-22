@@ -46,11 +46,6 @@ export default function Header({ client }) {
               <p>+ SKU</p>
             </Link>
           </div>
-          <div className="item">
-            <Link to="/Dashboard">
-              <p>DASHBOARD</p>
-            </Link>
-          </div>
         </div>
       </div>
 

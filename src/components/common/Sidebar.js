@@ -20,20 +20,20 @@ function Sidebar() {
           </a>
         </li>
         <li className="list">
-          <a href="">
+          <a href="/Onboarding">
             <span className="icon">
               {" "}
               <PersonOutlineOutlinedIcon />
             </span>
-            <span className="title">Profile</span>
+            <span className="title">OnBoarding</span>
           </a>
         </li>
         <li className="list">
-          <a href="">
+          <a href="/Dashboard">
             <span className="icon">
               <ChatBubbleOutlineOutlinedIcon />
             </span>
-            <span className="title">Messages</span>
+            <span className="title">Inventory DashBoard</span>
           </a>
         </li>
 
@@ -42,7 +42,7 @@ function Sidebar() {
             <span className="icon">
               <SettingsOutlinedIcon />
             </span>
-            <span className="title">Setting</span>
+            <span className="title">MarketPlace Health</span>
           </a>
         </li>
 

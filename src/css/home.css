@@ -50,3 +50,32 @@
   width: 450px;
   object-fit: contain;
 }
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+  margin-bottom: 60px;
+  border-bottom: 1px solid lightgrey;
+  margin-top: 0;
+}
+.input {
+  flex: 0.5;
+  display: flex;
+  background-color: white;
+  color: grey;
+  border-radius: 30px;
+  align-items: center;
+  padding: 15px;
+  min-width: 70px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  margin-bottom: 20px;
+}
+.input > input {
+  border: none;
+  width: 100%;
+  margin-left: 10px;
+}
+.input > input:focus {
+  outline: none;
+}

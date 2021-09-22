@@ -1,8 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Product from "./Product";
-import Header from "../common/Header";
+import SearchIcon from "@material-ui/icons/Search";
+import { Avatar } from "@material-ui/core";
+
 import "../../css/home.css";
+import { Link } from "react-router-dom";
 export default function Home() {
   const [styles, setStyles] = useState(null);
   const [client, setClient] = useState(null);
@@ -24,7 +27,18 @@ export default function Home() {
 
   return (
     <div className="Home">
-      <Header client={styles} />
+      <div className="header">
+        <div title="404" className="titl">
+          <Link to="/">
+            <h1>Stylobug </h1>
+          </Link>
+        </div>
+        <div className="input">
+          <SearchIcon />
+          <input type="text" placeholder="Search Style" />
+        </div>
+      </div>
+
       <div className="banner-page">
         <div className="side1">
           <h2>

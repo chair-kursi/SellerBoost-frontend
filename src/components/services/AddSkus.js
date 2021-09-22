@@ -39,7 +39,7 @@ export default function AddSkus() {
           {" "}
           Add Sku For Style: <span>StyleCode</span>
         </h2>
-        <Link to="/">
+        <Link to="/Onboarding">
           <p className="close">X</p>
         </Link>
       </div>

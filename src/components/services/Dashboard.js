@@ -142,7 +142,7 @@ function Dashboard() {
 
   return (
     <div className="Dashboard__table">
-      <Header />
+      {/* <Header /> */}
 
       {/* <input type="file" name="csvFile" onChange={onFileChange} />
       <button onClick={SubmitData}>Submit</button> */}

@@ -75,7 +75,7 @@ function App() {
             {" "}
             <span>Add</span> Size
           </h2>
-          <Link to="/">
+          <Link to="/Onboarding">
             <p className="close">X</p>
           </Link>
         </div>

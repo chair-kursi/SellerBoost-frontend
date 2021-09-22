@@ -67,7 +67,7 @@ export default function AddStyle() {
           {" "}
           <span>Add</span> Style To Fashion
         </h2>
-        <Link to="/">
+        <Link to="/Onboarding">
           <p className="close">X</p>
         </Link>
       </div>

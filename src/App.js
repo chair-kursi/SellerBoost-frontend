@@ -11,6 +11,7 @@ import AddSize from "./components/services/AddSize";
 import Sidebar from "./components/common/Sidebar";
 import Dashboard from "./components/services/Dashboard";
 import Modal from "react-modal";
+import Onboarding from "./components/common/Onboarding";
 const customStyles = {
   content: {
     top: "50%",
@@ -52,6 +53,9 @@ function App() {
 
         <Route exact path="/Dashboard">
           <Dashboard />
+        </Route>
+        <Route exact path="/Onboarding">
+          <Onboarding />
         </Route>
 
         <Route exact path="/">
