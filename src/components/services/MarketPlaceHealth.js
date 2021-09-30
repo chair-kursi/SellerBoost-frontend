@@ -1,8 +1,87 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../css/services/MarketPlaceHealth.css";
+import BootstrapTable from "react-bootstrap-table-next";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "react-bootstrap-table-next/dist/react-bootstrap-table2.css";
+import paginationFactory from "react-bootstrap-table2-paginator";
+import "react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css";
+import filterFactory, {
+  textFilter,
+  numberFilter,
+  selectFilter,
+  multiSelectFilter,
+  customFilter,
+} from "react-bootstrap-table2-filter";
+import "react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css";
 
 function MarketPlaceHealth() {
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState(false);
+  const [company, setCompany] = useState(null);
+  const [userList, setUserList] = useState([]);
+  const columns = [
+    {
+      dataField: "styleCode",
+      text: "StyleCode",
+      sort: "true",
+      filter: textFilter(),
+    },
+    {
+      dataField: "salesRank",
+      text: "Rank",
+      sort: "true",
+      filter: textFilter(),
+    },
+    {
+      dataField: "currentInv",
+      text: "Total Inventory",
+      sort: "true",
+      filter: textFilter(),
+    },
+    {
+      dataField: "salesNumber",
+      text: "StyloBug",
+      sort: "true",
+      filter: textFilter(),
+    },
+    {
+      dataField: "salesNumber",
+      text: "Myntra",
+      sort: "true",
+      filter: textFilter(),
+    },
+  ];
+  const selectRow = {
+    mode: "checkbox",
+    clickToSelect: true,
+  };
+  const pagination = paginationFactory({
+    page: 1,
+    sizePerPage: 5,
+    lastPageText: ">>",
+    firstPageText: "<<",
+    nextPageText: ">",
+    prePageText: "<",
+    showTotal: true,
+    alwaysShowAllBtns: true,
+    onPageChange: function (page, sizePerpage) {
+      console.log("page", page);
+      console.log("sizePerPage", sizePerpage);
+    },
+    onSizePerPageChange: function (page, sizePerpage) {
+      console.log("page", page);
+      console.log("sizePerPage", sizePerpage);
+    },
+  });
+
+  useEffect(() => {
+    fetch("http://localhost:3002/api/styleTraffic")
+      .then((response) => response.json())
+
+      .then((result) => setUserList(result))
+      // .then((r) => console.log(r))
+      .catch((error) => console.log(error));
+  }, []);
+
   return (
     <div>
       <input type="checkbox" id="nav-toggle" />
@@ -19,29 +98,36 @@ function MarketPlaceHealth() {
         <div className="sidebar-menu">
           <ul>
             <li>
-              <a href="#">
+              <a href="/">
                 <span className="fas fa-home"></span>
                 <span>Home</span>
               </a>
             </li>
             <li>
-              <a href="#">
+              <a href="/Onboarding">
                 <span className="fas fa-stream"></span>
                 <span>OnBoarding</span>
               </a>
             </li>
-            <li>
-              <li>
-                <a href="#">
-                  {/* <a href="#" className=""active> */}
-                  <span className="fas fa-tachometer-alt"></span>
-                  <span>Inventory Dashboard </span>
-                </a>
-              </li>
 
-              <a href="#">
+            <li>
+              <a href="/Dashboard">
+                <span className="fas fa-tachometer-alt"></span>
+                <span>Inventory Dashboard </span>
+              </a>
+            </li>
+
+            <li>
+              <a href="/MarketPlaceHealth">
                 <span className="fas fa-heartbeat"></span>
                 <span>MarketPlace Health</span>
+              </a>
+            </li>
+            <li>
+              <a href="/OneClickCatlogUpdate">
+                <span className="fas fa-upload"></span>
+
+                <span>One Click Upload</span>
               </a>
             </li>
             <li>
@@ -59,7 +145,7 @@ function MarketPlaceHealth() {
             <li>
               <a href="#">
                 <span className="fas fa-sign-out-alt"></span>
-                <span>Task</span>
+                <span>Sign-out</span>
               </a>
             </li>
           </ul>
@@ -96,14 +182,22 @@ function MarketPlaceHealth() {
 
         <main>
           <div className="cards">
-            <div className="card-single">
+            <div
+              className={`card-single ${
+                company === "StyloBug" ? "company" : ""
+              } `}
+              onClick={(event) => {
+                if (company === "StyloBug") {
+                  setCompany(null);
+                } else {
+                  setCompany("StyloBug");
+                }
+              }}
+            >
               <div>
                 <div className="card__desc">
                   <div className="desc__numbers">
                     <h1>500</h1>
-                  </div>
-                  <div className="downIcon">
-                    <i class="fas fa-arrow-down"></i>
                   </div>
                 </div>
 
@@ -113,15 +207,22 @@ function MarketPlaceHealth() {
                 <span className="fab fa-asymmetrik"></span>
               </div>
             </div>
-
-            <div className="card-single">
+            <div
+              className={`card-single ${
+                company === "Amazon" ? "company" : ""
+              } `}
+              onClick={(event) => {
+                if (company === "Amazon") {
+                  setCompany(null);
+                } else {
+                  setCompany("Amazon");
+                }
+              }}
+            >
               <div>
                 <div className="card__desc">
                   <div className="desc__number">
                     <h1>50</h1>
-                  </div>
-                  <div className="downIcon">
-                    <i class="fas fa-arrow-down"></i>
                   </div>
                 </div>
 
@@ -135,15 +236,22 @@ function MarketPlaceHealth() {
                 />
               </div>
             </div>
-
-            <div className="card-single">
+            <div
+              className={`card-single ${
+                company === "Flipkart" ? "company" : ""
+              } `}
+              onClick={(event) => {
+                if (company === "Flipkart") {
+                  setCompany(null);
+                } else {
+                  setCompany("Flipkart");
+                }
+              }}
+            >
               <div>
                 <div className="card__desc">
                   <div className="desc__number">
                     <h1>20</h1>
-                  </div>
-                  <div className="downIcon">
-                    <i class="fas fa-arrow-down"></i>
                   </div>
                 </div>
 
@@ -158,14 +266,22 @@ function MarketPlaceHealth() {
                 {/* <span className="fab fa-amazon"></span> */}
               </div>
             </div>
-            <div className="card-single">
+            <div
+              className={`card-single ${
+                company === "Snapdeal" ? "company" : ""
+              } `}
+              onClick={(event) => {
+                if (company === "Snapdeal") {
+                  setCompany(null);
+                } else {
+                  setCompany("Snapdeal");
+                }
+              }}
+            >
               <div>
                 <div className="card__desc">
                   <div className="desc__number">
                     <h1>10</h1>
-                  </div>
-                  <div className="downIcon">
-                    <i class="fas fa-arrow-down"></i>
                   </div>
                 </div>
 
@@ -179,382 +295,236 @@ function MarketPlaceHealth() {
                 />
               </div>
             </div>
-
-            {show ? (
-              <>
-                <div className="card-single">
-                  <div>
-                    <div className="card__desc">
-                      <div className="desc__number">
-                        <h1>10</h1>
-                      </div>
-                      <div className="downIcon">
-                        <i class="fas fa-arrow-down"></i>
-                      </div>
+            <>
+              <div
+                className={`card-single ${
+                  company === "Myntra" ? "company" : ""
+                } `}
+                onClick={(event) => {
+                  if (company === "Myntra") {
+                    setCompany(null);
+                  } else {
+                    setCompany("Myntra");
+                  }
+                }}
+              >
+                <div>
+                  <div className="card__desc">
+                    <div className="desc__number">
+                      <h1>10</h1>
                     </div>
+                  </div>
 
-                    <span className="ti">Myntra</span>
-                  </div>
-                  <div className="stylo">
-                    <img
-                      src="https://iconape.com/wp-content/png_logo_vector/myntra-logo.png"
-                      alt=""
-                      className="stylo_img"
-                    />
-                  </div>
+                  <span className="ti">Myntra</span>
                 </div>
-                <div className="card-single">
-                  <div>
-                    <div className="card__desc">
-                      <div className="desc__number">
-                        <h1>10</h1>
-                      </div>
-                      <div className="downIcon">
-                        <i class="fas fa-arrow-down"></i>
-                      </div>
+                <div className="stylo">
+                  <img
+                    src="https://iconape.com/wp-content/png_logo_vector/myntra-logo.png"
+                    alt=""
+                    className="stylo_img"
+                  />
+                </div>
+              </div>
+              <div
+                className={`card-single ${
+                  company === "Jabong" ? "company" : ""
+                } `}
+                onClick={(event) => {
+                  if (company === "Jabong") {
+                    setCompany(null);
+                  } else {
+                    setCompany("Jabong");
+                  }
+                }}
+              >
+                <div>
+                  <div className="card__desc">
+                    <div className="desc__number">
+                      <h1>10</h1>
                     </div>
+                  </div>
 
-                    <span className="ti">Jabong</span>
-                  </div>
-                  <div className="stylo">
-                    <img
-                      src="https://iconape.com/wp-content/files/ub/337928/png/jabong-logo.png"
-                      alt=""
-                      className="stylo_img"
-                    />
-                  </div>
+                  <span className="ti">Jabong</span>
                 </div>
+                <div className="stylo">
+                  <img
+                    src="https://iconape.com/wp-content/files/ub/337928/png/jabong-logo.png"
+                    alt=""
+                    className="stylo_img"
+                  />
+                </div>
+              </div>
 
-                <div className="card-single">
-                  <div>
-                    <div className="card__desc">
-                      <div className="desc__number">
-                        <h1>10</h1>
-                      </div>
-                      <div className="downIcon">
-                        <i class="fas fa-arrow-down"></i>
-                      </div>
+              <div
+                c
+                className={`card-single ${
+                  company === "Ajio" ? "company" : ""
+                } `}
+                onClick={(event) => {
+                  if (company === "Ajio") {
+                    setCompany(null);
+                  } else {
+                    setCompany("Ajio");
+                  }
+                }}
+              >
+                <div>
+                  <div className="card__desc">
+                    <div className="desc__number">
+                      <h1>10</h1>
                     </div>
+                  </div>
 
-                    <span className="ti">Ajio</span>
-                  </div>
-                  <div className="stylo">
-                    <img
-                      src="https://iconape.com/wp-content/files/bq/300911/png/ajio-logo.png"
-                      alt=""
-                      className="stylo_img"
-                    />
-                  </div>
+                  <span className="ti">Ajio</span>
                 </div>
+                <div className="stylo">
+                  <img
+                    src="https://iconape.com/wp-content/files/bq/300911/png/ajio-logo.png"
+                    alt=""
+                    className="stylo_img"
+                  />
+                </div>
+              </div>
 
-                <div className="card-single">
-                  <div>
-                    <div className="card__desc">
-                      <div className="desc__number">
-                        <h1>10</h1>
-                      </div>
-                      <div className="downIcon">
-                        <i class="fas fa-arrow-down"></i>
-                      </div>
+              <div
+                className={`card-single ${
+                  company === "FirstCry" ? "company" : ""
+                } `}
+                onClick={(event) => {
+                  if (company === "FirstCry") {
+                    setCompany(null);
+                  } else {
+                    setCompany("FirstCry");
+                  }
+                }}
+              >
+                <div>
+                  <div className="card__desc">
+                    <div className="desc__number">
+                      <h1>10</h1>
                     </div>
+                  </div>
 
-                    <span className="ti">FirstCry</span>
-                  </div>
-                  <div className="stylo">
-                    <img
-                      src="https://iconape.com/wp-content/files/mw/61687/png/firstcry-1.png"
-                      alt=""
-                      className="stylo_img"
-                    />
-                  </div>
+                  <span className="ti">FirstCry</span>
                 </div>
+                <div className="stylo">
+                  <img
+                    src="https://iconape.com/wp-content/files/mw/61687/png/firstcry-1.png"
+                    alt=""
+                    className="stylo_img"
+                  />
+                </div>
+              </div>
 
-                <div className="card-single">
-                  <div>
-                    <div className="card__desc">
-                      <div className="desc__number">
-                        <h1>10</h1>
-                      </div>
-                      <div className="downIcon">
-                        <i class="fas fa-arrow-down"></i>
-                      </div>
+              <div
+                className={`card-single ${
+                  company === "FYND" ? "company" : ""
+                } `}
+                onClick={(event) => {
+                  if (company === "FYND") {
+                    setCompany(null);
+                  } else {
+                    setCompany("FYND");
+                  }
+                }}
+              >
+                <div>
+                  <div className="card__desc">
+                    <div className="desc__number">
+                      <h1>10</h1>
                     </div>
+                  </div>
 
-                    <span className="ti">FYND</span>
-                  </div>
-                  <div className="stylo">
-                    <img
-                      src="https://hdn-1.fynd.com/company/884/applications/000000000000000000000001/application/pictures/free-logo/original/v6YLFKFeJ-Fynd.jpeg"
-                      alt=""
-                      className="stylo_img"
-                    />
-                  </div>
+                  <span className="ti">FYND</span>
                 </div>
+                <div className="stylo">
+                  <img
+                    src="https://hdn-1.fynd.com/company/884/applications/000000000000000000000001/application/pictures/free-logo/original/v6YLFKFeJ-Fynd.jpeg"
+                    alt=""
+                    className="stylo_img"
+                  />
+                </div>
+              </div>
 
-                <div className="card-single">
-                  <div>
-                    <div className="card__desc">
-                      <div className="desc__number">
-                        <h1>10</h1>
-                      </div>
-                      <div className="downIcon">
-                        <i class="fas fa-arrow-down"></i>
-                      </div>
+              <div
+                className={`card-single ${
+                  company === "Cloudtail" ? "company" : ""
+                } `}
+                onClick={(event) => {
+                  if (company === "Cloudtail") {
+                    setCompany(null);
+                  } else {
+                    setCompany("Cloudtail");
+                  }
+                }}
+              >
+                <div>
+                  <div className="card__desc">
+                    <div className="desc__number">
+                      <h1>10</h1>
                     </div>
+                  </div>
 
-                    <span className="ti">Cloudtail</span>
-                  </div>
-                  <div className="stylo">
-                    <img
-                      src="https://www.cloudtail.in/img/logo-cloudtail.png"
-                      alt=""
-                      className="stylo_img"
-                    />
-                  </div>
+                  <span className="ti">Cloudtail</span>
                 </div>
+                <div className="stylo">
+                  <img
+                    src="https://www.cloudtail.in/img/logo-cloudtail.png"
+                    alt=""
+                    className="stylo_img"
+                  />
+                </div>
+              </div>
 
-                <div className="card-single">
-                  <div>
-                    <div className="card__desc">
-                      <div className="desc__number">
-                        <h1>10</h1>
-                      </div>
-                      <div className="downIcon">
-                        <i class="fas fa-arrow-down"></i>
-                      </div>
+              <div
+                c
+                className={`card-single ${
+                  company === "Nykaa" ? "company" : ""
+                } `}
+                onClick={(event) => {
+                  if (company === "Nykaa") {
+                    setCompany(null);
+                  } else {
+                    setCompany("Nykaa");
+                  }
+                }}
+              >
+                <div>
+                  <div className="card__desc">
+                    <div className="desc__number">
+                      <h1>10</h1>
                     </div>
+                  </div>
 
-                    <span className="ti">Nykaa Fashion</span>
-                  </div>
-                  <div className="stylo">
-                    <img
-                      src="data:image/png;base64,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"
-                      alt=""
-                      className="stylo_img"
-                    />
-                  </div>
+                  <span className="ti">Nykaa Fashion</span>
                 </div>
-              </>
-            ) : null}
+                <div className="stylo">
+                  <img
+                    src="data:image/png;base64,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"
+                    alt=""
+                    className="stylo_img"
+                  />
+                </div>
+              </div>
+            </>
           </div>
           <div className="tbtn">
             <button className="butts" onClick={() => setShow(!show)}>
-              Load More <i class="fas fa-angle-double-right"></i>
+              NEXT
+              <i class="fas fa-angle-double-right"></i>
             </button>
           </div>
-
-          <div className="recent-grid">
-            <div className="projects">
-              <div className="card">
-                <div className="card-header">
-                  <h2>Recent Projects</h2>
-                  <button>
-                    See all <span className="fas fa-arrow-right"></span>{" "}
-                  </button>
-                </div>
-                <div className="card-body">
-                  <div className="table-responsive">
-                    <table width="100%">
-                      <thead>
-                        <tr>
-                          <td>Project Title</td>
-                          <td>Department</td>
-                          <td>Status</td>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>Website</td>
-                          <td>Frontend</td>
-                          <td>
-                            <span className="status purple"></span>
-                            Review
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Website</td>
-                          <td>Frontend</td>
-                          <td>
-                            <span className="status orange"></span>
-                            Pending
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Website</td>
-                          <td>Frontend</td>
-                          <td>
-                            <span className="status pink"></span>
-                            In Progress
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Website</td>
-                          <td>Frontend</td>
-                          <td>
-                            <span className="status purple"></span>
-                            Review
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Website</td>
-                          <td>Frontend</td>
-                          <td>
-                            <span className="status pink"></span>
-                            In Progress
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="customers">
-              <div className="card">
-                <div className="card-header">
-                  <h2>New Customers</h2>
-                  <button>
-                    See all <span className="fas fa-arrow-right"></span>{" "}
-                  </button>
-                </div>
-                <div className="card-body">
-                  <div className="customer">
-                    <div className="info">
-                      <img
-                        src="https://bit.ly/3bvT89p"
-                        height="40px"
-                        width="40px"
-                        alt="customer"
-                      />
-                      <div>
-                        <h4>Malik Abushabab</h4>
-                        <small>CEO</small>
-                      </div>
-                    </div>
-                    <div className="contact">
-                      <span className="fas fa-user-circle"></span>
-                      <span className="fas fa-comment"></span>
-                      <span className="fas fa-phone-alt"></span>
-                    </div>
-                  </div>
-                  <div className="customer">
-                    <div className="info">
-                      <img
-                        src="https://bit.ly/3bvT89p"
-                        height="40px"
-                        width="40px"
-                        alt="customer"
-                      />
-                      <div>
-                        <h4>Ayan Khan</h4>
-                        <small>CEO</small>
-                      </div>
-                    </div>
-                    <div className="contact">
-                      <span className="fas fa-user-circle"></span>
-                      <span className="fas fa-comment"></span>
-                      <span className="fas fa-phone-alt"></span>
-                    </div>
-                  </div>
-                  <div className="customer">
-                    <div className="info">
-                      <img
-                        src="https://bit.ly/3bvT89p"
-                        height="40px"
-                        width="40px"
-                        alt="customer"
-                      />
-                      <div>
-                        <h4>Malik Abushabab</h4>
-                        <small>CEO</small>
-                      </div>
-                    </div>
-                    <div className="contact">
-                      <span className="fas fa-user-circle"></span>
-                      <span className="fas fa-comment"></span>
-                      <span className="fas fa-phone-alt"></span>
-                    </div>
-                  </div>
-                  <div className="customer">
-                    <div className="info">
-                      <img
-                        src="https://bit.ly/3bvT89p"
-                        height="40px"
-                        width="40px"
-                        alt="customer"
-                      />
-                      <div>
-                        <h4>Ayan Khan</h4>
-                        <small>CEO</small>
-                      </div>
-                    </div>
-                    <div className="contact">
-                      <span className="fas fa-user-circle"></span>
-                      <span className="fas fa-comment"></span>
-                      <span className="fas fa-phone-alt"></span>
-                    </div>
-                  </div>
-                  <div className="customer">
-                    <div className="info">
-                      <img
-                        src="https://bit.ly/3bvT89p"
-                        height="40px"
-                        width="40px"
-                        alt="customer"
-                      />
-                      <div>
-                        <h4>Ayan Khan</h4>
-                        <small>CEO</small>
-                      </div>
-                    </div>
-                    <div className="contact">
-                      <span className="fas fa-user-circle"></span>
-                      <span className="fas fa-comment"></span>
-                      <span className="fas fa-phone-alt"></span>
-                    </div>
-                  </div>
-                  <div className="customer">
-                    <div className="info">
-                      <img
-                        src="https://bit.ly/3bvT89p"
-                        height="40px"
-                        width="40px"
-                        alt="customer"
-                      />
-                      <div>
-                        <h4>Ayan Khan</h4>
-                        <small>CEO</small>
-                      </div>
-                    </div>
-                    <div className="contact">
-                      <span className="fas fa-user-circle"></span>
-                      <span className="fas fa-comment"></span>
-                      <span className="fas fa-phone-alt"></span>
-                    </div>
-                  </div>
-                  <div className="customer">
-                    <div className="info">
-                      <img
-                        src="https://bit.ly/3bvT89p"
-                        height="40px"
-                        width="40px"
-                        alt="customer"
-                      />
-                      <div>
-                        <h4>Malik Abushabab</h4>
-                        <small>CEO</small>
-                      </div>
-                    </div>
-                    <div className="contact">
-                      <span className="fas fa-user-circle"></span>
-                      <span className="fas fa-comment"></span>
-                      <span className="fas fa-phone-alt"></span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          {show ? (
+            <BootstrapTable
+              bootstrap4
+              keyField="styleCode"
+              columns={columns}
+              selectRow={selectRow}
+              data={userList}
+              pagination={pagination}
+              filter={filterFactory()}
+            />
+          ) : null}
         </main>
       </div>
     </div>

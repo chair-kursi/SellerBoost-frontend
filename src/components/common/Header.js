@@ -13,22 +13,6 @@ export default function Header({ client }) {
           </Link>
         </div>
         <div className="items">
-          {/* <div className="item">
-            {" "}
-            <Link to="/">
-              {" "}
-              <p>HOME</p>
-            </Link>
-          </div>
-
-          <div className="item">
-            {" "}
-            <Link to="/register">
-              {" "}
-              <p>SIGN UP</p>{" "}
-            </Link>
-          </div> */}
-
           <div className="item">
             {" "}
             <Link to="/size/add">

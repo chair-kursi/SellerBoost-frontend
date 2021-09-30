@@ -8,11 +8,12 @@ import AddStyle from "./components/services/AddStyle";
 import AddSkus from "./components/services/AddSkus";
 import EditStyle from "./components/services/EditStyle";
 import AddSize from "./components/services/AddSize";
-import Sidebar from "./components/common/Sidebar";
+// import Sidebar from "./components/common/Sidebar";
 import Dashboard from "./components/services/Dashboard";
 import Modal from "react-modal";
 import Onboarding from "./components/common/Onboarding";
 import MarketPlaceHealth from "./components/services/MarketPlaceHealth";
+import OneClickCatlogUpdate from "./components/services/OneClickCatlogUpdate";
 const customStyles = {
   content: {
     top: "50%",
@@ -62,14 +63,15 @@ function App() {
         <Route exact path="/MarketPlaceHealth">
           <MarketPlaceHealth />
         </Route>
-
+        <Route exact path="/OneClickCatlogUpdate">
+          <OneClickCatlogUpdate />
+        </Route>
         <Route exact path="/">
-          <div className="sidebar">
+          {/* <div className="sidebar">
             <Sidebar />
-          </div>
-          <div className="home">
-            <Home />
-          </div>
+          </div> */}
+
+          <Home />
         </Route>
       </div>
     </BrowserRouter>

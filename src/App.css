@@ -6,14 +6,3 @@
   text-align: center;
   font-family: "Ubuntu", sans-serif;
 }
-
-.sidebar {
-  flex: 0.2;
-}
-
-.home {
-  flex: 0.8;
-}
-a {
-  text-decoration: none;
-}

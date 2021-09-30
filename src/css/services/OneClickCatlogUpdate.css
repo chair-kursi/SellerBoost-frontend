@@ -1,0 +1,96 @@
+.cardss div:nth-child(1) {
+  background-color: white;
+}
+
+.cardss {
+  /* display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 2rem; */
+  display: flex;
+
+  padding: 20px;
+}
+.card-singles {
+  display: flex;
+  justify-content: center;
+
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  align-items: center;
+  margin-right: 20px;
+  height: 120px;
+  cursor: pointer;
+}
+.card-singles div:last-child span {
+  color: var(--main-color);
+  font-size: 3.5rem;
+}
+.card-singles div:first-child span {
+  color: var(--text-grey);
+  margin-right: 40px;
+}
+.container7 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 80px;
+  flex-direction: column;
+}
+.tbles {
+  margin-top: 60px;
+  padding: 20px;
+}
+/* .tbles h1 {
+  font-size: 24px;
+  font-weight: 500;
+  padding: 30px 20px 30px 0;
+  margin-top: 30px;
+  display: flex;
+} */
+.tbles__header {
+  display: flex;
+  padding: 20px;
+  margin-top: 20px;
+  align-items: center;
+}
+.tbles__header h1 {
+  font-size: 20px;
+}
+.tbles__header i {
+  transform: scale(1.4);
+  right: 30px;
+  color: orange;
+  padding: 0 0 5px 15px;
+}
+.butta__container {
+  padding: 20px;
+}
+.butta {
+  border: none;
+  width: 100%;
+  height: 50px;
+  border-radius: 50px;
+  color: white;
+  font-size: 20px;
+  background-color: #191919;
+  margin-top: 15px;
+}
+.butta:hover {
+  background-color: #cecece;
+  transition: all ease-in-out 0.3s;
+  cursor: pointer;
+  border: none;
+}
+.tbtn1 {
+  display: flex;
+  justify-content: flex-start;
+  padding: 0px 20px;
+}
+.ctn8 {
+  padding: 40px 0;
+}
+.company {
+  border: 2px solid orange;
+}

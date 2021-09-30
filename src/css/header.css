@@ -17,7 +17,7 @@ a {
   border-bottom: 1px solid lightgrey;
   margin-bottom: 60px;
 }
-.items {
+/* .items {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -29,13 +29,7 @@ a {
 .item a {
   text-decoration: none;
 }
-.titl a {
-  text-decoration: none;
-  color: #11493e;
-}
-.titl h1 {
-  font-weight: 550;
-}
+
 .item {
   background-color: #191919;
   width: 150px;
@@ -48,7 +42,7 @@ a {
 .item p {
   margin-top: 15px;
   color: white;
-}
+} */
 /* @import url('https://fonts.googleapis.com/css2?family=Encode+Sans+SC&display=swap');
 
 .header-main {

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "../../css/services/Dashboard.css";
-import Header from "../common/Header";
+
 import BootstrapTable from "react-bootstrap-table-next";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-bootstrap-table-next/dist/react-bootstrap-table2.css";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import "react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css";
+import cellEditFactory from "react-bootstrap-table2-editor";
 import filterFactory, {
   textFilter,
   numberFilter,
@@ -19,6 +20,7 @@ import axios from "axios";
 
 function Dashboard() {
   const [userList, setUserList] = useState([]);
+  const [csv, setCsv] = useState();
 
   const { ExportCSVButton } = CSVExport;
   const MyExportCSV = (props) => {
@@ -27,22 +29,6 @@ function Dashboard() {
     };
     return (
       <div className="tableheader">
-        <div className="csv">
-          <div className="csvinputs">
-            <input
-              className="csvinput"
-              type="file"
-              name="csvFile"
-              onChange={onFileChange}
-            />
-          </div>
-          <div className="csvbutton">
-            <button className="butt" onClick={SubmitData}>
-              Submit
-            </button>
-          </div>
-        </div>
-
         <div className="export">
           <button className="butt" onClick={handleClick}>
             Export to CSV
@@ -55,31 +41,34 @@ function Dashboard() {
   const columns = [
     // { dataField: "id", text: "Id" },
     {
-      dataField: "StyleCode",
+      dataField: "styleCode",
       text: "StyleCode",
       sort: true,
       filter: textFilter(),
     },
     {
-      dataField: "TrafficActual",
+      dataField: "trafficActual",
       text: "Traffic Actual",
       sort: true,
       filter: textFilter(),
+      editCellStyle: {
+        backgroundColor: "#20B2AA",
+      },
     },
     {
-      dataField: "CurrentInv",
+      dataField: "currentInv",
       text: "Current INV",
       sort: true,
       filter: textFilter(),
     },
     {
-      dataField: "SalesNumber",
+      dataField: "salesNumber",
       text: "Sales Number",
       sort: true,
       filter: textFilter(),
     },
     {
-      dataField: "SalesRank",
+      dataField: "salesRank",
       text: "Sales Rank",
       sort: true,
       filter: textFilter(),
@@ -104,20 +93,17 @@ function Dashboard() {
     },
   });
 
-  // useEffect(() => {
-  //   fetch("http://localhost:3002/api/styletraffic")
-  //     .then((response) => response.json())
-  //     .then((result) => setUserList(result))
+  useEffect(async () => {
+    const styleTraffic = await axios({
+      method: "get",
+      url: "http://localhost:3002/styleTraffic",
+    });
 
-  //     .catch((error) => console.log(error));
+    setUserList(styleTraffic.data.data);
+    console.log(styleTraffic.data.data);
+  }, []);
 
-  //   //   fetch("https://jsonplaceholder.typicode.com/users")
-  //   //     .then((response) => response.json())
-  //   //     .then((result) => setUserList(result))
-
-  //   //     .catch((error) => console.log(error));
-  // }, []);
-  console.log(userList);
+  // console.log(userList);
 
   let formData = new FormData();
 
@@ -128,67 +114,210 @@ function Dashboard() {
       console.log(formData);
     }
   };
-  const SubmitData = () => {
-    axios
-      .post("http://localhost:3002/api/skuInventory", formData)
-      .then((res) => {
-        console.log(res);
-        setUserList(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  // const SubmitData = () => {
+  //   axios
+  //     .post("http://localhost:3002/api/skuInventory", formData)
+  //     .then((res) => {
+  //       console.log(res);
+  //       setUserList(res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
   return (
     <div className="Dashboard__table">
-      {/* <Header /> */}
+      <input type="checkbox" id="nav-toggle" />
 
-      {/* <input type="file" name="csvFile" onChange={onFileChange} />
-      <button onClick={SubmitData}>Submit</button> */}
+      <div className="sidebarr">
+        <div className="sidebar-brand">
+          <h1>
+            {" "}
+            <span className="fab fa-asymmetrik"> </span>{" "}
+            <span>SellerBoost</span>
+          </h1>
+        </div>
 
-      <ToolkitProvider
-        bootstrap4
-        keyField="styleCode"
-        data={userList}
-        columns={columns}
-        exportCSV
-      >
-        {(props) => (
-          <React.Fragment>
-            <MyExportCSV {...props.csvProps} />
+        <div className="sidebar-menu">
+          <ul>
+            <li>
+              <a href="/">
+                <span className="fas fa-home"></span>
+                <span>Home</span>
+              </a>
+            </li>
+            <li>
+              <a href="/Onboarding">
+                <span className="fas fa-stream"></span>
+                <span>OnBoarding</span>
+              </a>
+            </li>
 
-            <BootstrapTable
-              //   bootstrap4
-              //   keyField="id"
-              //   columns={columns}
-              //   data={userList}
-              pagination={pagination}
-              filter={filterFactory()}
-              {...props.baseProps}
+            <li>
+              <a href="/Dashboard">
+                <span className="fas fa-tachometer-alt"></span>
+                <span>Inventory Dashboard </span>
+              </a>
+            </li>
+
+            <li>
+              <a href="/MarketPlaceHealth">
+                <span className="fas fa-heartbeat"></span>
+                <span>MarketPlace Health</span>
+              </a>
+            </li>
+            <li>
+              <a href="/OneClickCatlogUpdate">
+                <span className="fas fa-upload"></span>
+
+                <span>One Click Upload</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="#">
+                <span className="fas fa-hands-helping"></span>
+                <span>Help</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span className="fas fa-key"></span>
+                <span>Password</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span className="fas fa-sign-out-alt"></span>
+                <span>Sign-out</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div className="main-content">
+        <header>
+          <h2>
+            <label for="nav-toggle">
+              <span class="fas fa-bars"></span>
+            </label>
+            Inventory Dashboard
+          </h2>
+
+          <div className="search-wrapper">
+            <span class="fas fa-search"> </span>
+            <input type="search" placeholder="Search..." />
+          </div>
+
+          <div className="user-wrapper">
+            <img
+              src="https://bit.ly/3bvT89p"
+              width="40px"
+              height="40px"
+              alt="profile-img"
             />
-          </React.Fragment>
-        )}
-      </ToolkitProvider>
+            <div class="">
+              <h4>Ayan Khan</h4>
+              <small>Super Admin</small>
+            </div>
+          </div>
+        </header>
 
-      {/* <table>
-        <tr>
-          <th>Id</th>
-          <th>Name</th>
-          <th>Username</th>
-          <th>Email</th>
-        </tr>
-        {userList && userList.length > 0
-          ? userList.map((usr) => (
-              <tr>
-                <td>{usr.id}</td>
-                <td>{usr.name}</td>
-                <td>{usr.username}</td>
-                <td>{usr.email}</td>
-              </tr>
-            ))
-          : "Loading"}
-      </table> */}
+        <div className="cardsss">
+          <div className="card-singlee1">
+            <div>
+              <div className="card__desc">
+                <div className="desc__numbers1">
+                  <h1>5</h1>
+                </div>
+              </div>
+
+              <span className="tis">Sold Out</span>
+            </div>
+            <div className="stylos">
+              <span className="fas fa-broom"></span>
+            </div>
+          </div>
+          <div className="card-singlee4">
+            <div>
+              <div className="card__desc">
+                <div className="desc__numbers4">
+                  <h1>5</h1>
+                </div>
+              </div>
+
+              <span className="tis">Red</span>
+            </div>
+            <div className="stylos">
+              <span className="fas fa-exclamation-circle"></span>
+            </div>
+          </div>
+
+          <div className="card-singlee2">
+            <div>
+              <div className="card__desc">
+                <div className="desc__numbers2">
+                  <h1>7</h1>
+                </div>
+              </div>
+
+              <span className="tis">Orange</span>
+            </div>
+            <div className="stylos">
+              <span className="fas fa-tasks"></span>
+            </div>
+          </div>
+
+          <div className="card-singlee3">
+            <div>
+              <div className="card__desc">
+                <div className="desc__numbers3">
+                  <h1>9</h1>
+                </div>
+              </div>
+
+              <span className="tis">Green</span>
+            </div>
+            <div className="stylos">
+              <span className="fas fa-check"></span>
+            </div>
+          </div>
+        </div>
+        <div className="tble">
+          <ToolkitProvider
+            bootstrap4
+            keyField="styleCode"
+            data={userList}
+            columns={columns}
+            exportCSV
+          >
+            {(props) => (
+              <React.Fragment>
+                <MyExportCSV {...props.csvProps} />
+
+                <BootstrapTable
+                  //   bootstrap4
+                  //   keyField="id"
+                  //   columns={columns}
+                  //   data={userList}
+                  cellEdit={cellEditFactory({ mode: "click" })}
+                  pagination={pagination}
+                  filter={filterFactory()}
+                  {...props.baseProps}
+                />
+              </React.Fragment>
+            )}
+          </ToolkitProvider>
+        </div>
+        {csv}
+        {/* <div className="export">
+          <button className="butt" onClick={handleClick}>
+            Export to CSV
+          </button>
+        </div> */}
+      </div>
     </div>
   );
 }

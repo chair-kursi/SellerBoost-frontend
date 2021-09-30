@@ -12,7 +12,8 @@
   justify-content: space-between;
 }
 .export {
-  flex: 0.3;
+  flex: 1;
+  padding: 0 20px;
 }
 .csvinput {
   font-size: 16px;
@@ -34,4 +35,129 @@
 }
 .csvbutton {
   width: 30%;
+}
+.tble {
+  padding: 20px;
+  margin-top: -40px;
+}
+.cardsss {
+  display: flex;
+  margin-top: 120px;
+  align-items: center;
+  justify-content: center;
+}
+.card-singlee1 {
+  display: flex;
+  justify-content: center;
+
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  align-items: center;
+  margin-right: 20px;
+  height: 120px;
+  cursor: pointer;
+  background-color: #fa9994;
+  border: 2px solid #f02e24;
+}
+
+.card-singlee2 {
+  display: flex;
+  justify-content: center;
+
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  align-items: center;
+  margin-right: 20px;
+  height: 120px;
+  cursor: pointer;
+  color: white;
+  background-color: #fec5bb;
+  border: 2px solid #ff6d00;
+}
+
+.card-singlee3 {
+  display: flex;
+  justify-content: center;
+
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  align-items: center;
+  margin-right: 20px;
+  height: 120px;
+  cursor: pointer;
+  background-color: #d8f3dc;
+  border: 2px solid #40916c;
+}
+
+.card-singlee4 {
+  display: flex;
+  justify-content: center;
+
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  align-items: center;
+  margin-right: 20px;
+  height: 120px;
+  cursor: pointer;
+  background-color: #c17171;
+  border: 2px solid #6d3636;
+}
+.card-singlee1 div:last-child span {
+  color: #f02e24;
+  font-size: 3.5rem;
+}
+.card-singlee1 div:first-child span {
+  color: white;
+  margin-right: 40px;
+}
+
+.card-singlee2 div:last-child span {
+  color: #ff6d00;
+  font-size: 3.5rem;
+}
+.card-singlee2 div:first-child span {
+  color: white;
+  margin-right: 40px;
+}
+
+.card-singlee3 div:last-child span {
+  color: #40916c;
+  font-size: 3.5rem;
+}
+.card-singlee3 div:first-child span {
+  color: white;
+  margin-right: 40px;
+}
+
+.card-singlee4 div:last-child span {
+  color: #6d3636;
+  font-size: 3.5rem;
+}
+.card-singlee4 div:first-child span {
+  color: white;
+  margin-right: 40px;
+}
+.desc__numbers2 > h1 {
+  color: #ff6d00;
+  font-weight: 600;
+}
+.desc__numbers1 > h1 {
+  color: #f02e24;
+  font-weight: 600;
+}
+.desc__numbers3 > h1 {
+  color: #40916c;
+  font-weight: 600;
+}
+.desc__numbers4 > h1 {
+  color: #6d3636;
+  font-weight: 600;
 }
