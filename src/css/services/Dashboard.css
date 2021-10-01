@@ -49,8 +49,8 @@
 .card-singlee1 {
   display: flex;
   justify-content: center;
-
-  padding: 2rem;
+  width: 200px;
+  padding: 1rem;
   border-radius: 12px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
@@ -58,14 +58,14 @@
   margin-right: 20px;
   height: 120px;
   cursor: pointer;
-  background-color: #fa9994;
-  border: 2px solid #f02e24;
+  background-color: #f94144;
+  border: 2px solid #e70014;
 }
 
 .card-singlee2 {
   display: flex;
   justify-content: center;
-
+  width: 200px;
   padding: 2rem;
   border-radius: 12px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
@@ -82,7 +82,7 @@
 .card-singlee3 {
   display: flex;
   justify-content: center;
-
+  width: 200px;
   padding: 2rem;
   border-radius: 12px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
@@ -98,7 +98,7 @@
 .card-singlee4 {
   display: flex;
   justify-content: center;
-
+  width: 200px;
   padding: 2rem;
   border-radius: 12px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
@@ -107,57 +107,88 @@
   margin-right: 20px;
   height: 120px;
   cursor: pointer;
-  background-color: #c17171;
-  border: 2px solid #6d3636;
+  background-color: #ffbaba;
+  border: 2px solid #ff5252;
+}
+.card-singlee5 {
+  display: flex;
+  justify-content: center;
+  width: 200px;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  align-items: center;
+  margin-right: 20px;
+  height: 120px;
+  cursor: pointer;
+  background-color: #208b3a;
+  border: 2px solid #10451d;
 }
 .card-singlee1 div:last-child span {
-  color: #f02e24;
-  font-size: 3.5rem;
+  color: #a90000;
+  font-size: 2.7rem;
 }
 .card-singlee1 div:first-child span {
   color: white;
   margin-right: 40px;
+  font-size: 15px;
 }
-
+.card-singlee5 div:last-child span {
+  color: #10451d;
+  font-size: 2.7rem;
+}
+.card-singlee5 div:first-child span {
+  color: white;
+  margin-right: 40px;
+  font-size: 15px;
+}
 .card-singlee2 div:last-child span {
   color: #ff6d00;
-  font-size: 3.5rem;
+  font-size: 2.7rem;
 }
 .card-singlee2 div:first-child span {
   color: white;
   margin-right: 40px;
+  font-size: 15px;
 }
 
 .card-singlee3 div:last-child span {
   color: #40916c;
-  font-size: 3.5rem;
+  font-size: 2.7rem;
 }
 .card-singlee3 div:first-child span {
   color: white;
   margin-right: 40px;
+  font-size: 15px;
 }
 
 .card-singlee4 div:last-child span {
-  color: #6d3636;
-  font-size: 3.5rem;
+  color: #ff5252;
+  font-size: 2.7rem;
 }
 .card-singlee4 div:first-child span {
   color: white;
   margin-right: 40px;
+  font-size: 15px;
 }
 .desc__numbers2 > h1 {
   color: #ff6d00;
   font-weight: 600;
 }
 .desc__numbers1 > h1 {
-  color: #f02e24;
+  color: #a90000;
   font-weight: 600;
 }
 .desc__numbers3 > h1 {
   color: #40916c;
   font-weight: 600;
 }
+.desc__numbers5 > h1 {
+  color: #10451d;
+  font-weight: 600;
+}
 .desc__numbers4 > h1 {
-  color: #6d3636;
+  color: #ff5252;
   font-weight: 600;
 }

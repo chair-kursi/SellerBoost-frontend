@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../../css/services/Dashboard.css";
 import faker from "faker";
 import { makeStyles } from "@material-ui/core/styles";
+
 import axios from "axios";
 import {
   Table,
@@ -182,7 +183,7 @@ function Dashboard() {
                 </div>
               </div>
 
-              <span className="tis">Sold Out</span>
+              <span className="tis">SoldOut</span>
             </div>
             <div className="stylos">
               <span className="fas fa-broom"></span>
@@ -230,6 +231,21 @@ function Dashboard() {
             </div>
             <div className="stylos">
               <span className="fas fa-check"></span>
+            </div>
+          </div>
+
+          <div className="card-singlee5">
+            <div>
+              <div className="card__desc">
+                <div className="desc__numbers5">
+                  <h1>9</h1>
+                </div>
+              </div>
+
+              <span className="tis">OverGreen</span>
+            </div>
+            <div className="stylos">
+              <span className="fas fa-people-carry"></span>
             </div>
           </div>
         </div>
