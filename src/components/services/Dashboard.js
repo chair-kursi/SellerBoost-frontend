@@ -1,130 +1,78 @@
 import React, { useEffect, useState } from "react";
 import "../../css/services/Dashboard.css";
-
-import BootstrapTable from "react-bootstrap-table-next";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "react-bootstrap-table-next/dist/react-bootstrap-table2.css";
-import paginationFactory from "react-bootstrap-table2-paginator";
-import "react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css";
-import cellEditFactory from "react-bootstrap-table2-editor";
-import filterFactory, {
-  textFilter,
-  numberFilter,
-  selectFilter,
-  multiSelectFilter,
-  customFilter,
-} from "react-bootstrap-table2-filter";
-import "react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css";
-import ToolkitProvider, { CSVExport } from "react-bootstrap-table2-toolkit";
+import faker from "faker";
+import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Avatar,
+  Grid,
+  Typography,
+  TablePagination,
+  TableFooter,
+  TableSortLabel,
+} from "@material-ui/core";
+
+const useStyles = makeStyles((theme) => ({
+  table: {
+    minWidth: 650,
+  },
+  tableContainer: {
+    borderRadius: 15,
+    margin: "10px 10px",
+    maxWidth: 1050,
+  },
+  tableHeaderCell: {
+    fontWeight: "bold",
+    backgroundColor: theme.palette.success.dark,
+    color: theme.palette.getContrastText(theme.palette.primary.dark),
+  },
+
+  status: {
+    fontWeight: "bold",
+    fontSize: "0.75rem",
+    color: "white",
+    backgroundColor: "grey",
+    borderRadius: 8,
+    padding: "3px 10px",
+    display: "inline-block",
+  },
+}));
+
+let USERS = [],
+  STATUSES = ["Active", "Pending", "Blocked"];
+for (let i = 0; i < 14; i++) {
+  USERS[i] = {
+    name: faker.name.findName(),
+    email: faker.internet.email(),
+    phone: faker.phone.phoneNumber(),
+    jobTitle: faker.name.jobTitle(),
+    company: faker.company.companyName(),
+    joinDate: faker.date.past().toLocaleDateString("en-US"),
+    status: STATUSES[Math.floor(Math.random() * STATUSES.length)],
+  };
+}
+console.log(USERS);
 
 function Dashboard() {
-  const [userList, setUserList] = useState([]);
-  const [csv, setCsv] = useState();
+  const classes = useStyles();
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
-  const { ExportCSVButton } = CSVExport;
-  const MyExportCSV = (props) => {
-    const handleClick = () => {
-      props.onExport();
-    };
-    return (
-      <div className="tableheader">
-        <div className="export">
-          <button className="butt" onClick={handleClick}>
-            Export to CSV
-          </button>
-        </div>
-      </div>
-    );
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
   };
 
-  const columns = [
-    // { dataField: "id", text: "Id" },
-    {
-      dataField: "styleCode",
-      text: "StyleCode",
-      sort: true,
-      filter: textFilter(),
-    },
-    {
-      dataField: "trafficActual",
-      text: "Traffic Actual",
-      sort: true,
-      filter: textFilter(),
-      editCellStyle: {
-        backgroundColor: "#20B2AA",
-      },
-    },
-    {
-      dataField: "currentInv",
-      text: "Current INV",
-      sort: true,
-      filter: textFilter(),
-    },
-    {
-      dataField: "salesNumber",
-      text: "Sales Number",
-      sort: true,
-      filter: textFilter(),
-    },
-    {
-      dataField: "salesRank",
-      text: "Sales Rank",
-      sort: true,
-      filter: textFilter(),
-    },
-  ];
-  const pagination = paginationFactory({
-    page: 1,
-    sizePerPage: 5,
-    lastPageText: ">>",
-    firstPageText: "<<",
-    nextPageText: ">",
-    prePageText: "<",
-    showTotal: true,
-    alwaysShowAllBtns: true,
-    onPageChange: function (page, sizePerpage) {
-      console.log("page", page);
-      console.log("sizePerPage", sizePerpage);
-    },
-    onSizePerPageChange: function (page, sizePerpage) {
-      console.log("page", page);
-      console.log("sizePerPage", sizePerpage);
-    },
-  });
-
-  useEffect(async () => {
-    const styleTraffic = await axios({
-      method: "get",
-      url: "http://localhost:3002/styleTraffic",
-    });
-
-    setUserList(styleTraffic.data.data);
-    console.log(styleTraffic.data.data);
-  }, []);
-
-  // console.log(userList);
-
-  let formData = new FormData();
-
-  const onFileChange = (e) => {
-    console.log(e.target.files[0]);
-    if (e.target && e.target.files[0]) {
-      formData.append("csvFile", e.target.files[0]);
-      console.log(formData);
-    }
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
   };
-  // const SubmitData = () => {
-  //   axios
-  //     .post("http://localhost:3002/api/skuInventory", formData)
-  //     .then((res) => {
-  //       console.log(res);
-  //       setUserList(res.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
 
   return (
     <div className="Dashboard__table">
@@ -285,38 +233,74 @@ function Dashboard() {
             </div>
           </div>
         </div>
-        <div className="tble">
-          <ToolkitProvider
-            bootstrap4
-            keyField="styleCode"
-            data={userList}
-            columns={columns}
-            exportCSV
-          >
-            {(props) => (
-              <React.Fragment>
-                <MyExportCSV {...props.csvProps} />
 
-                <BootstrapTable
-                  //   bootstrap4
-                  //   keyField="id"
-                  //   columns={columns}
-                  //   data={userList}
-                  cellEdit={cellEditFactory({ mode: "click" })}
-                  pagination={pagination}
-                  filter={filterFactory()}
-                  {...props.baseProps}
+        <div className="tble">
+          <TableContainer component={Paper} className={classes.tableContainer}>
+            <Table className={classes.table} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell className={classes.tableHeaderCell}>
+                    StyleCode <TableSortLabel />
+                  </TableCell>
+
+                  <TableCell className={classes.tableHeaderCell}>
+                    Current INV
+                  </TableCell>
+                  <TableCell className={classes.tableHeaderCell}>
+                    Sales Number
+                  </TableCell>
+                  <TableCell className={classes.tableHeaderCell}>
+                    Traffic Actual
+                  </TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {USERS.slice(
+                  page * rowsPerPage,
+                  page * rowsPerPage + rowsPerPage
+                ).map((row) => (
+                  <TableRow key={row.name}>
+                    <TableCell>
+                      <Typography className={classes.name}>
+                        {row.name}
+                      </Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography color="textSecondary" variant="body2">
+                        {row.company}
+                      </Typography>
+                    </TableCell>
+                    <TableCell>{row.joinDate}</TableCell>
+                    <TableCell>
+                      <Typography
+                        className={classes.status}
+                        style={{
+                          backgroundColor:
+                            (row.status === "Active" && "green") ||
+                            (row.status === "Pending" && "blue") ||
+                            (row.status === "Blocked" && "orange"),
+                        }}
+                      >
+                        {row.status}
+                      </Typography>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+              <TableFooter>
+                <TablePagination
+                  rowsPerPageOptions={[5, 10, 15]}
+                  component="div"
+                  count={USERS.length}
+                  rowsPerPage={rowsPerPage}
+                  page={page}
+                  onChangePage={handleChangePage}
+                  onChangeRowsPerPage={handleChangeRowsPerPage}
                 />
-              </React.Fragment>
-            )}
-          </ToolkitProvider>
+              </TableFooter>
+            </Table>
+          </TableContainer>
         </div>
-        {csv}
-        {/* <div className="export">
-          <button className="butt" onClick={handleClick}>
-            Export to CSV
-          </button>
-        </div> */}
       </div>
     </div>
   );
