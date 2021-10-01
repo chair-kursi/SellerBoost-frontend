@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 let USERS = [],
-  STATUSES = ["Active", "Pending", "Blocked"];
+  STATUSES = ["SOLDOUT", "RED", "ORANGE", "GREEN", "OVERGREEN"];
 for (let i = 0; i < 14; i++) {
   USERS[i] = {
     name: faker.name.findName(),
@@ -61,10 +61,13 @@ for (let i = 0; i < 14; i++) {
 }
 console.log(USERS);
 
+
+
 function Dashboard() {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [dashboard, setDashboard] = useState([])
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -74,6 +77,20 @@ function Dashboard() {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+
+  const getDashboard = async() =>{
+    const dashboard = await axios({
+      method: "get",
+      url:"http://localhost:3002/styleTraffic"
+    });
+    
+    setDashboard(dashboard.data.data)
+  }
+  
+  useEffect(() => {
+    getDashboard();
+  }, [])
+
 
   return (
     <div className="Dashboard__table">
@@ -266,38 +283,44 @@ function Dashboard() {
                     Sales Number
                   </TableCell>
                   <TableCell className={classes.tableHeaderCell}>
+                    Sales Rank
+                  </TableCell>
+                  <TableCell className={classes.tableHeaderCell}>
                     Traffic Actual
                   </TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {USERS.slice(
+                {dashboard.slice(
                   page * rowsPerPage,
                   page * rowsPerPage + rowsPerPage
                 ).map((row) => (
-                  <TableRow key={row.name}>
+                  <TableRow key={row.styleCode}>
                     <TableCell>
                       <Typography className={classes.name}>
-                        {row.name}
+                        {row.styleCode}
                       </Typography>
                     </TableCell>
                     <TableCell>
                       <Typography color="textSecondary" variant="body2">
-                        {row.company}
+                        {row.currentInv}
                       </Typography>
                     </TableCell>
-                    <TableCell>{row.joinDate}</TableCell>
+                    <TableCell>{row.salesNumber}</TableCell>
+                    <TableCell>{row.salesRank}</TableCell>
                     <TableCell>
                       <Typography
                         className={classes.status}
                         style={{
                           backgroundColor:
-                            (row.status === "Active" && "green") ||
-                            (row.status === "Pending" && "blue") ||
-                            (row.status === "Blocked" && "orange"),
+                            (row.trafficActual === "SOLDOUT" && "#d61400") ||
+                            (row.trafficActual === "RED" && "#ff1800") || //", "GREEN", "OVERGREEN"
+                            (row.trafficActual === "ORANGE" && "orange")||
+                            (row.trafficActual === "GREEN" && "#00ff2b")||
+                            (row.trafficActual === "OVERGREEN" && "#009018")
                         }}
                       >
-                        {row.status}
+                        {row.trafficActual}
                       </Typography>
                     </TableCell>
                   </TableRow>
@@ -307,7 +330,7 @@ function Dashboard() {
                 <TablePagination
                   rowsPerPageOptions={[5, 10, 15]}
                   component="div"
-                  count={USERS.length}
+                  count={dashboard.length}
                   rowsPerPage={rowsPerPage}
                   page={page}
                   onChangePage={handleChangePage}
