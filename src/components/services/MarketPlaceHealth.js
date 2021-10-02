@@ -13,10 +13,12 @@ import filterFactory, {
   customFilter,
 } from "react-bootstrap-table2-filter";
 import "react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css";
+import axios from "axios";
 
 function MarketPlaceHealth() {
   const [show, setShow] = useState(false);
   const [company, setCompany] = useState(null);
+  const [companyinCamelCase, setCompanyinCamelCase] = useState(null)
   const [userList, setUserList] = useState([]);
   const columns = [
     {
@@ -44,8 +46,8 @@ function MarketPlaceHealth() {
       filter: textFilter(),
     },
     {
-      dataField: "salesNumber",
-      text: "Myntra",
+      dataField: companyinCamelCase,
+      text: company,
       sort: "true",
       filter: textFilter(),
     },
@@ -73,13 +75,23 @@ function MarketPlaceHealth() {
     },
   });
 
-  useEffect(() => {
-    fetch("http://localhost:3002/api/styleTraffic")
-      .then((response) => response.json())
+  const getHealth = async () => {
+    try {
+      const health = await axios({
+        method: "get",
+        url: "http://localhost:3002/api/marketplaceHealth"
+      })
+      setUserList(health.data);
+      // const healthMap = new Map();
 
-      .then((result) => setUserList(result))
-      // .then((r) => console.log(r))
-      .catch((error) => console.log(error));
+    }
+    catch (err) {
+      console.log(err);
+    }
+  }
+
+  useEffect(() => {
+    getHealth();
   }, []);
 
   return (
@@ -183,14 +195,15 @@ function MarketPlaceHealth() {
         <main>
           <div className="cards">
             <div
-              className={`card-single ${
-                company === "StyloBug" ? "company" : ""
-              } `}
+              className={`card-single ${company === "StyloBug" ? "company" : ""
+                } `}
               onClick={(event) => {
                 if (company === "StyloBug") {
                   setCompany(null);
+                  setCompanyinCamelCase(null)
                 } else {
                   setCompany("StyloBug");
+                  setCompanyinCamelCase("styloBug")
                 }
               }}
             >
@@ -208,14 +221,15 @@ function MarketPlaceHealth() {
               </div>
             </div>
             <div
-              className={`card-single ${
-                company === "Amazon" ? "company" : ""
-              } `}
+              className={`card-single ${company === "Amazon" ? "company" : ""
+                } `}
               onClick={(event) => {
                 if (company === "Amazon") {
                   setCompany(null);
+                  setCompanyinCamelCase(null)
                 } else {
                   setCompany("Amazon");
+                  setCompanyinCamelCase("amazon")
                 }
               }}
             >
@@ -237,14 +251,15 @@ function MarketPlaceHealth() {
               </div>
             </div>
             <div
-              className={`card-single ${
-                company === "Flipkart" ? "company" : ""
-              } `}
+              className={`card-single ${company === "Flipkart" ? "company" : ""
+                } `}
               onClick={(event) => {
                 if (company === "Flipkart") {
                   setCompany(null);
+                  setCompanyinCamelCase(null)
                 } else {
                   setCompany("Flipkart");
+                  setCompanyinCamelCase("flipkart")
                 }
               }}
             >
@@ -267,14 +282,15 @@ function MarketPlaceHealth() {
               </div>
             </div>
             <div
-              className={`card-single ${
-                company === "Snapdeal" ? "company" : ""
-              } `}
+              className={`card-single ${company === "Snapdeal" ? "company" : ""
+                } `}
               onClick={(event) => {
                 if (company === "Snapdeal") {
                   setCompany(null);
+                  setCompanyinCamelCase(null)
                 } else {
                   setCompany("Snapdeal");
+                  setCompanyinCamelCase("snapdeal")
                 }
               }}
             >
@@ -297,14 +313,15 @@ function MarketPlaceHealth() {
             </div>
             <>
               <div
-                className={`card-single ${
-                  company === "Myntra" ? "company" : ""
-                } `}
+                className={`card-single ${company === "Myntra" ? "company" : ""
+                  } `}
                 onClick={(event) => {
                   if (company === "Myntra") {
                     setCompany(null);
+                    setCompanyinCamelCase(null)
                   } else {
                     setCompany("Myntra");
+                    setCompanyinCamelCase("myntraAppMp")
                   }
                 }}
               >
@@ -326,14 +343,15 @@ function MarketPlaceHealth() {
                 </div>
               </div>
               <div
-                className={`card-single ${
-                  company === "Jabong" ? "company" : ""
-                } `}
+                className={`card-single ${company === "Jabong" ? "company" : ""
+                  } `}
                 onClick={(event) => {
                   if (company === "Jabong") {
                     setCompany(null);
+                    setCompanyinCamelCase(null)
                   } else {
                     setCompany("Jabong");
+                    setCompanyinCamelCase("jabong")
                   }
                 }}
               >
@@ -357,14 +375,15 @@ function MarketPlaceHealth() {
 
               <div
                 c
-                className={`card-single ${
-                  company === "Ajio" ? "company" : ""
-                } `}
+                className={`card-single ${company === "Ajio" ? "company" : ""
+                  } `}
                 onClick={(event) => {
                   if (company === "Ajio") {
                     setCompany(null);
+                    setCompanyinCamelCase(null)
                   } else {
                     setCompany("Ajio");
+                    setCompanyinCamelCase("ajio")
                   }
                 }}
               >
@@ -387,14 +406,15 @@ function MarketPlaceHealth() {
               </div>
 
               <div
-                className={`card-single ${
-                  company === "FirstCry" ? "company" : ""
-                } `}
+                className={`card-single ${company === "FirstCry" ? "company" : ""
+                  } `}
                 onClick={(event) => {
                   if (company === "FirstCry") {
                     setCompany(null);
+                    setCompanyinCamelCase(null)
                   } else {
                     setCompany("FirstCry");
+                    setCompanyinCamelCase("firstCry")
                   }
                 }}
               >
@@ -417,14 +437,15 @@ function MarketPlaceHealth() {
               </div>
 
               <div
-                className={`card-single ${
-                  company === "FYND" ? "company" : ""
-                } `}
+                className={`card-single ${company === "FYND" ? "company" : ""
+                  } `}
                 onClick={(event) => {
                   if (company === "FYND") {
                     setCompany(null);
+                    setCompanyinCamelCase(null)
                   } else {
                     setCompany("FYND");
+                    setCompanyinCamelCase("FYND");
                   }
                 }}
               >
@@ -447,14 +468,15 @@ function MarketPlaceHealth() {
               </div>
 
               <div
-                className={`card-single ${
-                  company === "Cloudtail" ? "company" : ""
-                } `}
+                className={`card-single ${company === "Cloudtail" ? "company" : ""
+                  } `}
                 onClick={(event) => {
                   if (company === "Cloudtail") {
                     setCompany(null);
+                    setCompanyinCamelCase(null)
                   } else {
                     setCompany("Cloudtail");
+                    setCompanyinCamelCase("cloudtail")
                   }
                 }}
               >
@@ -478,14 +500,15 @@ function MarketPlaceHealth() {
 
               <div
                 c
-                className={`card-single ${
-                  company === "Nykaa" ? "company" : ""
-                } `}
+                className={`card-single ${company === "Nykaa" ? "company" : ""
+                  } `}
                 onClick={(event) => {
-                  if (company === "Nykaa") {
+                  if (company === "Nykaa Fashion") {
                     setCompany(null);
+                    setCompanyinCamelCase(null)
                   } else {
-                    setCompany("Nykaa");
+                    setCompany("Nykaa Fashion");
+                    setCompanyinCamelCase("nykaaFashion");
                   }
                 }}
               >

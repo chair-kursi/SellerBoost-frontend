@@ -67,7 +67,13 @@ function Dashboard() {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  const [dashboard, setDashboard] = useState([])
+  const [dashboard, setDashboard] = useState([]);
+  const [soldoutColor, setSoldoutColor] = useState(0);
+  const [redColor, setRedColor] = useState(0);
+  const [orangeColor, setOrangeColor] = useState(0)
+  const [greenColor, setGreenColor] = useState(0);
+  const [overGreenColor, setOverGreenColor] = useState(0);
+
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -78,18 +84,38 @@ function Dashboard() {
     setPage(0);
   };
 
-  const getDashboard = async() =>{
+  const trafficColorCount = new Map()
+
+  const getDashboard = async () => {
     const dashboard = await axios({
       method: "get",
-      url:"http://localhost:3002/styleTraffic"
+      url: "http://localhost:3002/styleTraffic"
     });
-    
-    setDashboard(dashboard.data.data)
+
+    setDashboard(dashboard.data.data);
+    let dashboardArr = dashboard.data.data;
+
+    for (let i = 0; i < dashboardArr.length; i++) {
+      let color = dashboardArr[i].trafficActual,
+        prevColorCount = trafficColorCount.get(color);
+      if (!prevColorCount)
+        prevColorCount = 0;
+
+      trafficColorCount.set(color, prevColorCount + 1);
+    }
+    const defaultTrafficColors = ["SOLDOUT", "RED", "ORANGE", "GREEN", "OVERGREEN"];
+
+    setSoldoutColor(trafficColorCount.get(defaultTrafficColors[0]) || 0)
+    setRedColor(trafficColorCount.get(defaultTrafficColors[1]) || 0)
+    setOrangeColor(trafficColorCount.get(defaultTrafficColors[2]) || 0)
+    setGreenColor(trafficColorCount.get(defaultTrafficColors[3]) || 0)
+    setOverGreenColor(trafficColorCount.get(defaultTrafficColors[4]) || 0)
   }
-  
+
   useEffect(() => {
     getDashboard();
   }, [])
+
 
 
   return (
@@ -196,7 +222,7 @@ function Dashboard() {
             <div>
               <div className="card__desc">
                 <div className="desc__numbers1">
-                  <h1>5</h1>
+                  <h1>{soldoutColor}</h1>
                 </div>
               </div>
 
@@ -210,7 +236,7 @@ function Dashboard() {
             <div>
               <div className="card__desc">
                 <div className="desc__numbers4">
-                  <h1>5</h1>
+                  <h1>{redColor}</h1>
                 </div>
               </div>
 
@@ -225,7 +251,7 @@ function Dashboard() {
             <div>
               <div className="card__desc">
                 <div className="desc__numbers2">
-                  <h1>7</h1>
+                  <h1>{orangeColor}</h1>
                 </div>
               </div>
 
@@ -240,7 +266,7 @@ function Dashboard() {
             <div>
               <div className="card__desc">
                 <div className="desc__numbers3">
-                  <h1>9</h1>
+                  <h1>{greenColor}</h1>
                 </div>
               </div>
 
@@ -255,7 +281,7 @@ function Dashboard() {
             <div>
               <div className="card__desc">
                 <div className="desc__numbers5">
-                  <h1>9</h1>
+                  <h1>{overGreenColor}</h1>
                 </div>
               </div>
 
@@ -314,9 +340,9 @@ function Dashboard() {
                         style={{
                           backgroundColor:
                             (row.trafficActual === "SOLDOUT" && "#d61400") ||
-                            (row.trafficActual === "RED" && "#ff1800") || //", "GREEN", "OVERGREEN"
-                            (row.trafficActual === "ORANGE" && "orange")||
-                            (row.trafficActual === "GREEN" && "#00ff2b")||
+                            (row.trafficActual === "RED" && "#ff8282") || //", "GREEN", "OVERGREEN"
+                            (row.trafficActual === "ORANGE" && "orange") ||
+                            (row.trafficActual === "GREEN" && "#00da25") ||
                             (row.trafficActual === "OVERGREEN" && "#009018")
                         }}
                       >
