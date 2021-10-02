@@ -61,8 +61,6 @@ for (let i = 0; i < 14; i++) {
 }
 console.log(USERS);
 
-
-
 function Dashboard() {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
@@ -70,10 +68,9 @@ function Dashboard() {
   const [dashboard, setDashboard] = useState([]);
   const [soldoutColor, setSoldoutColor] = useState(0);
   const [redColor, setRedColor] = useState(0);
-  const [orangeColor, setOrangeColor] = useState(0)
+  const [orangeColor, setOrangeColor] = useState(0);
   const [greenColor, setGreenColor] = useState(0);
   const [overGreenColor, setOverGreenColor] = useState(0);
-
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -84,12 +81,12 @@ function Dashboard() {
     setPage(0);
   };
 
-  const trafficColorCount = new Map()
+  const trafficColorCount = new Map();
 
   const getDashboard = async () => {
     const dashboard = await axios({
       method: "get",
-      url: "http://localhost:3002/styleTraffic"
+      url: "http://localhost:3002/styleTraffic",
     });
 
     setDashboard(dashboard.data.data);
@@ -98,25 +95,28 @@ function Dashboard() {
     for (let i = 0; i < dashboardArr.length; i++) {
       let color = dashboardArr[i].trafficActual,
         prevColorCount = trafficColorCount.get(color);
-      if (!prevColorCount)
-        prevColorCount = 0;
+      if (!prevColorCount) prevColorCount = 0;
 
       trafficColorCount.set(color, prevColorCount + 1);
     }
-    const defaultTrafficColors = ["SOLDOUT", "RED", "ORANGE", "GREEN", "OVERGREEN"];
+    const defaultTrafficColors = [
+      "SOLDOUT",
+      "RED",
+      "ORANGE",
+      "GREEN",
+      "OVERGREEN",
+    ];
 
-    setSoldoutColor(trafficColorCount.get(defaultTrafficColors[0]) || 0)
-    setRedColor(trafficColorCount.get(defaultTrafficColors[1]) || 0)
-    setOrangeColor(trafficColorCount.get(defaultTrafficColors[2]) || 0)
-    setGreenColor(trafficColorCount.get(defaultTrafficColors[3]) || 0)
-    setOverGreenColor(trafficColorCount.get(defaultTrafficColors[4]) || 0)
-  }
+    setSoldoutColor(trafficColorCount.get(defaultTrafficColors[0]) || 0);
+    setRedColor(trafficColorCount.get(defaultTrafficColors[1]) || 0);
+    setOrangeColor(trafficColorCount.get(defaultTrafficColors[2]) || 0);
+    setGreenColor(trafficColorCount.get(defaultTrafficColors[3]) || 0);
+    setOverGreenColor(trafficColorCount.get(defaultTrafficColors[4]) || 0);
+  };
 
   useEffect(() => {
     getDashboard();
-  }, [])
-
-
+  }, []);
 
   return (
     <div className="Dashboard__table">
@@ -317,40 +317,39 @@ function Dashboard() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {dashboard.slice(
-                  page * rowsPerPage,
-                  page * rowsPerPage + rowsPerPage
-                ).map((row) => (
-                  <TableRow key={row.styleCode}>
-                    <TableCell>
-                      <Typography className={classes.name}>
-                        {row.styleCode}
-                      </Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Typography color="textSecondary" variant="body2">
-                        {row.currentInv}
-                      </Typography>
-                    </TableCell>
-                    <TableCell>{row.salesNumber}</TableCell>
-                    <TableCell>{row.salesRank}</TableCell>
-                    <TableCell>
-                      <Typography
-                        className={classes.status}
-                        style={{
-                          backgroundColor:
-                            (row.trafficActual === "SOLDOUT" && "#d61400") ||
-                            (row.trafficActual === "RED" && "#ff8282") || //", "GREEN", "OVERGREEN"
-                            (row.trafficActual === "ORANGE" && "orange") ||
-                            (row.trafficActual === "GREEN" && "#00da25") ||
-                            (row.trafficActual === "OVERGREEN" && "#009018")
-                        }}
-                      >
-                        {row.trafficActual}
-                      </Typography>
-                    </TableCell>
-                  </TableRow>
-                ))}
+                {dashboard
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((row) => (
+                    <TableRow key={row.styleCode}>
+                      <TableCell>
+                        <Typography className={classes.name}>
+                          {row.styleCode}
+                        </Typography>
+                      </TableCell>
+                      <TableCell>
+                        <Typography color="textSecondary" variant="body2">
+                          {row.currentInv}
+                        </Typography>
+                      </TableCell>
+                      <TableCell>{row.salesNumber}</TableCell>
+                      <TableCell>{row.salesRank}</TableCell>
+                      <TableCell>
+                        <Typography
+                          className={classes.status}
+                          style={{
+                            backgroundColor:
+                              (row.trafficActual === "SOLDOUT" && "#d61400") ||
+                              (row.trafficActual === "RED" && "#ff8282") || //", "GREEN", "OVERGREEN"
+                              (row.trafficActual === "ORANGE" && "orange") ||
+                              (row.trafficActual === "GREEN" && "#00da25") ||
+                              (row.trafficActual === "OVERGREEN" && "#009018"),
+                          }}
+                        >
+                          {row.trafficActual}
+                        </Typography>
+                      </TableCell>
+                    </TableRow>
+                  ))}
               </TableBody>
               <TableFooter>
                 <TablePagination
@@ -365,6 +364,9 @@ function Dashboard() {
               </TableFooter>
             </Table>
           </TableContainer>
+        </div>
+        <div className="butta__container">
+          <button className="butta">Download CSV </button>
         </div>
       </div>
     </div>

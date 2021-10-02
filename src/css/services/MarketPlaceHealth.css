@@ -450,3 +450,9 @@ td .status {
   border-radius: 20px;
   padding: 10px;
 }
+.cards__title {
+  display: flex;
+}
+.cards__title h1 {
+  color: lightgrey;
+}

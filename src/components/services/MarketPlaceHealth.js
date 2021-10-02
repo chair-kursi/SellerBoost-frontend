@@ -1,97 +1,124 @@
 import React, { useState, useEffect } from "react";
+import faker from "faker";
 import "../../css/services/MarketPlaceHealth.css";
-import BootstrapTable from "react-bootstrap-table-next";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "react-bootstrap-table-next/dist/react-bootstrap-table2.css";
-import paginationFactory from "react-bootstrap-table2-paginator";
-import "react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css";
-import filterFactory, {
-  textFilter,
-  numberFilter,
-  selectFilter,
-  multiSelectFilter,
-  customFilter,
-} from "react-bootstrap-table2-filter";
-import "react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css";
+import { makeStyles } from "@material-ui/core/styles";
+
 import axios from "axios";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Avatar,
+  Grid,
+  Typography,
+  TablePagination,
+  TableFooter,
+  TableSortLabel,
+} from "@material-ui/core";
+
+const useStyles = makeStyles((theme) => ({
+  table: {
+    minWidth: 650,
+  },
+  tableContainer: {
+    borderRadius: 15,
+    margin: "10px 10px",
+    maxWidth: 2000,
+  },
+  tableHeaderCell: {
+    fontWeight: "bold",
+    backgroundColor: theme.palette.success.dark,
+    color: theme.palette.getContrastText(theme.palette.primary.dark),
+  },
+
+  status: {
+    fontWeight: "bold",
+    fontSize: "0.75rem",
+    color: "white",
+    backgroundColor: "grey",
+    borderRadius: 8,
+    padding: "3px 10px",
+    display: "inline-block",
+  },
+}));
+
+let USERS = [],
+  STATUSES = ["SOLDOUT", "RED", "ORANGE", "GREEN", "OVERGREEN"];
+for (let i = 0; i < 14; i++) {
+  USERS[i] = {
+    name: faker.name.findName(),
+    email: faker.internet.email(),
+    phone: faker.phone.phoneNumber(),
+    jobTitle: faker.name.jobTitle(),
+    company: faker.company.companyName(),
+    joinDate: faker.date.past().toLocaleDateString("en-US"),
+    status: STATUSES[Math.floor(Math.random() * STATUSES.length)],
+  };
+}
+console.log(USERS);
 
 function MarketPlaceHealth() {
   const [show, setShow] = useState(false);
   const [company, setCompany] = useState(null);
-  const [companyinCamelCase, setCompanyinCamelCase] = useState(null)
   const [userList, setUserList] = useState([]);
-  const columns = [
-    {
-      dataField: "styleCode",
-      text: "StyleCode",
-      sort: "true",
-      filter: textFilter(),
-    },
-    {
-      dataField: "salesRank",
-      text: "Rank",
-      sort: "true",
-      filter: textFilter(),
-    },
-    {
-      dataField: "currentInv",
-      text: "Total Inventory",
-      sort: "true",
-      filter: textFilter(),
-    },
-    {
-      dataField: "salesNumber",
-      text: "StyloBug",
-      sort: "true",
-      filter: textFilter(),
-    },
-    {
-      dataField: companyinCamelCase,
-      text: company,
-      sort: "true",
-      filter: textFilter(),
-    },
-  ];
-  const selectRow = {
-    mode: "checkbox",
-    clickToSelect: true,
+  const classes = useStyles();
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [dashboard, setDashboard] = useState([]);
+  const [soldoutColor, setSoldoutColor] = useState(0);
+  const [redColor, setRedColor] = useState(0);
+  const [orangeColor, setOrangeColor] = useState(0);
+  const [greenColor, setGreenColor] = useState(0);
+  const [overGreenColor, setOverGreenColor] = useState(0);
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
   };
-  const pagination = paginationFactory({
-    page: 1,
-    sizePerPage: 5,
-    lastPageText: ">>",
-    firstPageText: "<<",
-    nextPageText: ">",
-    prePageText: "<",
-    showTotal: true,
-    alwaysShowAllBtns: true,
-    onPageChange: function (page, sizePerpage) {
-      console.log("page", page);
-      console.log("sizePerPage", sizePerpage);
-    },
-    onSizePerPageChange: function (page, sizePerpage) {
-      console.log("page", page);
-      console.log("sizePerPage", sizePerpage);
-    },
-  });
 
-  const getHealth = async () => {
-    try {
-      const health = await axios({
-        method: "get",
-        url: "http://localhost:3002/api/marketplaceHealth"
-      })
-      setUserList(health.data);
-      // const healthMap = new Map();
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
 
+  const trafficColorCount = new Map();
+
+  const getDashboard = async () => {
+    const dashboard = await axios({
+      method: "get",
+      url: "http://localhost:3002/styleTraffic",
+    });
+
+    setDashboard(dashboard.data.data);
+    let dashboardArr = dashboard.data.data;
+
+    for (let i = 0; i < dashboardArr.length; i++) {
+      let color = dashboardArr[i].trafficActual,
+        prevColorCount = trafficColorCount.get(color);
+      if (!prevColorCount) prevColorCount = 0;
+
+      trafficColorCount.set(color, prevColorCount + 1);
     }
-    catch (err) {
-      console.log(err);
-    }
-  }
+    const defaultTrafficColors = [
+      "SOLDOUT",
+      "RED",
+      "ORANGE",
+      "GREEN",
+      "OVERGREEN",
+    ];
+
+    setSoldoutColor(trafficColorCount.get(defaultTrafficColors[0]) || 0);
+    setRedColor(trafficColorCount.get(defaultTrafficColors[1]) || 0);
+    setOrangeColor(trafficColorCount.get(defaultTrafficColors[2]) || 0);
+    setGreenColor(trafficColorCount.get(defaultTrafficColors[3]) || 0);
+    setOverGreenColor(trafficColorCount.get(defaultTrafficColors[4]) || 0);
+  };
 
   useEffect(() => {
-    getHealth();
+    getDashboard();
   }, []);
 
   return (
@@ -193,17 +220,19 @@ function MarketPlaceHealth() {
         </header>
 
         <main>
+          <div className="cards__title">
+            <h1>Select one Company</h1>
+          </div>
           <div className="cards">
             <div
-              className={`card-single ${company === "StyloBug" ? "company" : ""
-                } `}
+              className={`card-single ${
+                company === "StyloBug" ? "company" : ""
+              } `}
               onClick={(event) => {
                 if (company === "StyloBug") {
                   setCompany(null);
-                  setCompanyinCamelCase(null)
                 } else {
                   setCompany("StyloBug");
-                  setCompanyinCamelCase("styloBug")
                 }
               }}
             >
@@ -221,15 +250,14 @@ function MarketPlaceHealth() {
               </div>
             </div>
             <div
-              className={`card-single ${company === "Amazon" ? "company" : ""
-                } `}
+              className={`card-single ${
+                company === "Amazon" ? "company" : ""
+              } `}
               onClick={(event) => {
                 if (company === "Amazon") {
                   setCompany(null);
-                  setCompanyinCamelCase(null)
                 } else {
                   setCompany("Amazon");
-                  setCompanyinCamelCase("amazon")
                 }
               }}
             >
@@ -251,15 +279,14 @@ function MarketPlaceHealth() {
               </div>
             </div>
             <div
-              className={`card-single ${company === "Flipkart" ? "company" : ""
-                } `}
+              className={`card-single ${
+                company === "Flipkart" ? "company" : ""
+              } `}
               onClick={(event) => {
                 if (company === "Flipkart") {
                   setCompany(null);
-                  setCompanyinCamelCase(null)
                 } else {
                   setCompany("Flipkart");
-                  setCompanyinCamelCase("flipkart")
                 }
               }}
             >
@@ -282,15 +309,14 @@ function MarketPlaceHealth() {
               </div>
             </div>
             <div
-              className={`card-single ${company === "Snapdeal" ? "company" : ""
-                } `}
+              className={`card-single ${
+                company === "Snapdeal" ? "company" : ""
+              } `}
               onClick={(event) => {
                 if (company === "Snapdeal") {
                   setCompany(null);
-                  setCompanyinCamelCase(null)
                 } else {
                   setCompany("Snapdeal");
-                  setCompanyinCamelCase("snapdeal")
                 }
               }}
             >
@@ -313,15 +339,14 @@ function MarketPlaceHealth() {
             </div>
             <>
               <div
-                className={`card-single ${company === "Myntra" ? "company" : ""
-                  } `}
+                className={`card-single ${
+                  company === "Myntra" ? "company" : ""
+                } `}
                 onClick={(event) => {
                   if (company === "Myntra") {
                     setCompany(null);
-                    setCompanyinCamelCase(null)
                   } else {
                     setCompany("Myntra");
-                    setCompanyinCamelCase("myntraAppMp")
                   }
                 }}
               >
@@ -343,15 +368,14 @@ function MarketPlaceHealth() {
                 </div>
               </div>
               <div
-                className={`card-single ${company === "Jabong" ? "company" : ""
-                  } `}
+                className={`card-single ${
+                  company === "Jabong" ? "company" : ""
+                } `}
                 onClick={(event) => {
                   if (company === "Jabong") {
                     setCompany(null);
-                    setCompanyinCamelCase(null)
                   } else {
                     setCompany("Jabong");
-                    setCompanyinCamelCase("jabong")
                   }
                 }}
               >
@@ -375,15 +399,14 @@ function MarketPlaceHealth() {
 
               <div
                 c
-                className={`card-single ${company === "Ajio" ? "company" : ""
-                  } `}
+                className={`card-single ${
+                  company === "Ajio" ? "company" : ""
+                } `}
                 onClick={(event) => {
                   if (company === "Ajio") {
                     setCompany(null);
-                    setCompanyinCamelCase(null)
                   } else {
                     setCompany("Ajio");
-                    setCompanyinCamelCase("ajio")
                   }
                 }}
               >
@@ -406,15 +429,14 @@ function MarketPlaceHealth() {
               </div>
 
               <div
-                className={`card-single ${company === "FirstCry" ? "company" : ""
-                  } `}
+                className={`card-single ${
+                  company === "FirstCry" ? "company" : ""
+                } `}
                 onClick={(event) => {
                   if (company === "FirstCry") {
                     setCompany(null);
-                    setCompanyinCamelCase(null)
                   } else {
                     setCompany("FirstCry");
-                    setCompanyinCamelCase("firstCry")
                   }
                 }}
               >
@@ -437,15 +459,14 @@ function MarketPlaceHealth() {
               </div>
 
               <div
-                className={`card-single ${company === "FYND" ? "company" : ""
-                  } `}
+                className={`card-single ${
+                  company === "FYND" ? "company" : ""
+                } `}
                 onClick={(event) => {
                   if (company === "FYND") {
                     setCompany(null);
-                    setCompanyinCamelCase(null)
                   } else {
                     setCompany("FYND");
-                    setCompanyinCamelCase("FYND");
                   }
                 }}
               >
@@ -468,15 +489,14 @@ function MarketPlaceHealth() {
               </div>
 
               <div
-                className={`card-single ${company === "Cloudtail" ? "company" : ""
-                  } `}
+                className={`card-single ${
+                  company === "Cloudtail" ? "company" : ""
+                } `}
                 onClick={(event) => {
                   if (company === "Cloudtail") {
                     setCompany(null);
-                    setCompanyinCamelCase(null)
                   } else {
                     setCompany("Cloudtail");
-                    setCompanyinCamelCase("cloudtail")
                   }
                 }}
               >
@@ -500,15 +520,14 @@ function MarketPlaceHealth() {
 
               <div
                 c
-                className={`card-single ${company === "Nykaa Fashion" ? "company" : ""
-                  } `}
+                className={`card-single ${
+                  company === "Nykaa" ? "company" : ""
+                } `}
                 onClick={(event) => {
-                  if (company === "Nykaa Fashion") {
+                  if (company === "Nykaa") {
                     setCompany(null);
-                    setCompanyinCamelCase(null)
                   } else {
-                    setCompany("Nykaa Fashion");
-                    setCompanyinCamelCase("nykaaFashion");
+                    setCompany("Nykaa");
                   }
                 }}
               >
@@ -538,15 +557,88 @@ function MarketPlaceHealth() {
             </button>
           </div>
           {show ? (
-            <BootstrapTable
-              bootstrap4
-              keyField="styleCode"
-              columns={columns}
-              selectRow={selectRow}
-              data={userList}
-              pagination={pagination}
-              filter={filterFactory()}
-            />
+            <div className="tble">
+              <TableContainer
+                component={Paper}
+                className={classes.tableContainer}
+              >
+                <Table className={classes.table} aria-label="simple table">
+                  <TableHead>
+                    <TableRow>
+                      <TableCell className={classes.tableHeaderCell}>
+                        StyleCode <TableSortLabel />
+                      </TableCell>
+
+                      <TableCell className={classes.tableHeaderCell}>
+                        Rank
+                      </TableCell>
+                      <TableCell className={classes.tableHeaderCell}>
+                        Total Inventory
+                      </TableCell>
+                      <TableCell className={classes.tableHeaderCell}>
+                        StyloBug
+                      </TableCell>
+                      <TableCell className={classes.tableHeaderCell}>
+                        Myntra
+                      </TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {dashboard
+                      .slice(
+                        page * rowsPerPage,
+                        page * rowsPerPage + rowsPerPage
+                      )
+                      .map((row) => (
+                        <TableRow key={row.styleCode}>
+                          <TableCell>
+                            <Typography className={classes.name}>
+                              {row.styleCode}
+                            </Typography>
+                          </TableCell>
+                          <TableCell>
+                            <Typography color="textSecondary" variant="body2">
+                              {row.currentInv}
+                            </Typography>
+                          </TableCell>
+                          <TableCell>{row.salesNumber}</TableCell>
+                          <TableCell>{row.salesRank}</TableCell>
+                          <TableCell>
+                            <Typography
+                              className={classes.status}
+                              style={{
+                                backgroundColor:
+                                  (row.trafficActual === "SOLDOUT" &&
+                                    "#d61400") ||
+                                  (row.trafficActual === "RED" && "#ff8282") || //", "GREEN", "OVERGREEN"
+                                  (row.trafficActual === "ORANGE" &&
+                                    "orange") ||
+                                  (row.trafficActual === "GREEN" &&
+                                    "#00da25") ||
+                                  (row.trafficActual === "OVERGREEN" &&
+                                    "#009018"),
+                              }}
+                            >
+                              {row.trafficActual}
+                            </Typography>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                  </TableBody>
+                  <TableFooter>
+                    <TablePagination
+                      rowsPerPageOptions={[5, 10, 15]}
+                      component="div"
+                      count={dashboard.length}
+                      rowsPerPage={rowsPerPage}
+                      page={page}
+                      onChangePage={handleChangePage}
+                      onChangeRowsPerPage={handleChangeRowsPerPage}
+                    />
+                  </TableFooter>
+                </Table>
+              </TableContainer>
+            </div>
           ) : null}
         </main>
       </div>
