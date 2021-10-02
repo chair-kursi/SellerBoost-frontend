@@ -54,6 +54,7 @@
   padding: 20px;
   margin-top: 20px;
   align-items: center;
+  color: grey;
 }
 .tbles__header h1 {
   font-size: 20px;
@@ -61,7 +62,7 @@
 .tbles__header i {
   transform: scale(1.4);
   right: 30px;
-  color: orange;
+  color: grey;
   padding: 0 0 5px 15px;
 }
 .butta__container {

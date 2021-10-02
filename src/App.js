@@ -14,6 +14,8 @@ import Modal from "react-modal";
 import Onboarding from "./components/common/Onboarding";
 import MarketPlaceHealth from "./components/services/MarketPlaceHealth";
 import OneClickCatlogUpdate from "./components/services/OneClickCatlogUpdate";
+import MarketPlaceReconciliation from "./components/services/MarketPlaceReconciliation";
+import Merchandising from "./components/services/Merchandising";
 const customStyles = {
   content: {
     top: "50%",
@@ -53,9 +55,18 @@ function App() {
           </Modal>
         </Route>
 
+        <Route exact path="/MarketPlaceReconciliation">
+          <MarketPlaceReconciliation />
+        </Route>
+
+        <Route exact path="/Merchandising">
+          <Merchandising />
+        </Route>
+
         <Route exact path="/Dashboard">
           <Dashboard />
         </Route>
+
         <Route exact path="/Onboarding">
           <Onboarding />
         </Route>

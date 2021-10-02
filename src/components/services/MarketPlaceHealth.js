@@ -23,6 +23,7 @@ import {
 const useStyles = makeStyles((theme) => ({
   table: {
     minWidth: 650,
+    marginTop: 30,
   },
   tableContainer: {
     borderRadius: 15,
@@ -34,39 +35,22 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.success.dark,
     color: theme.palette.getContrastText(theme.palette.primary.dark),
   },
-  lastcell: {
-    marginTop: 30,
+  status: {
+    fontWeight: "bold",
+    fontSize: "0.75rem",
+    color: "white",
+    backgroundColor: "grey",
+    borderRadius: 8,
+    padding: "3px 10px",
+    display: "inline-block",
+    width: 97,
+    textAlign: "center",
   },
-
-  // status: {
-  //   fontWeight: "bold",
-  //   fontSize: "0.75rem",
-  //   color: "white",
-  //   backgroundColor: "grey",
-  //   borderRadius: 8,
-  //   padding: "3px 10px",
-  //   display: "inline-block",
-  // },
 }));
-
-// let USERS = [],
-//   STATUSES = ["SOLDOUT", "RED", "ORANGE", "GREEN", "OVERGREEN"];
-// for (let i = 0; i < 14; i++) {
-//   USERS[i] = {
-//     name: faker.name.findName(),
-//     email: faker.internet.email(),
-//     phone: faker.phone.phoneNumber(),
-//     jobTitle: faker.name.jobTitle(),
-//     company: faker.company.companyName(),
-//     joinDate: faker.date.past().toLocaleDateString("en-US"),
-//     status: STATUSES[Math.floor(Math.random() * STATUSES.length)],
-//   };
-// }
-// console.log(USERS);
 
 function MarketPlaceHealth() {
   const [show, setShow] = useState(false);
-  const [company, setCompany] = useState(null);
+  const [company, setCompany] = useState("Amazon");
   const [companyinCamelCase, setCompanyinCamelCase] = useState(null);
   const [userList, setUserList] = useState([]);
   const classes = useStyles();
@@ -151,6 +135,20 @@ function MarketPlaceHealth() {
               </a>
             </li>
             <li>
+              <a href="/MarketPlaceReconciliation">
+                <span className="fas fa-hand-holding-usd"></span>
+
+                <span>Reconciliation</span>
+              </a>
+            </li>
+            <li>
+              <a href="/Merchandising">
+                <span className="fas fa-tshirt"></span>
+
+                <span>Merchandising</span>
+              </a>
+            </li>
+            <li>
               <a href="#">
                 <span className="fas fa-hands-helping"></span>
                 <span>Help</span>
@@ -202,23 +200,12 @@ function MarketPlaceHealth() {
 
         <main>
           <div className="cards__title">
-            <h1>Select one Company</h1>
+            <h1>
+              Select one MarketPlace <i class="far fa-hand-pointer"></i>
+            </h1>
           </div>
           <div className="cards">
-            <div
-              className={`card-single ${
-                company === "StyloBug" ? "company" : ""
-              } `}
-              onClick={(event) => {
-                if (company === "StyloBug") {
-                  setCompany(null);
-                  setCompanyinCamelCase(null);
-                } else {
-                  setCompany("StyloBug");
-                  setCompanyinCamelCase("styloBug");
-                }
-              }}
-            >
+            <div className="card-single">
               <div>
                 <div className="card__desc">
                   <div className="desc__numbers">
@@ -552,13 +539,10 @@ function MarketPlaceHealth() {
               </div>
             </>
           </div>
-          <div className="tbtn">
-            <button className="butts" onClick={() => setShow(!show)}>
-              NEXT
-              <i class="fas fa-angle-double-right"></i>
-            </button>
+          <div className="cards__title1">
+            <h1>Detailed View</h1>
           </div>
-          {show ? (
+          {company ? (
             <TableContainer
               component={Paper}
               className={classes.tableContainer}
@@ -589,26 +573,36 @@ function MarketPlaceHealth() {
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((row) => (
                       <TableRow key={row.styleCode}>
-                        <TableCell>
-                          {row.styleCode}
-                          {/* <Typography className={classes.name}>
-                              {row.styleCode}
-                              {console.log(row, companyinCamelCase)}
-                            </Typography> */}
-                        </TableCell>
-                        <TableCell>
-                          {row.rank}
-                          {/* <Typography color="textSecondary" variant="body2">
-                              {row.rank}
-                            </Typography> */}
-                        </TableCell>
+                        <TableCell>{row.styleCode}</TableCell>
+                        <TableCell>{row.rank}</TableCell>
 
                         <TableCell>{row.totalInv}</TableCell>
                         <TableCell>{row.styloBug}</TableCell>
-
-                        <TableCell className={classes.lastcell}>
-                          {row.companyinCamelCase}
+                        <TableCell>
+                          <Typography
+                            className={classes.status}
+                            style={{
+                              backgroundColor:
+                                row[companyinCamelCase] != row.styloBug
+                                  ? "#ff8282"
+                                  : "#00da25",
+                            }}
+                          >
+                            {row[companyinCamelCase]}
+                          </Typography>
                         </TableCell>
+                        {/* <TableCell
+                          style={{
+                            backgroundColor:
+                              row[companyinCamelCase] != row.styloBug
+                                ? "#ff8282"
+                                : "#00da25",
+                            padding: 20,
+
+                          }}
+                        >
+                          {row[companyinCamelCase]}
+                        </TableCell> */}
                       </TableRow>
                     ))}
                 </TableBody>

@@ -7,7 +7,10 @@
   /* --color-dark: #1d2231; */
   --text-grey: #8390a2;
 }
-
+::-webkit-scrollbar {
+  width: 0; /* Remove scrollbar space */
+  background: transparent; /* Optional: just make scrollbar invisible */
+}
 /* * {
   padding: 0;
   margin: 0;
@@ -26,6 +29,7 @@
   z-index: 100;
   background: var(--main-color);
   transition: width 300ms;
+  overflow-x: scroll;
 }
 .sidebar-brand {
   height: 90px;
@@ -238,10 +242,7 @@ td {
   font-size: 0.9rem;
   color: #222;
 }
-tr td:last-child {
-  display: flex;
-  align-items: center;
-}
+/*  */
 td .status {
   display: inline-block;
   height: 10px;
@@ -455,4 +456,14 @@ td .status {
 }
 .cards__title h1 {
   color: grey;
+  font-size: 26px;
+}
+
+.cards__title1 {
+  display: flex;
+  margin-top: 40px;
+}
+.cards__title1 h1 {
+  color: grey;
+  font-size: 26px;
 }

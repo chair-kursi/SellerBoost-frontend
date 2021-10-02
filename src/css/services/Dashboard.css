@@ -49,6 +49,7 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+  width: 100%;
 }
 .card-singlee1 {
   display: flex;

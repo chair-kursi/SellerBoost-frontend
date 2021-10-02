@@ -108,6 +108,21 @@ function OneClickCatlogUpdate() {
             </li>
 
             <li>
+              <a href="/MarketPlaceReconciliation">
+                <span className="fas fa-hand-holding-usd"></span>
+
+                <span>Reconciliation</span>
+              </a>
+            </li>
+            <li>
+              <a href="/Merchandising">
+                <span className="fas fa-tshirt"></span>
+
+                <span>Merchandising</span>
+              </a>
+            </li>
+
+            <li>
               <a href="#">
                 <span className="fas fa-hands-helping"></span>
                 <span>Help</span>
@@ -160,7 +175,7 @@ function OneClickCatlogUpdate() {
         <div className="tbles">
           <div className="tbles__header">
             <h1>Select Multiple Styles</h1>
-            <i class="far fa-check-square"></i>
+            <i class="far fa-hand-pointer"></i>
           </div>
           <BootstrapTable
             bootstrap4
@@ -180,8 +195,8 @@ function OneClickCatlogUpdate() {
         {next1 ? (
           <div className="ctn8">
             <div className="tbles__header">
-              <h1>Select One Company</h1>
-              <i class="far fa-check-square"></i>
+              <h1>Select One MarketPlace</h1>
+              <i class="far fa-hand-pointer"></i>
             </div>
             <div className="cardss">
               <div
@@ -286,7 +301,7 @@ function OneClickCatlogUpdate() {
           </div>
         ) : null}
 
-        {next2 ? (
+        {company ? (
           <>
             <div className="butta__container">
               <button className="butta">Download CSV </button>

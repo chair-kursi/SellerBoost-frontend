@@ -52,6 +52,21 @@ function Onboarding() {
                 <span>One Click Upload</span>
               </a>
             </li>
+
+            <li>
+              <a href="/MarketPlaceReconciliation">
+                <span className="fas fa-hand-holding-usd"></span>
+
+                <span>Reconciliation</span>
+              </a>
+            </li>
+            <li>
+              <a href="/Merchandising">
+                <span className="fas fa-tshirt"></span>
+
+                <span>Merchandising</span>
+              </a>
+            </li>
             <li>
               <a href="#">
                 <span className="fas fa-hands-helping"></span>

@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
   tableContainer: {
     borderRadius: 15,
-    margin: "10px 10px",
+    margin: "0 auto",
     maxWidth: 1050,
   },
   tableHeaderCell: {
@@ -43,23 +43,10 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 8,
     padding: "3px 10px",
     display: "inline-block",
+    width: 97,
+    textAlign: "center",
   },
 }));
-
-let USERS = [],
-  STATUSES = ["SOLDOUT", "RED", "ORANGE", "GREEN", "OVERGREEN"];
-for (let i = 0; i < 14; i++) {
-  USERS[i] = {
-    name: faker.name.findName(),
-    email: faker.internet.email(),
-    phone: faker.phone.phoneNumber(),
-    jobTitle: faker.name.jobTitle(),
-    company: faker.company.companyName(),
-    joinDate: faker.date.past().toLocaleDateString("en-US"),
-    status: STATUSES[Math.floor(Math.random() * STATUSES.length)],
-  };
-}
-console.log(USERS);
 
 function Dashboard() {
   const classes = useStyles();
@@ -164,6 +151,21 @@ function Dashboard() {
                 <span className="fas fa-upload"></span>
 
                 <span>One Click Upload</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="/MarketPlaceReconciliation">
+                <span className="fas fa-hand-holding-usd"></span>
+
+                <span>Reconciliation</span>
+              </a>
+            </li>
+            <li>
+              <a href="/Merchandising">
+                <span className="fas fa-tshirt"></span>
+
+                <span>Merchandising</span>
               </a>
             </li>
 
@@ -327,12 +329,29 @@ function Dashboard() {
                         </Typography>
                       </TableCell>
                       <TableCell>
-                        <Typography color="textSecondary" variant="body2">
+                        <Typography
+                          variant="body2"
+                          style={{
+                            textAlign: "center",
+                          }}
+                        >
                           {row.currentInv}
                         </Typography>
                       </TableCell>
-                      <TableCell>{row.salesNumber}</TableCell>
-                      <TableCell>{row.salesRank}</TableCell>
+                      <TableCell
+                        style={{
+                          textAlign: "center",
+                        }}
+                      >
+                        {row.salesNumber}
+                      </TableCell>
+                      <TableCell
+                        style={{
+                          textAlign: "center",
+                        }}
+                      >
+                        {row.salesRank}
+                      </TableCell>
                       <TableCell>
                         <Typography
                           className={classes.status}

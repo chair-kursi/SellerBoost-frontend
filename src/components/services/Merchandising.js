@@ -1,32 +1,9 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import Product from "./Product";
-import SearchIcon from "@material-ui/icons/Search";
-import { Avatar } from "@material-ui/core";
+import React from "react";
+import "../../css/services/Merchandising.css";
 
-import "../../css/home.css";
-import { Link } from "react-router-dom";
-export default function Home() {
-  const [styles, setStyles] = useState(null);
-  const [client, setClient] = useState(null);
-
-  const getStyles = async () => {
-    const stylesArr = await axios({
-      method: "get",
-      url: "http://localhost:3002/style",
-    });
-    setStyles(stylesArr.data);
-  };
-
-  // clientId;
-  // console.log(styles);
-
-  useEffect(() => {
-    getStyles();
-  }, []);
-
+function Merchandising() {
   return (
-    <>
+    <div>
       <input type="checkbox" id="nav-toggle" />
 
       <div className="sidebarr">
@@ -73,6 +50,7 @@ export default function Home() {
                 <span>One Click Upload</span>
               </a>
             </li>
+
             <li>
               <a href="/MarketPlaceReconciliation">
                 <span className="fas fa-hand-holding-usd"></span>
@@ -87,7 +65,6 @@ export default function Home() {
                 <span>Merchandising</span>
               </a>
             </li>
-
             <li>
               <a href="#">
                 <span className="fas fa-hands-helping"></span>
@@ -138,78 +115,86 @@ export default function Home() {
           </div>
         </header>
 
-        <div className="banner-page">
-          <div className="side1">
-            <h2>
-              Introducing the New Revolution in Fashion -{" "}
-              <span className="teg">StyloBug</span>{" "}
-            </h2>
+        <div class="main-container">
+          <div class="heading">
+            <h1 class="heading__title">WelCome To The</h1>
+            <p class="heading__credits">
+              <a class="heading__link" target="_blank" href="#">
+                Marchandising
+              </a>
+            </p>
           </div>
-          <div className="side2">
-            {/* <img className="side2" src="\undraw_coolness_dtmq (1).png" alt="" /> */}
-
-            <lottie-player
-              src="https://assets3.lottiefiles.com/packages/lf20_sk5h1kfn.json"
-              background="transparent"
-              speed="1"
-              // style="width: 300px; height: 300px;"
-              hover
-              loop
-              autoplay
-            ></lottie-player>
+          <div class="cardssss">
+            <div class="card card-1">
+              <p class="card__exit">
+                <i class="fas fa-times"></i>
+              </p>
+              <div className="card__inside">
+                <div className="card__logo">
+                  <img
+                    src="https://cdn2.iconfinder.com/data/icons/jetflat-multimedia/90/004_011_clip_board_clipboard_buffer_todo-256.png"
+                    alt=""
+                  />
+                </div>
+                <div className="card__description">
+                  <p>No Need for Buffer</p>
+                </div>
+              </div>
+            </div>
+            <div class="card card-2">
+              <p class="card__exit">
+                <i class="fas fa-times"></i>
+              </p>
+              <div className="card__inside">
+                <div className="card__logo">
+                  <img
+                    src="https://cdn3.iconfinder.com/data/icons/scenarium-vol-5/128/041_cloud_sync_folder_storage-256.png
+                    "
+                    alt=""
+                  />
+                </div>
+                <div className="card__description">
+                  <p>Smart Inventory Sync</p>
+                </div>
+              </div>
+            </div>
+            <div class="card card-3">
+              <p class="card__exit">
+                <i class="fas fa-times"></i>
+              </p>
+              <div className="card__inside">
+                <div className="card__logo">
+                  <img
+                    src="https://cdn2.iconfinder.com/data/icons/business-271/135/40-256.png"
+                    alt=""
+                  />
+                </div>
+                <div className="card__description">
+                  <p>Revenue Increase</p>
+                </div>
+              </div>
+            </div>
+            <div class="card card-4">
+              <p class="card__exit">
+                <i class="fas fa-times"></i>
+              </p>
+              <div className="card__inside">
+                <div className="card__logo">
+                  <img
+                    src="https://cdn0.iconfinder.com/data/icons/recommendations/128/Recommendation_IconsLayer_4-256.png"
+                    alt=""
+                  />
+                </div>
+                <div className="card__description">
+                  <p>Inventory Recommendation</p>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-        <div className="products">
-          {styles
-            ? styles.map((ele) => {
-                return <Product key={ele._id} ele={ele} />;
-              })
-            : null}
         </div>
       </div>
-    </>
-
-    // <div className="Home">
-    //   <div className="header">
-    //     <div title="404" className="titl">
-    //       <Link to="/">
-    //         <h1>Stylobug </h1>
-    //       </Link>
-    //     </div>
-    //     <div className="input">
-    //       <SearchIcon />
-    //       <input type="text" placeholder="Search Style" />
-    //     </div>
-    //   </div>
-
-    //   <div className="banner-page">
-    //     <div className="side1">
-    //       <h2>
-    //         Introducing the New Revolution in Fashion -{" "}
-    //         <span className="teg">StyloBug</span>{" "}
-    //       </h2>
-    //     </div>
-    //     <div className="side2">
-    //       {/* <img className="side2" src="\undraw_coolness_dtmq (1).png" alt="" /> */}
-
-    //       <lottie-player
-    //         src="https://assets3.lottiefiles.com/packages/lf20_sk5h1kfn.json"
-    //         background="transparent"
-    //         speed="1"
-    //         // style="width: 300px; height: 300px;"
-    //         hover
-    //         loop
-    //         autoplay
-    //       ></lottie-player>
-    //     </div>
-    //   </div>
-    //   <div className="products">
-    //     {styles
-    //       ? styles.map((ele) => {
-    //           return <Product key={ele._id} ele={ele} />;
-    //         })
-    //       : null}
-    //   </div>
-    // </div>
+    </div>
   );
 }
+
+export default Merchandising;
