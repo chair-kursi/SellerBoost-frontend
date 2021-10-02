@@ -500,7 +500,7 @@ function MarketPlaceHealth() {
 
               <div
                 c
-                className={`card-single ${company === "Nykaa" ? "company" : ""
+                className={`card-single ${company === "Nykaa Fashion" ? "company" : ""
                   } `}
                 onClick={(event) => {
                   if (company === "Nykaa Fashion") {
