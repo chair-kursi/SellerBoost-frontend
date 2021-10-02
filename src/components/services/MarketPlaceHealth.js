@@ -34,46 +34,45 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.success.dark,
     color: theme.palette.getContrastText(theme.palette.primary.dark),
   },
-
-  status: {
-    fontWeight: "bold",
-    fontSize: "0.75rem",
-    color: "white",
-    backgroundColor: "grey",
-    borderRadius: 8,
-    padding: "3px 10px",
-    display: "inline-block",
+  lastcell: {
+    marginTop: 30,
   },
+
+  // status: {
+  //   fontWeight: "bold",
+  //   fontSize: "0.75rem",
+  //   color: "white",
+  //   backgroundColor: "grey",
+  //   borderRadius: 8,
+  //   padding: "3px 10px",
+  //   display: "inline-block",
+  // },
 }));
 
-let USERS = [],
-  STATUSES = ["SOLDOUT", "RED", "ORANGE", "GREEN", "OVERGREEN"];
-for (let i = 0; i < 14; i++) {
-  USERS[i] = {
-    name: faker.name.findName(),
-    email: faker.internet.email(),
-    phone: faker.phone.phoneNumber(),
-    jobTitle: faker.name.jobTitle(),
-    company: faker.company.companyName(),
-    joinDate: faker.date.past().toLocaleDateString("en-US"),
-    status: STATUSES[Math.floor(Math.random() * STATUSES.length)],
-  };
-}
-console.log(USERS);
+// let USERS = [],
+//   STATUSES = ["SOLDOUT", "RED", "ORANGE", "GREEN", "OVERGREEN"];
+// for (let i = 0; i < 14; i++) {
+//   USERS[i] = {
+//     name: faker.name.findName(),
+//     email: faker.internet.email(),
+//     phone: faker.phone.phoneNumber(),
+//     jobTitle: faker.name.jobTitle(),
+//     company: faker.company.companyName(),
+//     joinDate: faker.date.past().toLocaleDateString("en-US"),
+//     status: STATUSES[Math.floor(Math.random() * STATUSES.length)],
+//   };
+// }
+// console.log(USERS);
 
 function MarketPlaceHealth() {
   const [show, setShow] = useState(false);
   const [company, setCompany] = useState(null);
+  const [companyinCamelCase, setCompanyinCamelCase] = useState(null);
   const [userList, setUserList] = useState([]);
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [dashboard, setDashboard] = useState([]);
-  const [soldoutColor, setSoldoutColor] = useState(0);
-  const [redColor, setRedColor] = useState(0);
-  const [orangeColor, setOrangeColor] = useState(0);
-  const [greenColor, setGreenColor] = useState(0);
-  const [overGreenColor, setOverGreenColor] = useState(0);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -86,39 +85,21 @@ function MarketPlaceHealth() {
 
   const trafficColorCount = new Map();
 
-  const getDashboard = async () => {
-    const dashboard = await axios({
-      method: "get",
-      url: "http://localhost:3002/styleTraffic",
-    });
-
-    setDashboard(dashboard.data.data);
-    let dashboardArr = dashboard.data.data;
-
-    for (let i = 0; i < dashboardArr.length; i++) {
-      let color = dashboardArr[i].trafficActual,
-        prevColorCount = trafficColorCount.get(color);
-      if (!prevColorCount) prevColorCount = 0;
-
-      trafficColorCount.set(color, prevColorCount + 1);
+  const getHealth = async () => {
+    try {
+      const health = await axios({
+        method: "get",
+        url: "http://localhost:3002/api/marketplaceHealth",
+      });
+      setUserList(health.data);
+      console.log(health.data);
+      // const healthMap = new Map();
+    } catch (err) {
+      console.log(err);
     }
-    const defaultTrafficColors = [
-      "SOLDOUT",
-      "RED",
-      "ORANGE",
-      "GREEN",
-      "OVERGREEN",
-    ];
-
-    setSoldoutColor(trafficColorCount.get(defaultTrafficColors[0]) || 0);
-    setRedColor(trafficColorCount.get(defaultTrafficColors[1]) || 0);
-    setOrangeColor(trafficColorCount.get(defaultTrafficColors[2]) || 0);
-    setGreenColor(trafficColorCount.get(defaultTrafficColors[3]) || 0);
-    setOverGreenColor(trafficColorCount.get(defaultTrafficColors[4]) || 0);
   };
-
   useEffect(() => {
-    getDashboard();
+    getHealth();
   }, []);
 
   return (
@@ -231,8 +212,10 @@ function MarketPlaceHealth() {
               onClick={(event) => {
                 if (company === "StyloBug") {
                   setCompany(null);
+                  setCompanyinCamelCase(null);
                 } else {
                   setCompany("StyloBug");
+                  setCompanyinCamelCase("styloBug");
                 }
               }}
             >
@@ -256,8 +239,10 @@ function MarketPlaceHealth() {
               onClick={(event) => {
                 if (company === "Amazon") {
                   setCompany(null);
+                  setCompanyinCamelCase(null);
                 } else {
                   setCompany("Amazon");
+                  setCompanyinCamelCase("amazon");
                 }
               }}
             >
@@ -285,8 +270,10 @@ function MarketPlaceHealth() {
               onClick={(event) => {
                 if (company === "Flipkart") {
                   setCompany(null);
+                  setCompanyinCamelCase(null);
                 } else {
                   setCompany("Flipkart");
+                  setCompanyinCamelCase("flipkart");
                 }
               }}
             >
@@ -315,8 +302,10 @@ function MarketPlaceHealth() {
               onClick={(event) => {
                 if (company === "Snapdeal") {
                   setCompany(null);
+                  setCompanyinCamelCase(null);
                 } else {
                   setCompany("Snapdeal");
+                  setCompanyinCamelCase("snapdeal");
                 }
               }}
             >
@@ -345,8 +334,10 @@ function MarketPlaceHealth() {
                 onClick={(event) => {
                   if (company === "Myntra") {
                     setCompany(null);
+                    setCompanyinCamelCase(null);
                   } else {
                     setCompany("Myntra");
+                    setCompanyinCamelCase("myntraAppMp");
                   }
                 }}
               >
@@ -374,8 +365,10 @@ function MarketPlaceHealth() {
                 onClick={(event) => {
                   if (company === "Jabong") {
                     setCompany(null);
+                    setCompanyinCamelCase(null);
                   } else {
                     setCompany("Jabong");
+                    setCompanyinCamelCase("jabong");
                   }
                 }}
               >
@@ -405,8 +398,10 @@ function MarketPlaceHealth() {
                 onClick={(event) => {
                   if (company === "Ajio") {
                     setCompany(null);
+                    setCompanyinCamelCase(null);
                   } else {
                     setCompany("Ajio");
+                    setCompanyinCamelCase("ajio");
                   }
                 }}
               >
@@ -435,8 +430,10 @@ function MarketPlaceHealth() {
                 onClick={(event) => {
                   if (company === "FirstCry") {
                     setCompany(null);
+                    setCompanyinCamelCase(null);
                   } else {
                     setCompany("FirstCry");
+                    setCompanyinCamelCase("firstCry");
                   }
                 }}
               >
@@ -465,8 +462,10 @@ function MarketPlaceHealth() {
                 onClick={(event) => {
                   if (company === "FYND") {
                     setCompany(null);
+                    setCompanyinCamelCase(null);
                   } else {
                     setCompany("FYND");
+                    setCompanyinCamelCase("FYND");
                   }
                 }}
               >
@@ -495,8 +494,10 @@ function MarketPlaceHealth() {
                 onClick={(event) => {
                   if (company === "Cloudtail") {
                     setCompany(null);
+                    setCompanyinCamelCase(null);
                   } else {
                     setCompany("Cloudtail");
+                    setCompanyinCamelCase("cloudtail");
                   }
                 }}
               >
@@ -519,15 +520,16 @@ function MarketPlaceHealth() {
               </div>
 
               <div
-                c
                 className={`card-single ${
-                  company === "Nykaa" ? "company" : ""
+                  company === "Nykaa Fashion" ? "company" : ""
                 } `}
-                onClick={(event) => {
-                  if (company === "Nykaa") {
+                onClick={() => {
+                  if (company === "Nykaa Fashion") {
                     setCompany(null);
+                    setCompanyinCamelCase(null);
                   } else {
-                    setCompany("Nykaa");
+                    setCompany("Nykaa Fashion");
+                    setCompanyinCamelCase("nykaaFashion");
                   }
                 }}
               >
@@ -557,88 +559,72 @@ function MarketPlaceHealth() {
             </button>
           </div>
           {show ? (
-            <div className="tble">
-              <TableContainer
-                component={Paper}
-                className={classes.tableContainer}
-              >
-                <Table className={classes.table} aria-label="simple table">
-                  <TableHead>
-                    <TableRow>
-                      <TableCell className={classes.tableHeaderCell}>
-                        StyleCode <TableSortLabel />
-                      </TableCell>
+            <TableContainer
+              component={Paper}
+              className={classes.tableContainer}
+            >
+              <Table className={classes.table} aria-label="simple table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell className={classes.tableHeaderCell}>
+                      StyleCode <TableSortLabel />
+                    </TableCell>
 
-                      <TableCell className={classes.tableHeaderCell}>
-                        Rank
-                      </TableCell>
-                      <TableCell className={classes.tableHeaderCell}>
-                        Total Inventory
-                      </TableCell>
-                      <TableCell className={classes.tableHeaderCell}>
-                        StyloBug
-                      </TableCell>
-                      <TableCell className={classes.tableHeaderCell}>
-                        Myntra
-                      </TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {dashboard
-                      .slice(
-                        page * rowsPerPage,
-                        page * rowsPerPage + rowsPerPage
-                      )
-                      .map((row) => (
-                        <TableRow key={row.styleCode}>
-                          <TableCell>
-                            <Typography className={classes.name}>
+                    <TableCell className={classes.tableHeaderCell}>
+                      Rank
+                    </TableCell>
+                    <TableCell className={classes.tableHeaderCell}>
+                      Total Inventory
+                    </TableCell>
+                    <TableCell className={classes.tableHeaderCell}>
+                      StyloBug
+                    </TableCell>
+                    <TableCell className={classes.tableHeaderCell}>
+                      {company}
+                    </TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {userList
+                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    .map((row) => (
+                      <TableRow key={row.styleCode}>
+                        <TableCell>
+                          {row.styleCode}
+                          {/* <Typography className={classes.name}>
                               {row.styleCode}
-                            </Typography>
-                          </TableCell>
-                          <TableCell>
-                            <Typography color="textSecondary" variant="body2">
-                              {row.currentInv}
-                            </Typography>
-                          </TableCell>
-                          <TableCell>{row.salesNumber}</TableCell>
-                          <TableCell>{row.salesRank}</TableCell>
-                          <TableCell>
-                            <Typography
-                              className={classes.status}
-                              style={{
-                                backgroundColor:
-                                  (row.trafficActual === "SOLDOUT" &&
-                                    "#d61400") ||
-                                  (row.trafficActual === "RED" && "#ff8282") || //", "GREEN", "OVERGREEN"
-                                  (row.trafficActual === "ORANGE" &&
-                                    "orange") ||
-                                  (row.trafficActual === "GREEN" &&
-                                    "#00da25") ||
-                                  (row.trafficActual === "OVERGREEN" &&
-                                    "#009018"),
-                              }}
-                            >
-                              {row.trafficActual}
-                            </Typography>
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                  </TableBody>
-                  <TableFooter>
-                    <TablePagination
-                      rowsPerPageOptions={[5, 10, 15]}
-                      component="div"
-                      count={dashboard.length}
-                      rowsPerPage={rowsPerPage}
-                      page={page}
-                      onChangePage={handleChangePage}
-                      onChangeRowsPerPage={handleChangeRowsPerPage}
-                    />
-                  </TableFooter>
-                </Table>
-              </TableContainer>
-            </div>
+                              {console.log(row, companyinCamelCase)}
+                            </Typography> */}
+                        </TableCell>
+                        <TableCell>
+                          {row.rank}
+                          {/* <Typography color="textSecondary" variant="body2">
+                              {row.rank}
+                            </Typography> */}
+                        </TableCell>
+
+                        <TableCell>{row.totalInv}</TableCell>
+                        <TableCell>{row.styloBug}</TableCell>
+
+                        <TableCell className={classes.lastcell}>
+                          {row.companyinCamelCase}
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                </TableBody>
+                <TableFooter>
+                  <TablePagination
+                    rowsPerPageOptions={[5, 10, 15]}
+                    component="div"
+                    count={userList.length}
+                    rowsPerPage={rowsPerPage}
+                    page={page}
+                    onChangePage={handleChangePage}
+                    onChangeRowsPerPage={handleChangeRowsPerPage}
+                  />
+                </TableFooter>
+              </Table>
+            </TableContainer>
           ) : null}
         </main>
       </div>

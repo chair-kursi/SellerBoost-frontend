@@ -353,7 +353,7 @@ function Dashboard() {
               </TableBody>
               <TableFooter>
                 <TablePagination
-                  rowsPerPageOptions={[5, 10, 15]}
+                  rowsPerPageOptions={[10, 45, 50, 100]}
                   component="div"
                   count={dashboard.length}
                   rowsPerPage={rowsPerPage}

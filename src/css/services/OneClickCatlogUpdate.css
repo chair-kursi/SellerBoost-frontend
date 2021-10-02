@@ -66,6 +66,7 @@
 }
 .butta__container {
   padding: 20px;
+  margin-top: 0px;
 }
 .butta {
   border: none;
@@ -93,4 +94,12 @@
 }
 .company {
   border: 2px solid orange;
+}
+@media (max-width: 600px) {
+  .cardss {
+    flex-direction: column;
+  }
+  .card-singles {
+    margin-bottom: 20px;
+  }
 }

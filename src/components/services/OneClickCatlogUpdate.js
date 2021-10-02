@@ -51,9 +51,9 @@ function OneClickCatlogUpdate() {
   });
 
   useEffect(() => {
-    fetch("http://localhost:3002/api/styleTraffic")
+    fetch("http://localhost:3002/styleTraffic")
       .then((response) => response.json())
-      .then((result) => setUserList(result))
+      .then((result) => setUserList(result.data))
 
       .catch((error) => console.log(error));
   }, []);
@@ -194,6 +194,7 @@ function OneClickCatlogUpdate() {
                   } else {
                     setCompany("Amazon");
                   }
+                  setNext2(!next2);
                 }}
               >
                 <div>
@@ -218,6 +219,7 @@ function OneClickCatlogUpdate() {
                   } else {
                     setCompany("myntra");
                   }
+                  setNext2(!next2);
                 }}
               >
                 <div>
@@ -242,6 +244,7 @@ function OneClickCatlogUpdate() {
                   } else {
                     setCompany("FirstCry");
                   }
+                  setNext2(!next2);
                 }}
               >
                 <div>
@@ -265,6 +268,7 @@ function OneClickCatlogUpdate() {
                   } else {
                     setCompany("Nykaa");
                   }
+                  setNext2(!next2);
                 }}
               >
                 <div>
@@ -278,11 +282,6 @@ function OneClickCatlogUpdate() {
                   />
                 </div>
               </div>
-            </div>
-            <div className="tbtn1">
-              <button className="butts" onClick={() => setNext2(!next2)}>
-                NEXT <i class="fas fa-angle-double-right"></i>
-              </button>
             </div>
           </div>
         ) : null}
