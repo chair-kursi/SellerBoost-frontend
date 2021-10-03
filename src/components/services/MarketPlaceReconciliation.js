@@ -23,12 +23,12 @@ function MarketPlaceReconciliation() {
                 <span>Home</span>
               </a>
             </li>
-            <li>
+            {/* <li>
               <a href="/Onboarding">
                 <span className="fas fa-stream"></span>
                 <span>OnBoarding</span>
               </a>
-            </li>
+            </li> */}
 
             <li>
               <a href="/Dashboard">
@@ -92,7 +92,7 @@ function MarketPlaceReconciliation() {
             <label for="nav-toggle">
               <span class="fas fa-bars"></span>
             </label>
-            Dashboard
+            Reconciliation
           </h2>
 
           <div className="search-wrapper">
@@ -116,109 +116,78 @@ function MarketPlaceReconciliation() {
 
         <div class="main-container">
           <div class="heading">
-            <h1 class="heading__title">WelCome To The</h1>
-            <p class="heading__credits">
-              <a class="heading__link" target="_blank" href="#">
-                Market Place Reconciliation
-              </a>
-            </p>
+            <h1 class="heading__title">Market Place Reconciliation</h1>
+            <img
+              src="https://cdn4.iconfinder.com/data/icons/under-construction/512/coming_soon-256.png"
+              alt=""
+            />
           </div>
           <div class="cardssss">
             <div class="card card-1">
-              <p class="card__exit">
-                <i class="fas fa-times"></i>
-              </p>
-              <div className="card__inside">
-                <div className="card__logo">
-                  <img
-                    src="https://cdn2.iconfinder.com/data/icons/label-price/54/16-256.png"
-                    alt=""
-                  />
-                </div>
-                <div className="card__description">
-                  <p>Selling Price Reconciliation</p>
-                </div>
+              <div className="card__logo">
+                <img
+                  src="https://cdn2.iconfinder.com/data/icons/label-price/54/16-256.png"
+                  alt=""
+                />
+              </div>
+              <div className="card__description">
+                <p>Selling Price Reconciliation</p>
               </div>
             </div>
             <div class="card card-2">
-              <p class="card__exit">
-                <i class="fas fa-times"></i>
-              </p>
-              <div className="card__inside">
-                <div className="card__logo">
-                  <img
-                    src="https://cdn3.iconfinder.com/data/icons/digital-marketing-250/64/07-Commission-256.png
+              <div className="card__logo">
+                <img
+                  src="https://cdn3.iconfinder.com/data/icons/digital-marketing-250/64/07-Commission-256.png
                     "
-                    alt=""
-                  />
-                </div>
-                <div className="card__description">
-                  <p>Commission Charges</p>
-                </div>
+                  alt=""
+                />
+              </div>
+              <div className="card__description">
+                <p>Commission Charges</p>
               </div>
             </div>
             <div class="card card-3">
-              <p class="card__exit">
-                <i class="fas fa-times"></i>
-              </p>
-              <div className="card__inside">
-                <div className="card__logo">
-                  <img
-                    src="https://cdn4.iconfinder.com/data/icons/business-1114/55/18-256.png"
-                    alt=""
-                  />
-                </div>
-                <div className="card__description">
-                  <p>Payment Gateway Charges</p>
-                </div>
+              <div className="card__logo">
+                <img
+                  src="https://cdn4.iconfinder.com/data/icons/business-1114/55/18-256.png"
+                  alt=""
+                />
+              </div>
+              <div className="card__description">
+                <p>Payment Gateway Charges</p>
               </div>
             </div>
             <div class="card card-4">
-              <p class="card__exit">
-                <i class="fas fa-times"></i>
-              </p>
-              <div className="card__inside">
-                <div className="card__logo">
-                  <img
-                    src="https://cdn0.iconfinder.com/data/icons/investing-navy-volume-2/64/Return_on_Investment-256.png"
-                    alt=""
-                  />
-                </div>
-                <div className="card__description">
-                  <p>Return Reconciliation</p>
-                </div>
+              <div className="card__logo">
+                <img
+                  src="https://cdn0.iconfinder.com/data/icons/investing-navy-volume-2/64/Return_on_Investment-256.png"
+                  alt=""
+                />
+              </div>
+              <div className="card__description">
+                <p>Return Reconciliation</p>
               </div>
             </div>
             <div class="card card-5">
-              <p class="card__exit">
-                <i class="fas fa-times"></i>
-              </p>
-              <div className="card__inside">
-                <div className="card__logo">
-                  <img
-                    src="https://cdn1.iconfinder.com/data/icons/shopping-e-commerce-10/33/package_return-256.png"
-                    alt=""
-                  />
-                </div>
-                <div className="card__description">
-                  <p>Return / Shipping Charges</p>
-                </div>
+              <div className="card__logo">
+                <img
+                  src="https://cdn1.iconfinder.com/data/icons/shopping-e-commerce-10/33/package_return-256.png"
+                  alt=""
+                />
+              </div>
+              <div className="card__description">
+                <p>Return / Shipping Charges</p>
               </div>
             </div>
             <div class="card card-1">
-              <p class="card__exit">
-                <i class="fas fa-times"></i>
-              </p>
-              <div className="card__inside">
-                <div className="card__logo">
-                  <img
-                    src="https://cdn1.iconfinder.com/data/icons/finance-and-politics-1-mix/168/gst_paid_audit_save_exemption-256.png"
-                    alt=""
-                  />
-                </div>
-                <div className="card__description">
-                  <p>GST Reconciliation</p>
-                </div>
+              <div className="card__logo">
+                <img
+                  src="https://cdn1.iconfinder.com/data/icons/finance-and-politics-1-mix/168/gst_paid_audit_save_exemption-256.png"
+                  alt=""
+                />
+              </div>
+              <div className="card__description">
+                <p>GST Reconciliation</p>
               </div>
             </div>
           </div>

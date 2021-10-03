@@ -1,12 +1,21 @@
 .main-container {
-  padding: 30px;
-  margin-top: 100px;
+  padding: 30px 0;
+  margin-top: 70px;
 }
 
 /* HEADING */
 
 .heading {
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.heading img {
+  width: 120px;
+  margin-left: 20px;
 }
 
 .heading__title {
@@ -33,19 +42,22 @@
 .cardssss {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
 }
 
 .card {
   margin: 20px;
   padding: 20px;
-  width: 500px;
+  width: 330px;
   height: 250px;
-  display: grid;
+  display: flex;
   grid-template-rows: 20px 50px 1fr 50px;
   border-radius: 10px;
   box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25);
   transition: all 0.2s;
+  align-items: center;
+  justify-content: center;
 }
 
 .card:hover {
@@ -76,26 +88,29 @@
   margin-top: 80px;
 }
 .card__logo {
-  width: 150px;
+  width: 130px;
   background-color: white;
   border-radius: 100%;
   align-items: center;
   display: flex;
   justify-content: center;
-  height: 150px;
+  height: 130px;
 }
 .card__logo img {
-  width: 120px;
+  width: 100px;
   object-fit: contain;
 }
 .card__description {
-  margin-left: 20px;
+  width: 300px;
 }
 .card__description p {
   margin-left: 20px;
   font-weight: 500;
   color: #ffffff;
-  font-size: 24px;
+  font-size: 20px;
+
+  margin-top: 20px;
+  text-align: center;
 }
 
 /* .card__title {

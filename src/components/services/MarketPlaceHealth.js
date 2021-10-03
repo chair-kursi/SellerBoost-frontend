@@ -18,6 +18,7 @@ import {
   TablePagination,
   TableFooter,
   TableSortLabel,
+  Checkbox,
 } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -34,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "bold",
     backgroundColor: theme.palette.success.dark,
     color: theme.palette.getContrastText(theme.palette.primary.dark),
+    backgroundColor: "#11493e",
   },
   status: {
     fontWeight: "bold",
@@ -51,11 +53,11 @@ const useStyles = makeStyles((theme) => ({
 function MarketPlaceHealth() {
   const [show, setShow] = useState(false);
   const [company, setCompany] = useState("Amazon");
-  const [companyinCamelCase, setCompanyinCamelCase] = useState(null);
+  const [companyinCamelCase, setCompanyinCamelCase] = useState("amazon");
   const [userList, setUserList] = useState([]);
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [dashboard, setDashboard] = useState([]);
 
   const handleChangePage = (event, newPage) => {
@@ -107,12 +109,12 @@ function MarketPlaceHealth() {
                 <span>Home</span>
               </a>
             </li>
-            <li>
+            {/* <li>
               <a href="/Onboarding">
                 <span className="fas fa-stream"></span>
                 <span>OnBoarding</span>
               </a>
-            </li>
+            </li> */}
 
             <li>
               <a href="/Dashboard">
@@ -176,7 +178,7 @@ function MarketPlaceHealth() {
             <label for="nav-toggle">
               <span class="fas fa-bars"></span>
             </label>
-            Dashboard
+            MarketPlace Health
           </h2>
 
           <div className="search-wrapper">
@@ -551,7 +553,7 @@ function MarketPlaceHealth() {
                 <TableHead>
                   <TableRow>
                     <TableCell className={classes.tableHeaderCell}>
-                      StyleCode <TableSortLabel />
+                      StyleCode
                     </TableCell>
 
                     <TableCell className={classes.tableHeaderCell}>
@@ -591,24 +593,12 @@ function MarketPlaceHealth() {
                             {row[companyinCamelCase]}
                           </Typography>
                         </TableCell>
-                        {/* <TableCell
-                          style={{
-                            backgroundColor:
-                              row[companyinCamelCase] != row.styloBug
-                                ? "#ff8282"
-                                : "#00da25",
-                            padding: 20,
-
-                          }}
-                        >
-                          {row[companyinCamelCase]}
-                        </TableCell> */}
                       </TableRow>
                     ))}
                 </TableBody>
                 <TableFooter>
                   <TablePagination
-                    rowsPerPageOptions={[5, 10, 15]}
+                    rowsPerPageOptions={[10, 45, 50, 100]}
                     component="div"
                     count={userList.length}
                     rowsPerPage={rowsPerPage}

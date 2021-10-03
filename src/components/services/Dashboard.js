@@ -126,12 +126,12 @@ function Dashboard() {
                 <span>Home</span>
               </a>
             </li>
-            <li>
+            {/* <li>
               <a href="/Onboarding">
                 <span className="fas fa-stream"></span>
                 <span>OnBoarding</span>
               </a>
-            </li>
+            </li> */}
 
             <li>
               <a href="/Dashboard">

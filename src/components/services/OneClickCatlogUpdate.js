@@ -1,62 +1,111 @@
 import React, { useState, useEffect } from "react";
 import "../../css/services/OneClickCatlogUpdate.css";
-import BootstrapTable from "react-bootstrap-table-next";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "react-bootstrap-table-next/dist/react-bootstrap-table2.css";
-import paginationFactory from "react-bootstrap-table2-paginator";
-import "react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css";
-import filterFactory, {
-  textFilter,
-  numberFilter,
-  selectFilter,
-  multiSelectFilter,
-  customFilter,
-} from "react-bootstrap-table2-filter";
-import "react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css";
+import { makeStyles } from "@material-ui/core/styles";
+
+import axios from "axios";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Avatar,
+  Grid,
+  Typography,
+  TablePagination,
+  TableFooter,
+  TableSortLabel,
+  Checkbox,
+} from "@material-ui/core";
+
+const useStyles = makeStyles((theme) => ({
+  table: {
+    minWidth: 650,
+    marginTop: 30,
+  },
+  tableContainer: {
+    borderRadius: 15,
+
+    maxWidth: 2000,
+  },
+  tableHeaderCell: {
+    fontWeight: "bold",
+    backgroundColor: theme.palette.success.dark,
+    color: theme.palette.getContrastText(theme.palette.primary.dark),
+    backgroundColor: "#11493e",
+  },
+  styleCode: {
+    fontWeight: "bold",
+    backgroundColor: theme.palette.success.dark,
+    color: theme.palette.getContrastText(theme.palette.primary.dark),
+    backgroundColor: "#11493e",
+    textAlign: "center",
+  },
+  status: {
+    fontWeight: "bold",
+    fontSize: "0.75rem",
+    color: "white",
+    backgroundColor: "grey",
+    borderRadius: 8,
+    padding: "3px 10px",
+    display: "inline-block",
+    width: 97,
+    textAlign: "center",
+  },
+}));
 
 function OneClickCatlogUpdate() {
   const [userList, setUserList] = useState([]);
   const [next1, setNext1] = useState(false);
   const [next2, setNext2] = useState(false);
   const [company, setCompany] = useState(null);
-  const columns = [
-    {
-      dataField: "styleCode",
-      text: "StyleCode",
-      sort: "true",
-      filter: textFilter(),
-    },
-  ];
-  const selectRow = {
-    mode: "checkbox",
-    clickToSelect: true,
+
+  const [show, setShow] = useState(false);
+
+  const [companyinCamelCase, setCompanyinCamelCase] = useState("amazon");
+
+  const classes = useStyles();
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [dashboard, setDashboard] = useState([]);
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
   };
-  const pagination = paginationFactory({
-    page: 1,
-    sizePerPage: 5,
-    lastPageText: ">>",
-    firstPageText: "<<",
-    nextPageText: ">",
-    prePageText: "<",
-    showTotal: true,
-    alwaysShowAllBtns: true,
-    onPageChange: function (page, sizePerpage) {
-      console.log("page", page);
-      console.log("sizePerPage", sizePerpage);
-    },
-    onSizePerPageChange: function (page, sizePerpage) {
-      console.log("page", page);
-      console.log("sizePerPage", sizePerpage);
-    },
-  });
 
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
+
+  const trafficColorCount = new Map();
+
+  const getHealth = async () => {
+    try {
+      const health = await axios({
+        method: "get",
+        url: "http://localhost:3002/api/marketplaceHealth",
+      });
+      setUserList(health.data);
+      console.log(health.data);
+      // const healthMap = new Map();
+    } catch (err) {
+      console.log(err);
+    }
+  };
   useEffect(() => {
-    fetch("http://localhost:3002/styleTraffic")
-      .then((response) => response.json())
-      .then((result) => setUserList(result.data))
-
-      .catch((error) => console.log(error));
+    getHealth();
   }, []);
+
+  // useEffect(() => {
+  //   fetch("http://localhost:3002/styleTraffic")
+  //     .then((response) => response.json())
+  //     .then((result) => setUserList(result.data))
+
+  //     .catch((error) => console.log(error));
+  // }, []);
 
   return (
     <div>
@@ -79,12 +128,12 @@ function OneClickCatlogUpdate() {
                 <span>Home</span>
               </a>
             </li>
-            <li>
+            {/* <li>
               <a href="/Onboarding">
                 <span className="fas fa-stream"></span>
                 <span>OnBoarding</span>
               </a>
-            </li>
+            </li> */}
 
             <li>
               <a href="/Dashboard">
@@ -150,7 +199,7 @@ function OneClickCatlogUpdate() {
             <label for="nav-toggle">
               <span class="fas fa-bars"></span>
             </label>
-            Dashboard
+            One Click Upload
           </h2>
 
           <div className="search-wrapper">
@@ -177,15 +226,44 @@ function OneClickCatlogUpdate() {
             <h1>Select Multiple Styles</h1>
             <i class="far fa-hand-pointer"></i>
           </div>
-          <BootstrapTable
-            bootstrap4
-            keyField="styleCode"
-            columns={columns}
-            selectRow={selectRow}
-            data={userList}
-            pagination={pagination}
-            filter={filterFactory()}
-          />
+          <TableContainer component={Paper} className={classes.tableContainer}>
+            <Table className={classes.table} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell className={classes.tableHeaderCell}>
+                    Select
+                  </TableCell>
+
+                  <TableCell className={classes.styleCode}>StyleCode</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {userList
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((row) => (
+                    <TableRow key={row.styleCode}>
+                      <TableCell padding="checkbox">
+                        <Checkbox />
+                      </TableCell>
+                      <TableCell style={{ textAlign: "center" }}>
+                        {row.styleCode}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+              </TableBody>
+              <TableFooter>
+                <TablePagination
+                  rowsPerPageOptions={[10, 45, 50, 100]}
+                  component="div"
+                  count={userList.length}
+                  rowsPerPage={rowsPerPage}
+                  page={page}
+                  onChangePage={handleChangePage}
+                  onChangeRowsPerPage={handleChangeRowsPerPage}
+                />
+              </TableFooter>
+            </Table>
+          </TableContainer>
         </div>
         <div className="tbtn1">
           <button className="butts" onClick={() => setNext1(!next1)}>
@@ -194,7 +272,7 @@ function OneClickCatlogUpdate() {
         </div>
         {next1 ? (
           <div className="ctn8">
-            <div className="tbles__header">
+            <div className="tbles__header1">
               <h1>Select One MarketPlace</h1>
               <i class="far fa-hand-pointer"></i>
             </div>

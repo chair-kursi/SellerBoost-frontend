@@ -7,8 +7,9 @@
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 2rem; */
   display: flex;
-
-  padding: 20px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
 }
 .card-singles {
   display: flex;
@@ -42,23 +43,35 @@
   margin-top: 60px;
   padding: 20px;
 }
-/* .tbles h1 {
-  font-size: 24px;
-  font-weight: 500;
-  padding: 30px 20px 30px 0;
-  margin-top: 30px;
-  display: flex;
-} */
+
 .tbles__header {
   display: flex;
-  padding: 20px;
-  margin-top: 20px;
+
+  margin-top: 30px;
   align-items: center;
   color: grey;
 }
 .tbles__header h1 {
   font-size: 20px;
 }
+.tbles__header1 {
+  display: flex;
+
+  margin-top: 30px;
+  align-items: center;
+  color: grey;
+  padding: 10px 20px;
+}
+.tbles__header1 h1 {
+  font-size: 20px;
+}
+.tbles__header1 i {
+  transform: scale(1.4);
+  right: 30px;
+  color: grey;
+  padding: 0 0 5px 15px;
+}
+
 .tbles__header i {
   transform: scale(1.4);
   right: 30px;
@@ -66,8 +79,7 @@
   padding: 0 0 5px 15px;
 }
 .butta__container {
-  padding: 20px;
-  margin-top: 0px;
+  padding: 10px 20px;
 }
 .butta {
   border: none;
@@ -90,9 +102,9 @@
   justify-content: flex-start;
   padding: 0px 20px;
 }
-.ctn8 {
+/* .ctn8 {
   padding: 40px 0;
-}
+} */
 .company {
   border: 2px solid orange;
 }

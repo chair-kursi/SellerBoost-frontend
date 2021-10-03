@@ -23,12 +23,12 @@ function Merchandising() {
                 <span>Home</span>
               </a>
             </li>
-            <li>
+            {/* <li>
               <a href="/Onboarding">
                 <span className="fas fa-stream"></span>
                 <span>OnBoarding</span>
               </a>
-            </li>
+            </li> */}
 
             <li>
               <a href="/Dashboard">
@@ -93,7 +93,7 @@ function Merchandising() {
             <label for="nav-toggle">
               <span class="fas fa-bars"></span>
             </label>
-            Dashboard
+            Merchandising
           </h2>
 
           <div className="search-wrapper">
@@ -117,77 +117,56 @@ function Merchandising() {
 
         <div class="main-container">
           <div class="heading">
-            <h1 class="heading__title">WelCome To The</h1>
-            <p class="heading__credits">
-              <a class="heading__link" target="_blank" href="#">
-                Marchandising
-              </a>
-            </p>
+            <h1 class="heading__title">Merchandising</h1>
+            <img
+              src="https://cdn4.iconfinder.com/data/icons/under-construction/512/coming_soon-256.png"
+              alt=""
+            />
           </div>
           <div class="cardssss">
             <div class="card card-1">
-              <p class="card__exit">
-                <i class="fas fa-times"></i>
-              </p>
-              <div className="card__inside">
-                <div className="card__logo">
-                  <img
-                    src="https://cdn2.iconfinder.com/data/icons/jetflat-multimedia/90/004_011_clip_board_clipboard_buffer_todo-256.png"
-                    alt=""
-                  />
-                </div>
-                <div className="card__description">
-                  <p>No Need for Buffer</p>
-                </div>
+              <div className="card__logo">
+                <img
+                  src="https://cdn2.iconfinder.com/data/icons/jetflat-multimedia/90/004_011_clip_board_clipboard_buffer_todo-256.png"
+                  alt=""
+                />
+              </div>
+              <div className="card__description">
+                <p>No Need for Buffer</p>
               </div>
             </div>
             <div class="card card-2">
-              <p class="card__exit">
-                <i class="fas fa-times"></i>
-              </p>
-              <div className="card__inside">
-                <div className="card__logo">
-                  <img
-                    src="https://cdn3.iconfinder.com/data/icons/scenarium-vol-5/128/041_cloud_sync_folder_storage-256.png
+              <div className="card__logo">
+                <img
+                  src="https://cdn3.iconfinder.com/data/icons/scenarium-vol-5/128/041_cloud_sync_folder_storage-256.png
                     "
-                    alt=""
-                  />
-                </div>
-                <div className="card__description">
-                  <p>Smart Inventory Sync</p>
-                </div>
+                  alt=""
+                />
+              </div>
+              <div className="card__description">
+                <p>Smart Inventory Sync</p>
               </div>
             </div>
             <div class="card card-3">
-              <p class="card__exit">
-                <i class="fas fa-times"></i>
-              </p>
-              <div className="card__inside">
-                <div className="card__logo">
-                  <img
-                    src="https://cdn2.iconfinder.com/data/icons/business-271/135/40-256.png"
-                    alt=""
-                  />
-                </div>
-                <div className="card__description">
-                  <p>Revenue Increase</p>
-                </div>
+              <div className="card__logo">
+                <img
+                  src="https://cdn2.iconfinder.com/data/icons/business-271/135/40-256.png"
+                  alt=""
+                />
+              </div>
+              <div className="card__description">
+                <p>Revenue Increase</p>
               </div>
             </div>
             <div class="card card-4">
-              <p class="card__exit">
-                <i class="fas fa-times"></i>
-              </p>
-              <div className="card__inside">
-                <div className="card__logo">
-                  <img
-                    src="https://cdn0.iconfinder.com/data/icons/recommendations/128/Recommendation_IconsLayer_4-256.png"
-                    alt=""
-                  />
-                </div>
-                <div className="card__description">
-                  <p>Inventory Recommendation</p>
-                </div>
+              <div className="card__logo">
+                <img
+                  src="https://cdn0.iconfinder.com/data/icons/recommendations/128/Recommendation_IconsLayer_4-256.png"
+                  alt=""
+                />
+              </div>
+              <div className="card__description">
+                <p>Inventory Recommendation</p>
               </div>
             </div>
           </div>
