@@ -97,7 +97,7 @@ function MarketPlaceHealth() {
           <h1>
             {" "}
             <span className="fab fa-asymmetrik"> </span>{" "}
-            <span>SellerBoost</span>
+            <span>SuperCommerce</span>
           </h1>
         </div>
 
@@ -187,13 +187,10 @@ function MarketPlaceHealth() {
           </div>
 
           <div className="user-wrapper">
-            <img
-              src="https://bit.ly/3bvT89p"
-              width="40px"
-              height="40px"
-              alt="profile-img"
-            />
-            <div class="">
+            <div className="user__wrapperImg">
+              <img src="https://bit.ly/3bvT89p" alt="profile-img" />
+            </div>
+            <div className="info">
               <h4>Ayan Khan</h4>
               <small>Super Admin</small>
             </div>
@@ -215,7 +212,7 @@ function MarketPlaceHealth() {
                   </div>
                 </div>
 
-                <span className="tis">StyloBug</span>
+                <span className="tis">Fashion Alpha</span>
               </div>
               <div className="stylos">
                 <span className="fab fa-asymmetrik"></span>
@@ -347,37 +344,6 @@ function MarketPlaceHealth() {
                   />
                 </div>
               </div>
-              <div
-                className={`card-single ${
-                  company === "Jabong" ? "company" : ""
-                } `}
-                onClick={(event) => {
-                  if (company === "Jabong") {
-                    setCompany(null);
-                    setCompanyinCamelCase(null);
-                  } else {
-                    setCompany("Jabong");
-                    setCompanyinCamelCase("jabong");
-                  }
-                }}
-              >
-                <div>
-                  <div className="card__desc">
-                    <div className="desc__number">
-                      <h1>10</h1>
-                    </div>
-                  </div>
-
-                  <span className="ti">Jabong</span>
-                </div>
-                <div className="stylo">
-                  <img
-                    src="https://iconape.com/wp-content/files/ub/337928/png/jabong-logo.png"
-                    alt=""
-                    className="stylo_img"
-                  />
-                </div>
-              </div>
 
               <div
                 c
@@ -438,70 +404,6 @@ function MarketPlaceHealth() {
                 <div className="stylo">
                   <img
                     src="https://iconape.com/wp-content/files/mw/61687/png/firstcry-1.png"
-                    alt=""
-                    className="stylo_img"
-                  />
-                </div>
-              </div>
-
-              <div
-                className={`card-single ${
-                  company === "FYND" ? "company" : ""
-                } `}
-                onClick={(event) => {
-                  if (company === "FYND") {
-                    setCompany(null);
-                    setCompanyinCamelCase(null);
-                  } else {
-                    setCompany("FYND");
-                    setCompanyinCamelCase("FYND");
-                  }
-                }}
-              >
-                <div>
-                  <div className="card__desc">
-                    <div className="desc__number">
-                      <h1>10</h1>
-                    </div>
-                  </div>
-
-                  <span className="ti">FYND</span>
-                </div>
-                <div className="stylo">
-                  <img
-                    src="https://hdn-1.fynd.com/company/884/applications/000000000000000000000001/application/pictures/free-logo/original/v6YLFKFeJ-Fynd.jpeg"
-                    alt=""
-                    className="stylo_img"
-                  />
-                </div>
-              </div>
-
-              <div
-                className={`card-single ${
-                  company === "Cloudtail" ? "company" : ""
-                } `}
-                onClick={(event) => {
-                  if (company === "Cloudtail") {
-                    setCompany(null);
-                    setCompanyinCamelCase(null);
-                  } else {
-                    setCompany("Cloudtail");
-                    setCompanyinCamelCase("cloudtail");
-                  }
-                }}
-              >
-                <div>
-                  <div className="card__desc">
-                    <div className="desc__number">
-                      <h1>10</h1>
-                    </div>
-                  </div>
-
-                  <span className="ti">Cloudtail</span>
-                </div>
-                <div className="stylo">
-                  <img
-                    src="https://www.cloudtail.in/img/logo-cloudtail.png"
                     alt=""
                     className="stylo_img"
                   />
@@ -608,6 +510,9 @@ function MarketPlaceHealth() {
                   />
                 </TableFooter>
               </Table>
+              <div className="butta__container">
+                <button className="butta">Download CSV </button>
+              </div>
             </TableContainer>
           ) : null}
         </main>

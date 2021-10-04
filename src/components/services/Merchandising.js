@@ -11,7 +11,7 @@ function Merchandising() {
           <h1>
             {" "}
             <span className="fab fa-asymmetrik"> </span>{" "}
-            <span>SellerBoost</span>
+            <span>SuperCommerce</span>
           </h1>
         </div>
 
@@ -102,13 +102,10 @@ function Merchandising() {
           </div>
 
           <div className="user-wrapper">
-            <img
-              src="https://bit.ly/3bvT89p"
-              width="40px"
-              height="40px"
-              alt="profile-img"
-            />
-            <div class="">
+            <div className="user__wrapperImg">
+              <img src="https://bit.ly/3bvT89p" alt="profile-img" />
+            </div>
+            <div className="info">
               <h4>Ayan Khan</h4>
               <small>Super Admin</small>
             </div>
@@ -132,7 +129,7 @@ function Merchandising() {
                 />
               </div>
               <div className="card__description">
-                <p>No Need for Buffer</p>
+                <p>no need for buffer stock</p>
               </div>
             </div>
             <div class="card card-2">

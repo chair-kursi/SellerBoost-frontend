@@ -68,7 +68,7 @@ function OneClickCatlogUpdate() {
 
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [dashboard, setDashboard] = useState([]);
 
   const handleChangePage = (event, newPage) => {
@@ -116,7 +116,7 @@ function OneClickCatlogUpdate() {
           <h1>
             {" "}
             <span className="fab fa-asymmetrik"> </span>{" "}
-            <span>SellerBoost</span>
+            <span>SuperCommerce</span>
           </h1>
         </div>
 
@@ -208,13 +208,10 @@ function OneClickCatlogUpdate() {
           </div>
 
           <div className="user-wrapper">
-            <img
-              src="https://bit.ly/3bvT89p"
-              width="40px"
-              height="40px"
-              alt="profile-img"
-            />
-            <div class="">
+            <div className="user__wrapperImg">
+              <img src="https://bit.ly/3bvT89p" alt="profile-img" />
+            </div>
+            <div className="info">
               <h4>Ayan Khan</h4>
               <small>Super Admin</small>
             </div>
@@ -222,10 +219,10 @@ function OneClickCatlogUpdate() {
         </header>
 
         <div className="tbles">
-          <div className="tbles__header">
+          {/* <div className="tbles__header">
             <h1>Select Multiple Styles</h1>
             <i class="far fa-hand-pointer"></i>
-          </div>
+          </div> */}
           <TableContainer component={Paper} className={classes.tableContainer}>
             <Table className={classes.table} aria-label="simple table">
               <TableHead>
@@ -265,127 +262,132 @@ function OneClickCatlogUpdate() {
             </Table>
           </TableContainer>
         </div>
-        <div className="tbtn1">
+        {/* <div className="tbtn1">
           <button className="butts" onClick={() => setNext1(!next1)}>
             NEXT <i class="fas fa-angle-double-right"></i>
           </button>
-        </div>
-        {next1 ? (
-          <div className="ctn8">
-            <div className="tbles__header1">
-              <h1>Select One MarketPlace</h1>
-              <i class="far fa-hand-pointer"></i>
+        </div> */}
+        {/* {next1 ? ( */}
+        <div className="ctn8">
+          <div className="tbles__header1">
+            <h1>Select One MarketPlace</h1>
+            <i class="far fa-hand-pointer"></i>
+          </div>
+          <div className="cardss">
+            <div
+              className={`card-singles ${
+                company === "Amazon" ? "company" : ""
+              } `}
+              onClick={(event) => {
+                if (company === "Amazon") {
+                  setCompany(null);
+                } else {
+                  setCompany("Amazon");
+                }
+                setNext2(!next2);
+              }}
+            >
+              <div>
+                <span className="ti">Amazon</span>
+              </div>
+              <div className="stylo">
+                <img
+                  src="https://i.pinimg.com/originals/01/ca/da/01cada77a0a7d326d85b7969fe26a728.jpg"
+                  alt=""
+                  className="stylo_img"
+                />
+              </div>
             </div>
-            <div className="cardss">
-              <div
-                className={`card-singles ${
-                  company === "Amazon" ? "company" : ""
-                } `}
-                onClick={(event) => {
-                  if (company === "Amazon") {
-                    setCompany(null);
-                  } else {
-                    setCompany("Amazon");
-                  }
-                  setNext2(!next2);
-                }}
-              >
-                <div>
-                  <span className="ti">Amazon</span>
-                </div>
-                <div className="stylo">
-                  <img
-                    src="https://i.pinimg.com/originals/01/ca/da/01cada77a0a7d326d85b7969fe26a728.jpg"
-                    alt=""
-                    className="stylo_img"
-                  />
-                </div>
-              </div>
 
-              <div
-                className={`card-singles ${
-                  company === "myntra" ? "company" : ""
-                } `}
-                onClick={(event) => {
-                  if (company === "myntra") {
-                    setCompany(null);
-                  } else {
-                    setCompany("myntra");
-                  }
-                  setNext2(!next2);
-                }}
-              >
-                <div>
-                  <span className="ti">Myntra</span>
-                </div>
-                <div className="stylo">
-                  <img
-                    src="https://iconape.com/wp-content/png_logo_vector/myntra-logo.png"
-                    alt=""
-                    className="stylo_img"
-                  />
-                </div>
+            <div
+              className={`card-singles ${
+                company === "myntra" ? "company" : ""
+              } `}
+              onClick={(event) => {
+                if (company === "myntra") {
+                  setCompany(null);
+                } else {
+                  setCompany("myntra");
+                }
+                setNext2(!next2);
+              }}
+            >
+              <div>
+                <span className="ti">Myntra</span>
               </div>
+              <div className="stylo">
+                <img
+                  src="https://iconape.com/wp-content/png_logo_vector/myntra-logo.png"
+                  alt=""
+                  className="stylo_img"
+                />
+              </div>
+            </div>
 
-              <div
-                className={`card-singles ${
-                  company === "FirstCry" ? "company" : ""
-                } `}
-                onClick={(event) => {
-                  if (company === "FirstCry") {
-                    setCompany(null);
-                  } else {
-                    setCompany("FirstCry");
-                  }
-                  setNext2(!next2);
-                }}
-              >
-                <div>
-                  <span className="ti">FirstCry</span>
-                </div>
-                <div className="stylo">
-                  <img
-                    src="https://iconape.com/wp-content/files/mw/61687/png/firstcry-1.png"
-                    alt=""
-                    className="stylo_img"
-                  />
-                </div>
+            <div
+              className={`card-singles ${
+                company === "FirstCry" ? "company" : ""
+              } `}
+              onClick={(event) => {
+                if (company === "FirstCry") {
+                  setCompany(null);
+                } else {
+                  setCompany("FirstCry");
+                }
+                setNext2(!next2);
+              }}
+            >
+              <div>
+                <span className="ti">FirstCry</span>
               </div>
-              <div
-                className={`card-singles ${
-                  company === "Nykaa" ? "company" : ""
-                } `}
-                onClick={(event) => {
-                  if (company === "Nykaa") {
-                    setCompany(null);
-                  } else {
-                    setCompany("Nykaa");
-                  }
-                  setNext2(!next2);
-                }}
-              >
-                <div>
-                  <span className="ti">Nykaa Fashion</span>
-                </div>
-                <div className="stylo">
-                  <img
-                    src="https://i1.wp.com/www.indiaretailing.com/wp-content/uploads/2020/10/nykaa-fashion.png?fit=681%2C400&ssl=1"
-                    alt=""
-                    className="stylo_img"
-                  />
-                </div>
+              <div className="stylo">
+                <img
+                  src="https://iconape.com/wp-content/files/mw/61687/png/firstcry-1.png"
+                  alt=""
+                  className="stylo_img"
+                />
+              </div>
+            </div>
+            <div
+              className={`card-singles ${
+                company === "Nykaa" ? "company" : ""
+              } `}
+              onClick={(event) => {
+                if (company === "Nykaa") {
+                  setCompany(null);
+                } else {
+                  setCompany("Nykaa");
+                }
+                setNext2(!next2);
+              }}
+            >
+              <div>
+                <span className="ti">Nykaa Fashion</span>
+              </div>
+              <div className="stylo">
+                <img
+                  src="https://i1.wp.com/www.indiaretailing.com/wp-content/uploads/2020/10/nykaa-fashion.png?fit=681%2C400&ssl=1"
+                  alt=""
+                  className="stylo_img"
+                />
               </div>
             </div>
           </div>
-        ) : null}
-
-        {company ? (
-          <>
-            <div className="butta__container">
-              <button className="butta">Download CSV </button>
-            </div>
-          </>
-        ) : null}
+        </div>
+        {/* ) : null} */}
+        {/* 
+        {company ? ( */}
+        <>
+          <div className="butta__container">
+            <button
+              className={`${company ? "butta" : "buttaDisabled"}`}
+              // disabled={!company}
+            >
+              Download CSV{" "}
+            </button>
+          </div>
+        </>
+        {/* ) : null} */}
       </div>
     </div>
   );

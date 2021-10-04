@@ -39,6 +39,7 @@
 .sidebar-brand span {
   display: inline-block;
   padding-right: 1rem;
+  font-size: 30px;
 }
 .sidebar-menu li {
   width: 100%;
@@ -150,10 +151,14 @@ header label span {
 .user-wrapper {
   display: flex;
   align-items: center;
+  background-color: #11493e;
+  padding: 8px 40px;
+  justify-content: center;
+  border-radius: 50px;
 }
 .user-wrapper img {
   border-radius: 50%;
-  margin-right: 0.5rem;
+  margin-right: 1rem;
 }
 
 .user-wrapper small {
@@ -272,15 +277,27 @@ td .status {
 .info {
   display: flex;
   align-items: center;
+  flex-direction: column;
 }
-.info img {
+.user__wrapperImg {
+  display: flex;
+  width: 60px;
+  height: 60px;
+  background-color: white;
   border-radius: 50%;
-  margin-right: 1rem;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+}
+.user__wrapperImg img {
+  width: 50px;
+  margin-left: 16px;
+  object-fit: contain;
 }
 .info h4 {
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: #222;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
 }
 .info small {
   font-weight: 600;

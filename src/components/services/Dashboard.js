@@ -33,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "bold",
     backgroundColor: theme.palette.success.dark,
     color: theme.palette.getContrastText(theme.palette.primary.dark),
+    backgroundColor: "#11493e",
   },
 
   status: {
@@ -51,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
 function Dashboard() {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [dashboard, setDashboard] = useState([]);
   const [soldoutColor, setSoldoutColor] = useState(0);
   const [redColor, setRedColor] = useState(0);
@@ -114,7 +115,7 @@ function Dashboard() {
           <h1>
             {" "}
             <span className="fab fa-asymmetrik"> </span>{" "}
-            <span>SellerBoost</span>
+            <span>SuperCommerce</span>
           </h1>
         </div>
 
@@ -206,13 +207,10 @@ function Dashboard() {
           </div>
 
           <div className="user-wrapper">
-            <img
-              src="https://bit.ly/3bvT89p"
-              width="40px"
-              height="40px"
-              alt="profile-img"
-            />
-            <div class="">
+            <div className="user__wrapperImg">
+              <img src="https://bit.ly/3bvT89p" alt="profile-img" />
+            </div>
+            <div className="info">
               <h4>Ayan Khan</h4>
               <small>Super Admin</small>
             </div>
@@ -382,10 +380,10 @@ function Dashboard() {
                 />
               </TableFooter>
             </Table>
+            <div className="butta__container">
+              <button className="butta">Download CSV </button>
+            </div>
           </TableContainer>
-        </div>
-        <div className="butta__container">
-          <button className="butta">Download CSV </button>
         </div>
       </div>
     </div>

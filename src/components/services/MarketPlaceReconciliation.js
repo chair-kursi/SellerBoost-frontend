@@ -11,7 +11,7 @@ function MarketPlaceReconciliation() {
           <h1>
             {" "}
             <span className="fab fa-asymmetrik"> </span>{" "}
-            <span>SellerBoost</span>
+            <span>SuperCommerce</span>
           </h1>
         </div>
 
@@ -101,13 +101,10 @@ function MarketPlaceReconciliation() {
           </div>
 
           <div className="user-wrapper">
-            <img
-              src="https://bit.ly/3bvT89p"
-              width="40px"
-              height="40px"
-              alt="profile-img"
-            />
-            <div class="">
+            <div className="user__wrapperImg">
+              <img src="https://bit.ly/3bvT89p" alt="profile-img" />
+            </div>
+            <div className="info">
               <h4>Ayan Khan</h4>
               <small>Super Admin</small>
             </div>
