@@ -129,7 +129,7 @@ function Merchandising() {
                 />
               </div>
               <div className="card__description">
-                <p>no need for buffer stock</p>
+                <p>Reduced Buffer Stock</p>
               </div>
             </div>
             <div class="card card-2">
