@@ -301,7 +301,9 @@ function Dashboard() {
                   <TableCell className={classes.tableHeaderCell}>
                     StyleCode <TableSortLabel />
                   </TableCell>
-
+                  <TableCell className={classes.tableHeaderCell}>
+                    Status
+                  </TableCell>
                   <TableCell className={classes.tableHeaderCell}>
                     Current INV
                   </TableCell>
@@ -327,6 +329,9 @@ function Dashboard() {
                         </Typography>
                       </TableCell>
                       <TableCell>
+                        {row.status}
+                      </TableCell>
+                      <TableCell>
                         <Typography
                           variant="body2"
                           style={{
@@ -335,7 +340,7 @@ function Dashboard() {
                         >
                           {row.currentInv}
                         </Typography>
-                      </TableCell>
+                      </TableCell> 
                       <TableCell
                         style={{
                           textAlign: "center",
