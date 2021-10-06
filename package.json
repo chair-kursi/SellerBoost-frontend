@@ -13,6 +13,7 @@
     "axios": "^0.21.3",
     "bootstrap": "^5.1.1",
     "faker": "^5.5.3",
+    "firebase": "^9.1.1",
     "react": "^17.0.2",
     "react-bootstrap-table-next": "^4.0.3",
     "react-bootstrap-table2-editor": "^1.4.0",

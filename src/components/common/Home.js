@@ -5,10 +5,12 @@ import SearchIcon from "@material-ui/icons/Search";
 import { Avatar } from "@material-ui/core";
 
 import "../../css/home.css";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { Auth, onAuthStateChanged, handleSignOut } from "../auth/firebase";
 export default function Home() {
   const [styles, setStyles] = useState(null);
   const [client, setClient] = useState(null);
+  const [user, setUser] = useState(null);
 
   const getStyles = async () => {
     const stylesArr = await axios({
@@ -18,11 +20,18 @@ export default function Home() {
     setStyles(stylesArr.data);
   };
 
-  // clientId;
-  // console.log(styles);
+  const history = useHistory();
+
 
   useEffect(() => {
     getStyles();
+    onAuthStateChanged(Auth, (user) => {
+      if (user) {
+        setUser(user);
+        console.log("user", user);
+      }
+    });
+
   }, []);
 
   return (
@@ -101,9 +110,14 @@ export default function Home() {
               </a>
             </li>
             <li>
-              <a href="#">
+              <a href={`${user ? "/" : "/suprLogin"}`}>
                 <span className="fas fa-sign-out-alt"></span>
-                <span>Sign-out</span>
+                <span onClick={() => {
+                  if (user)
+                    handleSignOut();
+                  else history.push('/suprLogin')
+                }}>
+                  {user ? "Sign-Out" : "Sign-in"}</span>
               </a>
             </li>
           </ul>
@@ -158,8 +172,8 @@ export default function Home() {
 
           {styles
             ? styles.map((ele) => {
-                return <Product key={ele._id} ele={ele} />;
-              })
+              return <Product key={ele._id} ele={ele} />;
+            })
             : null}
         </div>
       </div>
