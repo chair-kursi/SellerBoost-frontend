@@ -59,6 +59,8 @@ function Dashboard() {
   const [orangeColor, setOrangeColor] = useState(0);
   const [greenColor, setGreenColor] = useState(0);
   const [overGreenColor, setOverGreenColor] = useState(0);
+  const [showSkuTraffic, setShowSkuTraffic] = useState(-1);
+  const [skuTraffic, setSkuTraffic] = useState([]);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -102,9 +104,25 @@ function Dashboard() {
     setOverGreenColor(trafficColorCount.get(defaultTrafficColors[4]) || 0);
   };
 
+  const getSkuTraffic = async () => {
+    const skuTraffic = await axios({
+      method: "get",
+      url: "http://localhost:3002/skuTraffic",
+    });
+    setSkuTraffic(skuTraffic.data.data);
+  }
+
+
   useEffect(() => {
     getDashboard();
+    getSkuTraffic();
   }, []);
+
+  // useEffect(() => {
+  //     console.log("page", page);
+  //     setShowSkuTraffic(-1);
+
+  // }, [page])
 
   return (
     <div className="Dashboard__table">
@@ -321,56 +339,119 @@ function Dashboard() {
               <TableBody>
                 {dashboard
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((row) => (
-                    <TableRow key={row.styleCode}>
-                      <TableCell>
-                        <Typography className={classes.name}>
-                          {row.styleCode}
-                        </Typography>
-                      </TableCell>
-                      <TableCell>
-                        {row.status}
-                      </TableCell>
-                      <TableCell>
-                        <Typography
-                          variant="body2"
+                  .map((row, idx) => (
+                    <>
+                      <TableRow key={row.styleCode}>
+                        <TableCell onClick={() => {
+                          if (showSkuTraffic != page * rowsPerPage + idx)
+                            setShowSkuTraffic(page * rowsPerPage + idx);
+                          else setShowSkuTraffic(-1);
+                        }}>
+                          <Typography className={classes.name}>
+                            {row.styleCode}
+                          </Typography>
+                        </TableCell>
+                        <TableCell>
+                          {row.status}
+                        </TableCell>
+                        <TableCell>
+                          <Typography
+                            variant="body2"
+                            style={{
+                              textAlign: "center",
+                            }}
+                          >
+                            {row.currentInv}
+                          </Typography>
+                        </TableCell>
+                        <TableCell
                           style={{
                             textAlign: "center",
                           }}
                         >
-                          {row.currentInv}
-                        </Typography>
-                      </TableCell> 
-                      <TableCell
-                        style={{
-                          textAlign: "center",
-                        }}
-                      >
-                        {row.salesNumber}
-                      </TableCell>
-                      <TableCell
-                        style={{
-                          textAlign: "center",
-                        }}
-                      >
-                        {row.salesRank}
-                      </TableCell>
-                      <TableCell>
-                        <Typography
-                          className={classes.status}
+                          {row.salesNumber}
+                        </TableCell>
+                        <TableCell
                           style={{
-                            backgroundColor:
-                              (row.trafficActual === "SOLDOUT" && "#d61400") ||
-                              (row.trafficActual === "RED" && "#ff8282") || //", "GREEN", "OVERGREEN"
-                              (row.trafficActual === "ORANGE" && "orange") ||
-                              (row.trafficActual === "GREEN" && "#00da25") ||
-                              (row.trafficActual === "OVERGREEN" && "#009018"),
+                            textAlign: "center",
                           }}
                         >
-                          {row.trafficActual}
-                        </Typography>
-                      </TableCell>
-                    </TableRow>
+                          {row.salesRank}
+                        </TableCell>
+                        <TableCell>
+                          <Typography
+                            className={classes.status}
+                            style={{
+                              backgroundColor:
+                                (row.trafficActual === "SOLDOUT" && "#d61400") ||
+                                (row.trafficActual === "RED" && "#ff8282") ||
+                                (row.trafficActual === "ORANGE" && "orange") ||
+                                (row.trafficActual === "GREEN" && "#00da25") ||
+                                (row.trafficActual === "OVERGREEN" && "#009018"),
+                            }}
+                          >
+                            {row.trafficActual}
+                          </Typography>
+                        </TableCell>
+                      </TableRow>
+                      {showSkuTraffic === page * rowsPerPage + idx ?
+                        <TableContainer>
+                          <Table className={classes.table} aria-label="simple table">
+                            <TableHead>
+                              <TableRow>
+                                <TableCell className={classes.tableHeaderCell}>
+                                  SkuCode <TableSortLabel />
+                                </TableCell>
+                                <TableCell className={classes.tableHeaderCell}>
+                                  Inventory
+                                </TableCell>
+                                <TableCell className={classes.tableHeaderCell}>
+                                  Sale
+                                </TableCell>
+                                <TableCell className={classes.tableHeaderCell}>
+                                  Day-Inventory
+                                </TableCell>
+                                <TableCell className={classes.tableHeaderCell}>
+                                  Traffic
+                                </TableCell>
+                              </TableRow>
+                            </TableHead>
+                            {
+                              skuTraffic.filter((sku)=>{return sku.styleCode === row.styleCode}).map((skuRow) => {
+                               return <TableRow>
+                                  <TableCell>
+                                    <Typography className={classes.name}>
+                                      {skuRow.skuCode}
+                                    </Typography>
+                                  </TableCell>
+                                  <TableCell>
+                                    <Typography className={classes.name}>
+                                      {skuRow.inventory}
+                                    </Typography>
+                                  </TableCell>
+                                  <TableCell>
+                                    <Typography className={classes.name}>
+                                      {skuRow.totalSales}
+                                    </Typography>
+                                  </TableCell>
+                                  <TableCell>
+                                    <Typography className={classes.name}>
+                                      {skuRow.dayInventory}
+                                    </Typography>
+                                  </TableCell>
+                                  <TableCell>
+                                    <Typography className={classes.name}>
+                                      {skuRow.trafficColor}
+                                    </Typography>
+                                  </TableCell>
+                                </TableRow>
+                              })
+                            }
+
+                          </Table>
+                        </TableContainer>
+                        : null}
+                    </>
                   ))}
               </TableBody>
               <TableFooter>
