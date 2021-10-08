@@ -62,7 +62,7 @@ function App() {
     };
     const savedSize = await axios({
       method: "post",
-      url: "http://localhost:3002/size/add",
+      url: "http://15.206.171.9:3002/size/add",
     });
     if (savedSize.data) setSuccess("Successfully added the size");
   };
@@ -164,7 +164,7 @@ export default App;
 //     };
 //     const savedSize = await axios({
 //       method: "post",
-//       url: "http://localhost:3002/size/add",
+//       url: "http://15.206.171.9:3002/size/add",
 //     });
 //     if (savedSize.data) setSuccess("Successfully added the size");
 //   };

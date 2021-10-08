@@ -86,7 +86,7 @@ function OneClickCatlogUpdate() {
     try {
       const health = await axios({
         method: "get",
-        url: "http://localhost:3002/api/marketplaceHealth",
+        url: "http://15.206.171.9:3002/api/marketplaceHealth",
       });
       setUserList(health.data);
       console.log(health.data);

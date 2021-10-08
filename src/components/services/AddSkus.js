@@ -23,7 +23,7 @@ export default function AddSkus() {
   const getStyle = async () => {
     const style = await axios({
       method: "get",
-      url: "http://localhost:3002/style/" + params.skuCode,
+      url: "http://15.206.171.9:3002/style/" + params.skuCode,
     });
     setStyle(style.data[0]);
   };

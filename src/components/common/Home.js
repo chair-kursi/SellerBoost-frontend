@@ -15,7 +15,7 @@ export default function Home() {
   const getStyles = async () => {
     const stylesArr = await axios({
       method: "get",
-      url: "http://localhost:3002/style",
+      url: "http://15.206.171.9:3002/style",
     });
     setStyles(stylesArr.data);
   };

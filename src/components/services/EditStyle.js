@@ -45,7 +45,7 @@ export default function EditStyle() {
     };
     const updatedData = await axios({
       method: "patch",
-      url: "http://localhost:3002/style/update/" + params.styleCode,
+      url: "http://15.206.171.9:3002/style/update/" + params.styleCode,
       data: data,
     });
 
@@ -55,7 +55,7 @@ export default function EditStyle() {
   const getStyle = async () => {
     const stylesArr = await axios({
       method: "get",
-      url: "http://localhost:3002/style/" + params.styleCode,
+      url: "http://15.206.171.9:3002/style/" + params.styleCode,
     });
     setStyle(stylesArr.data[0]);
     setFrontImageUrl(stylesArr.data[0].frontImageUrl);

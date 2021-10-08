@@ -76,7 +76,7 @@ function Dashboard() {
   const getDashboard = async () => {
     const dashboard = await axios({
       method: "get",
-      url: "http://localhost:3002/styleTraffic",
+      url: "http://15.206.171.9:3002/styleTraffic",
     });
 
     setDashboard(dashboard.data.data);
@@ -107,7 +107,7 @@ function Dashboard() {
   const getSkuTraffic = async () => {
     const skuTraffic = await axios({
       method: "get",
-      url: "http://localhost:3002/skuTraffic",
+      url: "http://15.206.171.9:3002/skuTraffic",
     });
     setSkuTraffic(skuTraffic.data.data);
   }

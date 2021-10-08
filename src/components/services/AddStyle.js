@@ -52,7 +52,7 @@ export default function AddStyle() {
     };
     const savedData = await axios({
       method: "post",
-      url: "http://localhost:3002/style/add",
+      url: "http://15.206.171.9:3002/style/add",
       data: data,
     });
     if (savedData.data) {
