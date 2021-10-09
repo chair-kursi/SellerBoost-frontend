@@ -18,8 +18,26 @@ import {
   TablePagination,
   TableFooter,
   TableSortLabel,
+  FormControl,
+  Select,
+  MenuItem,
+  FormHelperText,
+  InputLabel,
+  Collapse,
+  ListItem,
+  ListItemText,
+  List,
+  ListItemIcon,
+  Menu,
+  IconButton,
 } from "@material-ui/core";
+import MoreVertIcon from '@material-ui/icons/MoreVert'
 
+const options = [
+  "Live",
+  "Launching",
+  "Disabled"
+];
 const useStyles = makeStyles((theme) => ({
   table: {
     minWidth: 650,
@@ -61,6 +79,8 @@ function Dashboard() {
   const [overGreenColor, setOverGreenColor] = useState(0);
   const [showSkuTraffic, setShowSkuTraffic] = useState(-1);
   const [skuTraffic, setSkuTraffic] = useState([]);
+  const [collapseStatus, setCollapseStatus] = useState(0);
+  const [statusFilter, setStatusFilter] = useState("Live");
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -82,7 +102,7 @@ function Dashboard() {
     setDashboard(dashboard.data.data);
     let dashboardArr = dashboard.data.data;
 
-    for (let i = 0; i < dashboardArr.length; i++) {
+    for (let i = 0; i < dashboardArr.filter((row)=>{return row.status === statusFilter}).length; i++) {
       let color = dashboardArr[i].trafficActual,
         prevColorCount = trafficColorCount.get(color);
       if (!prevColorCount) prevColorCount = 0;
@@ -104,6 +124,31 @@ function Dashboard() {
     setOverGreenColor(trafficColorCount.get(defaultTrafficColors[4]) || 0);
   };
 
+  const setColorCount = (statusFilter) => {
+    let dashboardArr = dashboard;
+
+    for (let i = 0; i < dashboardArr.filter((row)=>{return row.status === statusFilter}).length; i++) {
+      let color = dashboardArr[i].trafficActual,
+        prevColorCount = trafficColorCount.get(color);
+      if (!prevColorCount) prevColorCount = 0;
+
+      trafficColorCount.set(color, prevColorCount + 1);
+    }
+    const defaultTrafficColors = [
+      "SOLDOUT",
+      "RED",
+      "ORANGE",
+      "GREEN",
+      "OVERGREEN",
+    ];
+
+    setSoldoutColor(trafficColorCount.get(defaultTrafficColors[0]) || 0);
+    setRedColor(trafficColorCount.get(defaultTrafficColors[1]) || 0);
+    setOrangeColor(trafficColorCount.get(defaultTrafficColors[2]) || 0);
+    setGreenColor(trafficColorCount.get(defaultTrafficColors[3]) || 0);
+    setOverGreenColor(trafficColorCount.get(defaultTrafficColors[4]) || 0);
+  }
+
   const getSkuTraffic = async () => {
     const skuTraffic = await axios({
       method: "get",
@@ -111,6 +156,23 @@ function Dashboard() {
     });
     setSkuTraffic(skuTraffic.data.data);
   }
+
+  const handleClick = event => {
+    setCollapseStatus(event.currentTarget);
+  };
+
+  const handleClose = (e) => { 
+    if(!e.target.textContent)
+    {setStatusFilter(statusFilter);
+    setColorCount(statusFilter)}
+    else
+    {setStatusFilter(e.target.textContent);
+    setColorCount(e.target.textContent);}
+    setCollapseStatus(null);
+  };
+
+
+  const ITEM_HEIGHT = 48;
 
 
   useEffect(() => {
@@ -321,6 +383,33 @@ function Dashboard() {
                   </TableCell>
                   <TableCell className={classes.tableHeaderCell}>
                     Status
+                    <IconButton
+                      aria-label="More"
+                      style={{ color: "white" }}
+                      aria-owns={collapseStatus ? 'long-menu' : null}
+                      aria-haspopup="true"
+                      onClick={handleClick}
+                    >
+                      <MoreVertIcon />
+                    </IconButton>
+                    <Menu
+                      id="long-menu"
+                      anchorEl={collapseStatus}
+                      open={collapseStatus}
+                      onClose={handleClose}
+                      PaperProps={{
+                        style: {
+                          maxHeight: ITEM_HEIGHT * 4.5,
+                          width: 200,
+                        },
+                      }}
+                    >
+                      {options.map(option => (
+                        <MenuItem key={option} value={option} selected={option === statusFilter} onClick={handleClose}>
+                          {option}
+                        </MenuItem>
+                      ))}
+                    </Menu>
                   </TableCell>
                   <TableCell className={classes.tableHeaderCell}>
                     Current INV
@@ -338,6 +427,10 @@ function Dashboard() {
               </TableHead>
               <TableBody>
                 {dashboard
+                  .filter((row) => {
+                    if (row.status === statusFilter)
+                      return row;
+                  })
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((row, idx) => (
                     <>
@@ -417,8 +510,8 @@ function Dashboard() {
                               </TableRow>
                             </TableHead>
                             {
-                              skuTraffic.filter((sku)=>{return sku.styleCode === row.styleCode}).map((skuRow) => {
-                               return <TableRow>
+                              skuTraffic.filter((sku) => { return sku.styleCode === row.styleCode }).map((skuRow) => {
+                                return <TableRow>
                                   <TableCell>
                                     <Typography className={classes.name}>
                                       {skuRow.skuCode}
@@ -458,7 +551,7 @@ function Dashboard() {
                 <TablePagination
                   rowsPerPageOptions={[10, 45, 50, 100]}
                   component="div"
-                  count={dashboard.length}
+                  count={dashboard.filter((row) => { return row.status === statusFilter }).length}
                   rowsPerPage={rowsPerPage}
                   page={page}
                   onChangePage={handleChangePage}
