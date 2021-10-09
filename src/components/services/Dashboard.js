@@ -34,6 +34,7 @@ import {
 import MoreVertIcon from '@material-ui/icons/MoreVert'
 
 const options = [
+  "All",
   "Live",
   "Launching",
   "Disabled"
@@ -80,7 +81,7 @@ function Dashboard() {
   const [showSkuTraffic, setShowSkuTraffic] = useState(-1);
   const [skuTraffic, setSkuTraffic] = useState([]);
   const [collapseStatus, setCollapseStatus] = useState(0);
-  const [statusFilter, setStatusFilter] = useState("Live");
+  const [statusFilter, setStatusFilter] = useState("All");
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -102,7 +103,7 @@ function Dashboard() {
     setDashboard(dashboard.data.data);
     let dashboardArr = dashboard.data.data;
 
-    for (let i = 0; i < dashboardArr.filter((row)=>{return row.status === statusFilter}).length; i++) {
+    for (let i = 0; i < dashboardArr.filter((row) => { return row.status === statusFilter }).length; i++) {
       let color = dashboardArr[i].trafficActual,
         prevColorCount = trafficColorCount.get(color);
       if (!prevColorCount) prevColorCount = 0;
@@ -125,9 +126,14 @@ function Dashboard() {
   };
 
   const setColorCount = (statusFilter) => {
-    let dashboardArr = dashboard;
+    let dashboardArr = [];
+    if (statusFilter === "All")
+      dashboardArr = dashboard;
+    else
+      dashboardArr = dashboard.filter((row) => { return row.status === statusFilter });
+    console.log(dashboardArr);
 
-    for (let i = 0; i < dashboardArr.filter((row)=>{return row.status === statusFilter}).length; i++) {
+    for (let i = 0; i < dashboardArr.length; i++) {
       let color = dashboardArr[i].trafficActual,
         prevColorCount = trafficColorCount.get(color);
       if (!prevColorCount) prevColorCount = 0;
@@ -161,13 +167,15 @@ function Dashboard() {
     setCollapseStatus(event.currentTarget);
   };
 
-  const handleClose = (e) => { 
-    if(!e.target.textContent)
-    {setStatusFilter(statusFilter);
-    setColorCount(statusFilter)}
-    else
-    {setStatusFilter(e.target.textContent);
-    setColorCount(e.target.textContent);}
+  const handleClose = (e) => {
+    if (!e.target.textContent) {
+      setStatusFilter(statusFilter);
+      setColorCount(statusFilter)
+    }
+    else {
+      setStatusFilter(e.target.textContent);
+      setColorCount(e.target.textContent);
+    }
     setCollapseStatus(null);
   };
 
@@ -428,8 +436,9 @@ function Dashboard() {
               <TableBody>
                 {dashboard
                   .filter((row) => {
-                    if (row.status === statusFilter)
+                    if ((statusFilter != "All" && row.status === statusFilter) || statusFilter === "All")
                       return row;
+
                   })
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((row, idx) => (
@@ -551,7 +560,7 @@ function Dashboard() {
                 <TablePagination
                   rowsPerPageOptions={[10, 45, 50, 100]}
                   component="div"
-                  count={dashboard.filter((row) => { return row.status === statusFilter }).length}
+                  count={dashboard.filter((row) => { return row.status === statusFilter || statusFilter === "All" }).length}
                   rowsPerPage={rowsPerPage}
                   page={page}
                   onChangePage={handleChangePage}
