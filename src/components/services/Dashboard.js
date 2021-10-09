@@ -103,7 +103,7 @@ function Dashboard() {
     setDashboard(dashboard.data.data);
     let dashboardArr = dashboard.data.data;
 
-    for (let i = 0; i < dashboardArr.filter((row) => { return row.status === statusFilter }).length; i++) {
+    for (let i = 0; i < dashboardArr.filter((row) => { return row.status === statusFilter || statusFilter === "All" }).length; i++) {
       let color = dashboardArr[i].trafficActual,
         prevColorCount = trafficColorCount.get(color);
       if (!prevColorCount) prevColorCount = 0;
