@@ -465,7 +465,7 @@ function MarketPlaceHealth() {
                       Total Inventory
                     </TableCell>
                     <TableCell className={classes.tableHeaderCell}>
-                      StyloBug
+                      Size Count
                     </TableCell>
                     <TableCell className={classes.tableHeaderCell}>
                       {company}

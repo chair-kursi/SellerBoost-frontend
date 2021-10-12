@@ -387,7 +387,7 @@ function Dashboard() {
               <TableHead>
                 <TableRow>
                   <TableCell className={classes.tableHeaderCell}>
-                    StyleCode <TableSortLabel />
+                    StyleCode
                   </TableCell>
                   <TableCell className={classes.tableHeaderCell}>
                     Status
@@ -502,7 +502,7 @@ function Dashboard() {
                             <TableHead>
                               <TableRow>
                                 <TableCell className={classes.tableHeaderCell}>
-                                  SkuCode <TableSortLabel />
+                                  SizeCode
                                 </TableCell>
                                 <TableCell className={classes.tableHeaderCell}>
                                   Inventory
@@ -511,40 +511,92 @@ function Dashboard() {
                                   Sale
                                 </TableCell>
                                 <TableCell className={classes.tableHeaderCell}>
-                                  Day-Inventory
+                                  Day Inventory
                                 </TableCell>
                                 <TableCell className={classes.tableHeaderCell}>
                                   Traffic
+                                </TableCell>
+                                <TableCell className={classes.tableHeaderCell}>
+                                  Recommended Inventory<br/> (30 Days)
+                                </TableCell>
+                                <TableCell className={classes.tableHeaderCell}>
+                                  Recommended Inventory<br/> (60 Days)
+                                </TableCell>
+                                <TableCell className={classes.tableHeaderCell}>
+                                  Recommended Inventory<br/> (90 Days)
                                 </TableCell>
                               </TableRow>
                             </TableHead>
                             {
                               skuTraffic.filter((sku) => { return sku.styleCode === row.styleCode }).map((skuRow) => {
                                 return <TableRow>
-                                  <TableCell>
-                                    <Typography className={classes.name}>
-                                      {skuRow.skuCode}
-                                    </Typography>
+                                  <TableCell
+                                    style={{
+                                      textAlign: "center"
+                                    }}
+                                  >
+                                    {skuRow.sizeCode}
                                   </TableCell>
-                                  <TableCell>
-                                    <Typography className={classes.name}>
-                                      {skuRow.inventory}
-                                    </Typography>
+                                  <TableCell
+                                    style={{
+                                      textAlign: "center"
+                                    }}
+                                  >
+                                    {skuRow.inventory}
                                   </TableCell>
-                                  <TableCell>
-                                    <Typography className={classes.name}>
-                                      {skuRow.totalSales}
-                                    </Typography>
+                                  <TableCell
+                                    style={{
+                                      textAlign: "center"
+                                    }}
+                                  >
+                                    {skuRow.totalSales}
                                   </TableCell>
-                                  <TableCell>
-                                    <Typography className={classes.name}>
-                                      {skuRow.dayInventory}
-                                    </Typography>
+                                  <TableCell
+                                    style={{
+                                      textAlign: "center"
+                                    }}
+                                  >
+                                    {skuRow.dayInventory}
                                   </TableCell>
-                                  <TableCell>
-                                    <Typography className={classes.name}>
+                                  <TableCell
+                                    style={{
+                                      textAlign: "center"
+                                    }}
+                                  >
+                                    <Typography
+                                      className={classes.status}
+                                      style={{
+                                        backgroundColor:
+                                          (skuRow.trafficColor === "SOLDOUT" && "#d61400") ||
+                                          (skuRow.trafficColor === "RED" && "#ff8282") ||
+                                          (skuRow.trafficColor === "ORANGE" && "orange") ||
+                                          (skuRow.trafficColor === "GREEN" && "#00da25") ||
+                                          (skuRow.trafficColor === "OVERGREEN" && "#009018"),
+                                      }}
+                                    >
                                       {skuRow.trafficColor}
                                     </Typography>
+                                  </TableCell>
+                                  <TableCell
+                                    style={{
+                                      textAlign: "center"
+                                    }}
+                                  >
+                                    {skuRow.suggestedInventory1}
+                                  </TableCell>
+                                  <TableCell
+                                    style={{
+                                      textAlign: "center"
+                                    }}
+                                  >
+                                    {skuRow.suggestedInventory2}
+                                  </TableCell>
+                                  <TableCell
+                                    style={{
+                                      textAlign: "center"
+                                    }}
+                                  >
+                                    {skuRow.suggestedInventory3}
                                   </TableCell>
                                 </TableRow>
                               })
