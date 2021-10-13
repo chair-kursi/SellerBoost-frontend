@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "../../css/services/Dashboard.css";
-import faker from "faker";
 import { makeStyles } from "@material-ui/core/styles";
 
 import axios from "axios";
@@ -12,22 +11,10 @@ import {
   TableHead,
   TableRow,
   Paper,
-  Avatar,
-  Grid,
   Typography,
   TablePagination,
   TableFooter,
-  TableSortLabel,
-  FormControl,
-  Select,
   MenuItem,
-  FormHelperText,
-  InputLabel,
-  Collapse,
-  ListItem,
-  ListItemText,
-  List,
-  ListItemIcon,
   Menu,
   IconButton,
 } from "@material-ui/core";
@@ -54,7 +41,17 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.getContrastText(theme.palette.primary.dark),
     backgroundColor: "#11493e",
   },
-
+  tableHeaderCell2: {
+    fontWeight: "bold",
+    backgroundColor: theme.palette.success.dark,
+    color: "#605600",
+    backgroundColor: "#ffbc77",
+  },
+  tableCell2: {
+    // fontWeight: "bold", 
+    // color: "#605600",
+    backgroundColor: "#fffbcc",
+  },
   status: {
     fontWeight: "bold",
     fontSize: "0.75rem",
@@ -497,113 +494,126 @@ function Dashboard() {
                         </TableCell>
                       </TableRow>
                       {showSkuTraffic === page * rowsPerPage + idx ?
-                        <TableContainer>
-                          <Table className={classes.table} aria-label="simple table">
-                            <TableHead>
-                              <TableRow>
-                                <TableCell className={classes.tableHeaderCell}>
-                                  SizeCode
-                                </TableCell>
-                                <TableCell className={classes.tableHeaderCell}>
-                                  Inventory
-                                </TableCell>
-                                <TableCell className={classes.tableHeaderCell}>
-                                  Sale
-                                </TableCell>
-                                <TableCell className={classes.tableHeaderCell}>
-                                  Day Inventory
-                                </TableCell>
-                                <TableCell className={classes.tableHeaderCell}>
-                                  Traffic
-                                </TableCell>
-                                <TableCell className={classes.tableHeaderCell}>
-                                  Recommended Inventory<br/> (30 Days)
-                                </TableCell>
-                                <TableCell className={classes.tableHeaderCell}>
-                                  Recommended Inventory<br/> (60 Days)
-                                </TableCell>
-                                <TableCell className={classes.tableHeaderCell}>
-                                  Recommended Inventory<br/> (90 Days)
-                                </TableCell>
-                              </TableRow>
-                            </TableHead>
-                            {
-                              skuTraffic.filter((sku) => { return sku.styleCode === row.styleCode }).map((skuRow) => {
-                                return <TableRow>
-                                  <TableCell
-                                    style={{
-                                      textAlign: "center"
-                                    }}
-                                  >
-                                    {skuRow.sizeCode}
-                                  </TableCell>
-                                  <TableCell
-                                    style={{
-                                      textAlign: "center"
-                                    }}
-                                  >
-                                    {skuRow.inventory}
-                                  </TableCell>
-                                  <TableCell
-                                    style={{
-                                      textAlign: "center"
-                                    }}
-                                  >
-                                    {skuRow.totalSales}
-                                  </TableCell>
-                                  <TableCell
-                                    style={{
-                                      textAlign: "center"
-                                    }}
-                                  >
-                                    {skuRow.dayInventory}
-                                  </TableCell>
-                                  <TableCell
-                                    style={{
-                                      textAlign: "center"
-                                    }}
-                                  >
-                                    <Typography
-                                      className={classes.status}
-                                      style={{
-                                        backgroundColor:
-                                          (skuRow.trafficColor === "SOLDOUT" && "#d61400") ||
-                                          (skuRow.trafficColor === "RED" && "#ff8282") ||
-                                          (skuRow.trafficColor === "ORANGE" && "orange") ||
-                                          (skuRow.trafficColor === "GREEN" && "#00da25") ||
-                                          (skuRow.trafficColor === "OVERGREEN" && "#009018"),
-                                      }}
-                                    >
-                                      {skuRow.trafficColor}
-                                    </Typography>
-                                  </TableCell>
-                                  <TableCell
-                                    style={{
-                                      textAlign: "center"
-                                    }}
-                                  >
-                                    {skuRow.suggestedInventory1}
-                                  </TableCell>
-                                  <TableCell
-                                    style={{
-                                      textAlign: "center"
-                                    }}
-                                  >
-                                    {skuRow.suggestedInventory2}
-                                  </TableCell>
-                                  <TableCell
-                                    style={{
-                                      textAlign: "center"
-                                    }}
-                                  >
-                                    {skuRow.suggestedInventory3}
-                                  </TableCell>
-                                </TableRow>
-                              })
-                            }
+                        <TableRow>
+                          <TableCell colSpan={6}>
+                            <TableContainer>
+                              <Table className={classes.table} aria-label="simple table">
+                                <TableHead> 
+                                  <TableRow>
+                                    <TableCell className={classes.tableHeaderCell2}>
+                                      SizeCode
+                                    </TableCell>
+                                    <TableCell className={classes.tableHeaderCell2}>
+                                      Inventory
+                                    </TableCell>
+                                    <TableCell className={classes.tableHeaderCell2}>
+                                      Sale
+                                    </TableCell>
+                                    <TableCell className={classes.tableHeaderCell2}>
+                                      Day Inventory
+                                    </TableCell>
+                                    <TableCell className={classes.tableHeaderCell2}>
+                                      Traffic
+                                    </TableCell>
+                                    <TableCell className={classes.tableHeaderCell2}>
+                                      Recommended Inventory<br /> (30 Days)
+                                    </TableCell>
+                                    <TableCell className={classes.tableHeaderCell2}>
+                                      Recommended Inventory<br /> (60 Days)
+                                    </TableCell>
+                                    <TableCell className={classes.tableHeaderCell2}>
+                                      Recommended Inventory<br /> (90 Days)
+                                    </TableCell>
+                                  </TableRow>
+                                </TableHead>
+                                {
+                                  skuTraffic.filter((sku) => { return sku.styleCode === row.styleCode }).map((skuRow) => {
+                                    return <TableRow>
+                                      <TableCell
+                                        className={classes.tableCell2}
+                                        style={{
+                                          textAlign: "center"
+                                        }}
+                                      >
+                                        {skuRow.sizeCode}
+                                      </TableCell>
+                                      <TableCell
+                                        className={classes.tableCell2}
+                                        style={{
+                                          textAlign: "center"
+                                        }}
+                                      >
+                                        {skuRow.inventory}
+                                      </TableCell>
+                                      <TableCell
+                                        className={classes.tableCell2}
+                                        style={{
+                                          textAlign: "center"
+                                        }}
+                                      >
+                                        {skuRow.totalSales}
+                                      </TableCell>
+                                      <TableCell
+                                        className={classes.tableCell2}
+                                        style={{
+                                          textAlign: "center"
+                                        }}
+                                      >
+                                        {skuRow.dayInventory}
+                                      </TableCell>
+                                      <TableCell
+                                        className={classes.tableCell2}
+                                        style={{
+                                          textAlign: "center"
+                                        }}
+                                      >
+                                        <Typography
+                                          className={classes.status}
+                                          style={{
+                                            backgroundColor:
+                                              (skuRow.trafficColor === "SOLDOUT" && "#d61400") ||
+                                              (skuRow.trafficColor === "RED" && "#ff8282") ||
+                                              (skuRow.trafficColor === "ORANGE" && "orange") ||
+                                              (skuRow.trafficColor === "GREEN" && "#00da25") ||
+                                              (skuRow.trafficColor === "OVERGREEN" && "#009018"),
+                                          }}
+                                        >
+                                          {skuRow.trafficColor}
+                                        </Typography>
+                                      </TableCell>
+                                      <TableCell
+                                        className={classes.tableCell2}
+                                        style={{
+                                          textAlign: "center"
+                                        }}
+                                      >
+                                        {skuRow.suggestedInventory1}
+                                      </TableCell>
+                                      <TableCell
+                                        className={classes.tableCell2}
+                                        style={{
+                                          textAlign: "center"
+                                        }}
+                                      >
+                                        {skuRow.suggestedInventory2}
+                                      </TableCell>
+                                      <TableCell
+                                        className={classes.tableCell2}
+                                        style={{
+                                          textAlign: "center"
+                                        }}
+                                      >
+                                        {skuRow.suggestedInventory3}
+                                      </TableCell>
+                                    </TableRow>
+                                  })
+                                }
 
-                          </Table>
-                        </TableContainer>
+                              </Table>
+                            </TableContainer>
+                          </TableCell>
+                          {/* </Collapse>  */}
+                        </TableRow>
                         : null}
                     </>
                   ))}
