@@ -77,8 +77,8 @@ function MarketPlaceHealth() {
         method: "get",
         url: "http://15.206.171.9:3002/api/marketplaceHealth",
       });
-      setUserList(health.data.data);
-      setMarketPlaceHealth(health.data.data);
+      setUserList(health.data[0]);
+      // console.log(health.data[0][companyCode]);
     } catch (err) {
       console.log(err);
     }
@@ -498,7 +498,7 @@ function MarketPlaceHealth() {
                   <TablePagination
                     rowsPerPageOptions={[10, 45, 50, 100]}
                     component="div"
-                    count={userList[companyCode].length}
+                    count={userList[companyCode]?userList[companyCode].length:0}
                     rowsPerPage={rowsPerPage}
                     page={page}
                     onChangePage={handleChangePage}
