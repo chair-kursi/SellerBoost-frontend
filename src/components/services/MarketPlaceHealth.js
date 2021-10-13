@@ -53,12 +53,13 @@ const useStyles = makeStyles((theme) => ({
 function MarketPlaceHealth() {
   const [show, setShow] = useState(false);
   const [company, setCompany] = useState("Amazon");
-  const [companyinCamelCase, setCompanyinCamelCase] = useState("amazon");
+  const [companyCode, setCompanyCode] = useState("AMAZON_IN");
   const [userList, setUserList] = useState([]);
+  const [marketPlaceHealth, setMarketPlaceHealth] = useState();
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  const [dashboard, setDashboard] = useState([]);
+
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -69,7 +70,6 @@ function MarketPlaceHealth() {
     setPage(0);
   };
 
-  const trafficColorCount = new Map();
 
   const getHealth = async () => {
     try {
@@ -77,9 +77,8 @@ function MarketPlaceHealth() {
         method: "get",
         url: "http://15.206.171.9:3002/api/marketplaceHealth",
       });
-      setUserList(health.data);
-      console.log(health.data);
-      // const healthMap = new Map();
+      setUserList(health.data.data);
+      setMarketPlaceHealth(health.data.data);
     } catch (err) {
       console.log(err);
     }
@@ -87,6 +86,8 @@ function MarketPlaceHealth() {
   useEffect(() => {
     getHealth();
   }, []);
+
+
 
   return (
     <div>
@@ -219,16 +220,15 @@ function MarketPlaceHealth() {
               </div>
             </div>
             <div
-              className={`card-single ${
-                company === "Amazon" ? "company" : ""
-              } `}
+              className={`card-single ${company === "Amazon" ? "company" : ""
+                } `}
               onClick={(event) => {
                 if (company === "Amazon") {
                   setCompany(null);
-                  setCompanyinCamelCase(null);
+                  setCompanyCode(null);
                 } else {
                   setCompany("Amazon");
-                  setCompanyinCamelCase("amazon");
+                  setCompanyCode("AMAZON_IN");
                 }
               }}
             >
@@ -250,16 +250,15 @@ function MarketPlaceHealth() {
               </div>
             </div>
             <div
-              className={`card-single ${
-                company === "Flipkart" ? "company" : ""
-              } `}
+              className={`card-single ${company === "Flipkart" ? "company" : ""
+                } `}
               onClick={(event) => {
                 if (company === "Flipkart") {
                   setCompany(null);
-                  setCompanyinCamelCase(null);
+                  setCompanyCode(null);
                 } else {
                   setCompany("Flipkart");
-                  setCompanyinCamelCase("flipkart");
+                  setCompanyCode("FLIPKART");
                 }
               }}
             >
@@ -282,16 +281,15 @@ function MarketPlaceHealth() {
               </div>
             </div>
             <div
-              className={`card-single ${
-                company === "Snapdeal" ? "company" : ""
-              } `}
+              className={`card-single ${company === "Snapdeal" ? "company" : ""
+                } `}
               onClick={(event) => {
                 if (company === "Snapdeal") {
                   setCompany(null);
-                  setCompanyinCamelCase(null);
+                  setCompanyCode(null);
                 } else {
                   setCompany("Snapdeal");
-                  setCompanyinCamelCase("snapdeal");
+                  setCompanyCode("SNAPDEAL");
                 }
               }}
             >
@@ -314,16 +312,15 @@ function MarketPlaceHealth() {
             </div>
             <>
               <div
-                className={`card-single ${
-                  company === "Myntra" ? "company" : ""
-                } `}
+                className={`card-single ${company === "Myntra" ? "company" : ""
+                  } `}
                 onClick={(event) => {
                   if (company === "Myntra") {
                     setCompany(null);
-                    setCompanyinCamelCase(null);
+                    setCompanyCode(null);
                   } else {
                     setCompany("Myntra");
-                    setCompanyinCamelCase("myntraAppMp");
+                    setCompanyCode("MYNTRA_B2B");
                   }
                 }}
               >
@@ -347,16 +344,15 @@ function MarketPlaceHealth() {
 
               <div
                 c
-                className={`card-single ${
-                  company === "Ajio" ? "company" : ""
-                } `}
+                className={`card-single ${company === "Ajio" ? "company" : ""
+                  } `}
                 onClick={(event) => {
                   if (company === "Ajio") {
                     setCompany(null);
-                    setCompanyinCamelCase(null);
+                    setCompanyCode(null);
                   } else {
                     setCompany("Ajio");
-                    setCompanyinCamelCase("ajio");
+                    setCompanyCode("AJIO");
                   }
                 }}
               >
@@ -379,16 +375,15 @@ function MarketPlaceHealth() {
               </div>
 
               <div
-                className={`card-single ${
-                  company === "FirstCry" ? "company" : ""
-                } `}
+                className={`card-single ${company === "FirstCry" ? "company" : ""
+                  } `}
                 onClick={(event) => {
                   if (company === "FirstCry") {
                     setCompany(null);
-                    setCompanyinCamelCase(null);
+                    setCompanyCode(null);
                   } else {
                     setCompany("FirstCry");
-                    setCompanyinCamelCase("firstCry");
+                    setCompanyCode("FIRSTCRY");
                   }
                 }}
               >
@@ -411,16 +406,15 @@ function MarketPlaceHealth() {
               </div>
 
               <div
-                className={`card-single ${
-                  company === "Nykaa Fashion" ? "company" : ""
-                } `}
+                className={`card-single ${company === "Nykaa Fashion" ? "company" : ""
+                  } `}
                 onClick={() => {
                   if (company === "Nykaa Fashion") {
                     setCompany(null);
-                    setCompanyinCamelCase(null);
+                    setCompanyCode(null);
                   } else {
                     setCompany("Nykaa Fashion");
-                    setCompanyinCamelCase("nykaaFashion");
+                    setCompanyCode("NYKAA_FASHION");
                   }
                 }}
               >
@@ -473,36 +467,38 @@ function MarketPlaceHealth() {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {userList
-                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((row) => (
-                      <TableRow key={row.styleCode}>
-                        <TableCell>{row.styleCode}</TableCell>
-                        <TableCell>{row.rank}</TableCell>
+                  {userList[companyCode] && userList[companyCode].length ?
+                    userList[companyCode]
+                      .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                      .map((row) => (
+                        <TableRow key={row.styleCode}>
+                          {console.log(row)}
+                          <TableCell>{row.styleCode}</TableCell>
+                          <TableCell>{row.rank}</TableCell>
 
-                        <TableCell>{row.totalInv}</TableCell>
-                        <TableCell>{row.styloBug}</TableCell>
-                        <TableCell>
-                          <Typography
-                            className={classes.status}
-                            style={{
-                              backgroundColor:
-                                row[companyinCamelCase] != row.styloBug
-                                  ? "#ff8282"
-                                  : "#00da25",
-                            }}
-                          >
-                            {row[companyinCamelCase]}
-                          </Typography>
-                        </TableCell>
-                      </TableRow>
-                    ))}
+                          <TableCell>{row.inventory}</TableCell>
+                          <TableCell>{row.baseCount}</TableCell>
+                          <TableCell>
+                            <Typography
+                              className={classes.status}
+                              style={{
+                                backgroundColor:
+                                  row.marketplaceCount != row.baseCount
+                                    ? "#ff8282"
+                                    : "#00da25",
+                              }}
+                            >
+                              {row.marketplaceCount}
+                            </Typography>
+                          </TableCell>
+                        </TableRow>
+                      )) : null}
                 </TableBody>
                 <TableFooter>
                   <TablePagination
                     rowsPerPageOptions={[10, 45, 50, 100]}
                     component="div"
-                    count={userList.length}
+                    count={userList[companyCode].length}
                     rowsPerPage={rowsPerPage}
                     page={page}
                     onChangePage={handleChangePage}
