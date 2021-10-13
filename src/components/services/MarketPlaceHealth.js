@@ -471,8 +471,7 @@ function MarketPlaceHealth() {
                     userList[companyCode]
                       .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                       .map((row) => (
-                        <TableRow key={row.styleCode}>
-                          {console.log(row)}
+                        <TableRow key={row.styleCode}> 
                           <TableCell>{row.styleCode}</TableCell>
                           <TableCell>{row.rank}</TableCell>
 
