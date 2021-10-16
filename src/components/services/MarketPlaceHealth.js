@@ -383,7 +383,7 @@ function MarketPlaceHealth() {
                     setCompanyCode(null);
                   } else {
                     setCompany("FirstCry");
-                    setCompanyCode("FIRSTCRY");
+                    setCompanyCode("FIRSTCRY_MARKET_PLACE");
                   }
                 }}
               >
@@ -464,6 +464,9 @@ function MarketPlaceHealth() {
                     <TableCell className={classes.tableHeaderCell}>
                       {company}
                     </TableCell>
+                    <TableCell className={classes.tableHeaderCell}>
+                        Reason
+                    </TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -490,6 +493,7 @@ function MarketPlaceHealth() {
                               {row.marketplaceCount}
                             </Typography>
                           </TableCell>
+                          <TableCell>Disabled: {row.reason.disabled.length?row.reason.disabled.join(", "): "NA"}<br/>Missing: {row.reason.missing.length?row.reason.missing.join(", "): "NA"}</TableCell> 
                         </TableRow>
                       )) : null}
                 </TableBody>
