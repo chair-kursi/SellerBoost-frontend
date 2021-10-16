@@ -60,7 +60,6 @@ function MarketPlaceHealth() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
-
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -69,7 +68,6 @@ function MarketPlaceHealth() {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-
 
   const getHealth = async () => {
     try {
@@ -87,8 +85,6 @@ function MarketPlaceHealth() {
     getHealth();
   }, []);
 
-
-
   return (
     <div>
       <input type="checkbox" id="nav-toggle" />
@@ -105,7 +101,7 @@ function MarketPlaceHealth() {
         <div className="sidebar-menu">
           <ul>
             <li>
-              <a href="/">
+              <a href="/Home">
                 <span className="fas fa-home"></span>
                 <span>Home</span>
               </a>
@@ -220,8 +216,9 @@ function MarketPlaceHealth() {
               </div>
             </div>
             <div
-              className={`card-single ${company === "Amazon" ? "company" : ""
-                } `}
+              className={`card-single ${
+                company === "Amazon" ? "company" : ""
+              } `}
               onClick={(event) => {
                 if (company === "Amazon") {
                   setCompany(null);
@@ -250,8 +247,9 @@ function MarketPlaceHealth() {
               </div>
             </div>
             <div
-              className={`card-single ${company === "Flipkart" ? "company" : ""
-                } `}
+              className={`card-single ${
+                company === "Flipkart" ? "company" : ""
+              } `}
               onClick={(event) => {
                 if (company === "Flipkart") {
                   setCompany(null);
@@ -281,8 +279,9 @@ function MarketPlaceHealth() {
               </div>
             </div>
             <div
-              className={`card-single ${company === "Snapdeal" ? "company" : ""
-                } `}
+              className={`card-single ${
+                company === "Snapdeal" ? "company" : ""
+              } `}
               onClick={(event) => {
                 if (company === "Snapdeal") {
                   setCompany(null);
@@ -312,8 +311,9 @@ function MarketPlaceHealth() {
             </div>
             <>
               <div
-                className={`card-single ${company === "Myntra" ? "company" : ""
-                  } `}
+                className={`card-single ${
+                  company === "Myntra" ? "company" : ""
+                } `}
                 onClick={(event) => {
                   if (company === "Myntra") {
                     setCompany(null);
@@ -344,8 +344,9 @@ function MarketPlaceHealth() {
 
               <div
                 c
-                className={`card-single ${company === "Ajio" ? "company" : ""
-                  } `}
+                className={`card-single ${
+                  company === "Ajio" ? "company" : ""
+                } `}
                 onClick={(event) => {
                   if (company === "Ajio") {
                     setCompany(null);
@@ -375,8 +376,9 @@ function MarketPlaceHealth() {
               </div>
 
               <div
-                className={`card-single ${company === "FirstCry" ? "company" : ""
-                  } `}
+                className={`card-single ${
+                  company === "FirstCry" ? "company" : ""
+                } `}
                 onClick={(event) => {
                   if (company === "FirstCry") {
                     setCompany(null);
@@ -406,8 +408,9 @@ function MarketPlaceHealth() {
               </div>
 
               <div
-                className={`card-single ${company === "Nykaa Fashion" ? "company" : ""
-                  } `}
+                className={`card-single ${
+                  company === "Nykaa Fashion" ? "company" : ""
+                } `}
                 onClick={() => {
                   if (company === "Nykaa Fashion") {
                     setCompany(null);
@@ -501,7 +504,9 @@ function MarketPlaceHealth() {
                   <TablePagination
                     rowsPerPageOptions={[10, 45, 50, 100]}
                     component="div"
-                    count={userList[companyCode]?userList[companyCode].length:0}
+                    count={
+                      userList[companyCode] ? userList[companyCode].length : 0
+                    }
                     rowsPerPage={rowsPerPage}
                     page={page}
                     onChangePage={handleChangePage}

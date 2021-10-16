@@ -123,7 +123,7 @@ function OneClickCatlogUpdate() {
         <div className="sidebar-menu">
           <ul>
             <li>
-              <a href="/">
+              <a href="/Home">
                 <span className="fas fa-home"></span>
                 <span>Home</span>
               </a>

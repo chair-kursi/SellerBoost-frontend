@@ -15,10 +15,13 @@ import Onboarding from "./components/common/Onboarding";
 import MarketPlaceHealth from "./components/services/MarketPlaceHealth";
 import OneClickCatlogUpdate from "./components/services/OneClickCatlogUpdate";
 import MarketPlaceReconciliation from "./components/services/MarketPlaceReconciliation";
+import Home1 from "./components/common/LandingPage/Pages";
 import Merchandising from "./components/services/Merchandising";
 import { Auth, onAuthStateChanged } from "./components/auth/firebase";
-import Login from "./components/auth/Login";
+// import Login from "./components/auth/Login";
 import { Redirect } from "react-router";
+import SigninPage from "./components/common/LandingPage/Pages/signin";
+
 const customStyles = {
   content: {
     top: "50%",
@@ -33,142 +36,99 @@ const customStyles = {
 };
 
 function App() {
-
   const [auth, setAuth] = useState(-1);
 
   useEffect(() => {
     onAuthStateChanged(Auth, (user) => {
-      if (user)
-        setAuth(true);
+      if (user) setAuth(true);
       else setAuth(false);
     });
-
   }, []);
 
-  if (auth === -1)
-    return (
-      <h1>Checking Auth</h1>
-    )
+  if (auth === -1) return <h1>Checking Auth</h1>;
 
   return (
     <BrowserRouter>
       <div className="App">
         <Route exact path="/style/add">
-          {
-            (
-              !auth ? <Redirect to="/suprLogin" /> :
-                <Modal isOpen="true" style={customStyles}>
-                  <AddStyle />
-                </Modal>
-            )
-          }
-
+          {!auth ? (
+            <Redirect to="/signin" />
+          ) : (
+            <Modal isOpen="true" style={customStyles}>
+              <AddStyle />
+            </Modal>
+          )}
         </Route>
         <Route exact path="/style/edit/:styleCode">
-          {
-            (
-              !auth ? <Redirect to="/suprLogin" /> :
-                <Modal isOpen="true" style={customStyles}>
-                  <EditStyle />
-                </Modal>
-            )
-          }
-
+          {!auth ? (
+            <Redirect to="/signin" />
+          ) : (
+            <Modal isOpen="true" style={customStyles}>
+              <EditStyle />
+            </Modal>
+          )}
         </Route>
         <Route exact path="/sku/add/skuCode">
-          {
-            (
-              !auth ? <Redirect to="/suprLogin" /> :
-                <Modal isOpen="true" style={customStyles}>
-                  <AddSkus />
-                </Modal>
-            )
-          }
-
+          {!auth ? (
+            <Redirect to="/signin" />
+          ) : (
+            <Modal isOpen="true" style={customStyles}>
+              <AddSkus />
+            </Modal>
+          )}
         </Route>
 
         <Route exact path="/size/add">
-          {
-            (
-              !auth ? <Redirect to="/suprLogin" /> :
-                <Modal isOpen="true" style={customStyles}>
-                  <AddSize />
-                </Modal>
-            )
-          }
+          {!auth ? (
+            <Redirect to="/signin" />
+          ) : (
+            <Modal isOpen="true" style={customStyles}>
+              <AddSize />
+            </Modal>
+          )}
         </Route>
 
         <Route exact path="/MarketPlaceReconciliation">
-          {
-            (
-              !auth ? <Redirect to="/suprLogin" /> :
-                <MarketPlaceReconciliation />
-            )
-          }
+          {!auth ? <Redirect to="/signin" /> : <MarketPlaceReconciliation />}
         </Route>
 
         <Route exact path="/Merchandising">
-          {
-            (
-              !auth ? <Redirect to="/suprLogin" /> :
-                <Merchandising />
-            )
-          }
+          {!auth ? <Redirect to="/signin" /> : <Merchandising />}
         </Route>
 
         <Route exact path="/Dashboard">
-          {
-            (
-              !auth ? <Redirect to="/suprLogin" /> :
-                <Dashboard />
-            )
-          }
+          {!auth ? <Redirect to="/signin" /> : <Dashboard />}
         </Route>
 
         <Route exact path="/Onboarding">
-          {
-            (
-              !auth ? <Redirect to="/suprLogin" /> :
-                <Onboarding />
-            )
-          }
+          {!auth ? <Redirect to="/signin" /> : <Onboarding />}
         </Route>
 
         <Route exact path="/MarketPlaceHealth">
-          {
-            (
-              !auth ? <Redirect to="/suprLogin" /> :
-
-                <MarketPlaceHealth />
-            )
-          }
+          {!auth ? <Redirect to="/signin" /> : <MarketPlaceHealth />}
         </Route>
         <Route exact path="/OneClickCatlogUpdate">
-          {
-            (
-              !auth ? <Redirect to="/suprLogin" /> :
-                <OneClickCatlogUpdate />
-            )
-          }
+          {!auth ? <Redirect to="/signin" /> : <OneClickCatlogUpdate />}
         </Route>
-        <Route exact path="/suprLogin">
-          {
-            (
-              auth ? <Redirect to="/" /> :
-                <Login />
-            )
-          }
+        {/* <Route exact path="/suprLogin">
+          {auth ? <Redirect to="/" /> : <Login />}
+        </Route> */}
+        <Route exact path="/Home">
+          {!auth ? <Redirect to="/signin" /> : <Home />}
         </Route>
         <Route exact path="/">
-          {
+          <Home1 />
+
+          {/* {
             (
               !auth ? <Redirect to="/suprLogin" /> :
                 <Home />
             )
-          }
-          {/* <div className="sidebar">
-            <Sidebar />
-          </div> */}
+          } */}
+        </Route>
+
+        <Route exact path="/signin">
+          <SigninPage />
         </Route>
       </div>
     </BrowserRouter>

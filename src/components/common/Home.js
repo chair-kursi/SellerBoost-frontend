@@ -22,7 +22,6 @@ export default function Home() {
 
   const history = useHistory();
 
-
   useEffect(() => {
     getStyles();
     onAuthStateChanged(Auth, (user) => {
@@ -31,7 +30,6 @@ export default function Home() {
         console.log("user", user);
       }
     });
-
   }, []);
 
   return (
@@ -50,7 +48,7 @@ export default function Home() {
         <div className="sidebar-menu">
           <ul>
             <li>
-              <a href="/">
+              <a href="/Home">
                 <span className="fas fa-home"></span>
                 <span>Home</span>
               </a>
@@ -112,12 +110,14 @@ export default function Home() {
             <li>
               <a href={`${user ? "/" : "/suprLogin"}`}>
                 <span className="fas fa-sign-out-alt"></span>
-                <span onClick={() => {
-                  if (user)
-                    handleSignOut();
-                  else history.push('/suprLogin')
-                }}>
-                  {user ? "Sign-Out" : "Sign-in"}</span>
+                <span
+                  onClick={() => {
+                    if (user) handleSignOut();
+                    else history.push("/suprLogin");
+                  }}
+                >
+                  {user ? "Sign-Out" : "Sign-in"}
+                </span>
               </a>
             </li>
           </ul>
@@ -172,8 +172,8 @@ export default function Home() {
 
           {styles
             ? styles.map((ele) => {
-              return <Product key={ele._id} ele={ele} />;
-            })
+                return <Product key={ele._id} ele={ele} />;
+              })
             : null}
         </div>
       </div>
