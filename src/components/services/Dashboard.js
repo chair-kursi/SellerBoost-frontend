@@ -26,6 +26,12 @@ const options = [
   "Launching",
   "Disabled"
 ];
+
+const skuTrafficOptions = [
+  "Raw Inventory",
+  "Smooth Inventory"
+];
+
 const useStyles = makeStyles((theme) => ({
   table: {
     minWidth: 650,
@@ -78,7 +84,9 @@ function Dashboard() {
   const [showSkuTraffic, setShowSkuTraffic] = useState(-1);
   const [skuTraffic, setSkuTraffic] = useState([]);
   const [collapseStatus, setCollapseStatus] = useState(0);
+  const [collapseStatusSku, setCollapseStatusSku] = useState(0);
   const [statusFilter, setStatusFilter] = useState("All");
+  const [recommendedInventoryFilter, setRecommendedInventoryFilter] = useState("Raw");
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -174,6 +182,20 @@ function Dashboard() {
       setColorCount(e.target.textContent);
     }
     setCollapseStatus(null);
+  };
+
+  const handleClickSku = event => {
+    setCollapseStatusSku(event.currentTarget);
+  };
+
+  const handleCloseSku = (e) => {
+    if (!e.target.textContent) {
+      setRecommendedInventoryFilter(recommendedInventoryFilter); 
+    }
+    else {
+      setRecommendedInventoryFilter(e.target.textContent); 
+    }
+    setCollapseStatusSku(null);
   };
 
 
@@ -498,7 +520,7 @@ function Dashboard() {
                           <TableCell colSpan={6}>
                             <TableContainer>
                               <Table className={classes.table} aria-label="simple table">
-                                <TableHead> 
+                                <TableHead>
                                   <TableRow>
                                     <TableCell className={classes.tableHeaderCell2}>
                                       SizeCode
@@ -523,6 +545,35 @@ function Dashboard() {
                                     </TableCell>
                                     <TableCell className={classes.tableHeaderCell2}>
                                       Recommended Inventory<br /> (90 Days)
+                                    </TableCell>
+                                    <TableCell className={classes.tableHeaderCell2}> 
+                                      <IconButton
+                                        aria-label="More"
+                                        style={{ color: "#605600" }}
+                                        aria-owns={collapseStatusSku ? 'long-menu-sku' : null}
+                                        aria-haspopup="true"
+                                        onClick={handleClickSku}
+                                      >
+                                        <MoreVertIcon />
+                                      </IconButton>
+                                      <Menu
+                                        id="long-menu-sku"
+                                        anchorEl={collapseStatusSku}
+                                        open={collapseStatusSku}
+                                        onClose={handleCloseSku}
+                                        PaperProps={{
+                                          style: {
+                                            maxHeight: ITEM_HEIGHT * 4.5,
+                                            width: 200,
+                                          },
+                                        }}
+                                      >
+                                        {skuTrafficOptions.map(option => (
+                                          <MenuItem key={option} value={option} selected={option === recommendedInventoryFilter} onClick={handleCloseSku}>
+                                            {option}
+                                          </MenuItem>
+                                        ))}
+                                      </Menu>
                                     </TableCell>
                                   </TableRow>
                                 </TableHead>
@@ -587,7 +638,8 @@ function Dashboard() {
                                           textAlign: "center"
                                         }}
                                       >
-                                        {skuRow.suggestedInventory1}
+                                        {/* suggestedSmoothInventory1 */}
+                                        {recommendedInventoryFilter==="Raw Inventory"? skuRow.suggestedInventory1: skuRow.suggestedSmoothInventory1}
                                       </TableCell>
                                       <TableCell
                                         className={classes.tableCell2}
@@ -595,7 +647,7 @@ function Dashboard() {
                                           textAlign: "center"
                                         }}
                                       >
-                                        {skuRow.suggestedInventory2}
+                                        {recommendedInventoryFilter==="Raw Inventory"? skuRow.suggestedInventory2: skuRow.suggestedSmoothInventory2}
                                       </TableCell>
                                       <TableCell
                                         className={classes.tableCell2}
@@ -603,7 +655,14 @@ function Dashboard() {
                                           textAlign: "center"
                                         }}
                                       >
-                                        {skuRow.suggestedInventory3}
+                                        {recommendedInventoryFilter==="Raw Inventory"? skuRow.suggestedInventory3: skuRow.suggestedSmoothInventory3}
+                                      </TableCell>
+                                      <TableCell
+                                        className={classes.tableCell2}
+                                        style={{
+                                          width:0
+                                        }}
+                                      > 
                                       </TableCell>
                                     </TableRow>
                                   })
