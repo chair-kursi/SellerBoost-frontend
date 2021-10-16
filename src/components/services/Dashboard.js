@@ -18,14 +18,9 @@ import {
   Menu,
   IconButton,
 } from "@material-ui/core";
-import MoreVertIcon from '@material-ui/icons/MoreVert'
+import MoreVertIcon from "@material-ui/icons/MoreVert";
 
-const options = [
-  "All",
-  "Live",
-  "Launching",
-  "Disabled"
-];
+const options = ["All", "Live", "Launching", "Disabled"];
 const useStyles = makeStyles((theme) => ({
   table: {
     minWidth: 650,
@@ -48,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#ffbc77",
   },
   tableCell2: {
-    // fontWeight: "bold", 
+    // fontWeight: "bold",
     // color: "#605600",
     backgroundColor: "#fffbcc",
   },
@@ -100,7 +95,14 @@ function Dashboard() {
     setDashboard(dashboard.data.data);
     let dashboardArr = dashboard.data.data;
 
-    for (let i = 0; i < dashboardArr.filter((row) => { return row.status === statusFilter || statusFilter === "All" }).length; i++) {
+    for (
+      let i = 0;
+      i <
+      dashboardArr.filter((row) => {
+        return row.status === statusFilter || statusFilter === "All";
+      }).length;
+      i++
+    ) {
       let color = dashboardArr[i].trafficActual,
         prevColorCount = trafficColorCount.get(color);
       if (!prevColorCount) prevColorCount = 0;
@@ -124,10 +126,11 @@ function Dashboard() {
 
   const setColorCount = (statusFilter) => {
     let dashboardArr = [];
-    if (statusFilter === "All")
-      dashboardArr = dashboard;
+    if (statusFilter === "All") dashboardArr = dashboard;
     else
-      dashboardArr = dashboard.filter((row) => { return row.status === statusFilter });
+      dashboardArr = dashboard.filter((row) => {
+        return row.status === statusFilter;
+      });
     console.log(dashboardArr);
 
     for (let i = 0; i < dashboardArr.length; i++) {
@@ -150,7 +153,7 @@ function Dashboard() {
     setOrangeColor(trafficColorCount.get(defaultTrafficColors[2]) || 0);
     setGreenColor(trafficColorCount.get(defaultTrafficColors[3]) || 0);
     setOverGreenColor(trafficColorCount.get(defaultTrafficColors[4]) || 0);
-  }
+  };
 
   const getSkuTraffic = async () => {
     const skuTraffic = await axios({
@@ -158,27 +161,24 @@ function Dashboard() {
       url: "http://15.206.171.9:3002/skuTraffic",
     });
     setSkuTraffic(skuTraffic.data.data);
-  }
+  };
 
-  const handleClick = event => {
+  const handleClick = (event) => {
     setCollapseStatus(event.currentTarget);
   };
 
   const handleClose = (e) => {
     if (!e.target.textContent) {
       setStatusFilter(statusFilter);
-      setColorCount(statusFilter)
-    }
-    else {
+      setColorCount(statusFilter);
+    } else {
       setStatusFilter(e.target.textContent);
       setColorCount(e.target.textContent);
     }
     setCollapseStatus(null);
   };
 
-
   const ITEM_HEIGHT = 48;
-
 
   useEffect(() => {
     getDashboard();
@@ -207,7 +207,7 @@ function Dashboard() {
         <div className="sidebar-menu">
           <ul>
             <li>
-              <a href="/">
+              <a href="/Home">
                 <span className="fas fa-home"></span>
                 <span>Home</span>
               </a>
@@ -391,7 +391,7 @@ function Dashboard() {
                     <IconButton
                       aria-label="More"
                       style={{ color: "white" }}
-                      aria-owns={collapseStatus ? 'long-menu' : null}
+                      aria-owns={collapseStatus ? "long-menu" : null}
                       aria-haspopup="true"
                       onClick={handleClick}
                     >
@@ -409,8 +409,13 @@ function Dashboard() {
                         },
                       }}
                     >
-                      {options.map(option => (
-                        <MenuItem key={option} value={option} selected={option === statusFilter} onClick={handleClose}>
+                      {options.map((option) => (
+                        <MenuItem
+                          key={option}
+                          value={option}
+                          selected={option === statusFilter}
+                          onClick={handleClose}
+                        >
                           {option}
                         </MenuItem>
                       ))}
@@ -433,26 +438,28 @@ function Dashboard() {
               <TableBody>
                 {dashboard
                   .filter((row) => {
-                    if ((statusFilter != "All" && row.status === statusFilter) || statusFilter === "All")
+                    if (
+                      (statusFilter != "All" && row.status === statusFilter) ||
+                      statusFilter === "All"
+                    )
                       return row;
-
                   })
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((row, idx) => (
                     <>
                       <TableRow key={row.styleCode}>
-                        <TableCell onClick={() => {
-                          if (showSkuTraffic != page * rowsPerPage + idx)
-                            setShowSkuTraffic(page * rowsPerPage + idx);
-                          else setShowSkuTraffic(-1);
-                        }}>
+                        <TableCell
+                          onClick={() => {
+                            if (showSkuTraffic != page * rowsPerPage + idx)
+                              setShowSkuTraffic(page * rowsPerPage + idx);
+                            else setShowSkuTraffic(-1);
+                          }}
+                        >
                           <Typography className={classes.name}>
                             {row.styleCode}
                           </Typography>
                         </TableCell>
-                        <TableCell>
-                          {row.status}
-                        </TableCell>
+                        <TableCell>{row.status}</TableCell>
                         <TableCell>
                           <Typography
                             variant="body2"
@@ -482,139 +489,176 @@ function Dashboard() {
                             className={classes.status}
                             style={{
                               backgroundColor:
-                                (row.trafficActual === "SOLDOUT" && "#d61400") ||
+                                (row.trafficActual === "SOLDOUT" &&
+                                  "#d61400") ||
                                 (row.trafficActual === "RED" && "#ff8282") ||
                                 (row.trafficActual === "ORANGE" && "orange") ||
                                 (row.trafficActual === "GREEN" && "#00da25") ||
-                                (row.trafficActual === "OVERGREEN" && "#009018"),
+                                (row.trafficActual === "OVERGREEN" &&
+                                  "#009018"),
                             }}
                           >
                             {row.trafficActual}
                           </Typography>
                         </TableCell>
                       </TableRow>
-                      {showSkuTraffic === page * rowsPerPage + idx ?
+                      {showSkuTraffic === page * rowsPerPage + idx ? (
                         <TableRow>
                           <TableCell colSpan={6}>
                             <TableContainer>
-                              <Table className={classes.table} aria-label="simple table">
-                                <TableHead> 
+                              <Table
+                                className={classes.table}
+                                aria-label="simple table"
+                              >
+                                <TableHead>
                                   <TableRow>
-                                    <TableCell className={classes.tableHeaderCell2}>
+                                    <TableCell
+                                      className={classes.tableHeaderCell2}
+                                    >
                                       SizeCode
                                     </TableCell>
-                                    <TableCell className={classes.tableHeaderCell2}>
+                                    <TableCell
+                                      className={classes.tableHeaderCell2}
+                                    >
                                       Inventory
                                     </TableCell>
-                                    <TableCell className={classes.tableHeaderCell2}>
+                                    <TableCell
+                                      className={classes.tableHeaderCell2}
+                                    >
                                       Sale
                                     </TableCell>
-                                    <TableCell className={classes.tableHeaderCell2}>
+                                    <TableCell
+                                      className={classes.tableHeaderCell2}
+                                    >
                                       Day Inventory
                                     </TableCell>
-                                    <TableCell className={classes.tableHeaderCell2}>
+                                    <TableCell
+                                      className={classes.tableHeaderCell2}
+                                    >
                                       Traffic
                                     </TableCell>
-                                    <TableCell className={classes.tableHeaderCell2}>
-                                      Recommended Inventory<br /> (30 Days)
+                                    <TableCell
+                                      className={classes.tableHeaderCell2}
+                                    >
+                                      Recommended Inventory
+                                      <br /> (30 Days)
                                     </TableCell>
-                                    <TableCell className={classes.tableHeaderCell2}>
-                                      Recommended Inventory<br /> (60 Days)
+                                    <TableCell
+                                      className={classes.tableHeaderCell2}
+                                    >
+                                      Recommended Inventory
+                                      <br /> (60 Days)
                                     </TableCell>
-                                    <TableCell className={classes.tableHeaderCell2}>
-                                      Recommended Inventory<br /> (90 Days)
+                                    <TableCell
+                                      className={classes.tableHeaderCell2}
+                                    >
+                                      Recommended Inventory
+                                      <br /> (90 Days)
                                     </TableCell>
                                   </TableRow>
                                 </TableHead>
-                                {
-                                  skuTraffic.filter((sku) => { return sku.styleCode === row.styleCode }).map((skuRow) => {
-                                    return <TableRow>
-                                      <TableCell
-                                        className={classes.tableCell2}
-                                        style={{
-                                          textAlign: "center"
-                                        }}
-                                      >
-                                        {skuRow.sizeCode}
-                                      </TableCell>
-                                      <TableCell
-                                        className={classes.tableCell2}
-                                        style={{
-                                          textAlign: "center"
-                                        }}
-                                      >
-                                        {skuRow.inventory}
-                                      </TableCell>
-                                      <TableCell
-                                        className={classes.tableCell2}
-                                        style={{
-                                          textAlign: "center"
-                                        }}
-                                      >
-                                        {skuRow.totalSales}
-                                      </TableCell>
-                                      <TableCell
-                                        className={classes.tableCell2}
-                                        style={{
-                                          textAlign: "center"
-                                        }}
-                                      >
-                                        {skuRow.dayInventory}
-                                      </TableCell>
-                                      <TableCell
-                                        className={classes.tableCell2}
-                                        style={{
-                                          textAlign: "center"
-                                        }}
-                                      >
-                                        <Typography
-                                          className={classes.status}
+                                {skuTraffic
+                                  .filter((sku) => {
+                                    return sku.styleCode === row.styleCode;
+                                  })
+                                  .map((skuRow) => {
+                                    return (
+                                      <TableRow>
+                                        <TableCell
+                                          className={classes.tableCell2}
                                           style={{
-                                            backgroundColor:
-                                              (skuRow.trafficColor === "SOLDOUT" && "#d61400") ||
-                                              (skuRow.trafficColor === "RED" && "#ff8282") ||
-                                              (skuRow.trafficColor === "ORANGE" && "orange") ||
-                                              (skuRow.trafficColor === "GREEN" && "#00da25") ||
-                                              (skuRow.trafficColor === "OVERGREEN" && "#009018"),
+                                            textAlign: "center",
                                           }}
                                         >
-                                          {skuRow.trafficColor}
-                                        </Typography>
-                                      </TableCell>
-                                      <TableCell
-                                        className={classes.tableCell2}
-                                        style={{
-                                          textAlign: "center"
-                                        }}
-                                      >
-                                        {skuRow.suggestedInventory1}
-                                      </TableCell>
-                                      <TableCell
-                                        className={classes.tableCell2}
-                                        style={{
-                                          textAlign: "center"
-                                        }}
-                                      >
-                                        {skuRow.suggestedInventory2}
-                                      </TableCell>
-                                      <TableCell
-                                        className={classes.tableCell2}
-                                        style={{
-                                          textAlign: "center"
-                                        }}
-                                      >
-                                        {skuRow.suggestedInventory3}
-                                      </TableCell>
-                                    </TableRow>
-                                  })
-                                }
-
+                                          {skuRow.sizeCode}
+                                        </TableCell>
+                                        <TableCell
+                                          className={classes.tableCell2}
+                                          style={{
+                                            textAlign: "center",
+                                          }}
+                                        >
+                                          {skuRow.inventory}
+                                        </TableCell>
+                                        <TableCell
+                                          className={classes.tableCell2}
+                                          style={{
+                                            textAlign: "center",
+                                          }}
+                                        >
+                                          {skuRow.totalSales}
+                                        </TableCell>
+                                        <TableCell
+                                          className={classes.tableCell2}
+                                          style={{
+                                            textAlign: "center",
+                                          }}
+                                        >
+                                          {skuRow.dayInventory}
+                                        </TableCell>
+                                        <TableCell
+                                          className={classes.tableCell2}
+                                          style={{
+                                            textAlign: "center",
+                                          }}
+                                        >
+                                          <Typography
+                                            className={classes.status}
+                                            style={{
+                                              backgroundColor:
+                                                (skuRow.trafficColor ===
+                                                  "SOLDOUT" &&
+                                                  "#d61400") ||
+                                                (skuRow.trafficColor ===
+                                                  "RED" &&
+                                                  "#ff8282") ||
+                                                (skuRow.trafficColor ===
+                                                  "ORANGE" &&
+                                                  "orange") ||
+                                                (skuRow.trafficColor ===
+                                                  "GREEN" &&
+                                                  "#00da25") ||
+                                                (skuRow.trafficColor ===
+                                                  "OVERGREEN" &&
+                                                  "#009018"),
+                                            }}
+                                          >
+                                            {skuRow.trafficColor}
+                                          </Typography>
+                                        </TableCell>
+                                        <TableCell
+                                          className={classes.tableCell2}
+                                          style={{
+                                            textAlign: "center",
+                                          }}
+                                        >
+                                          {skuRow.suggestedInventory1}
+                                        </TableCell>
+                                        <TableCell
+                                          className={classes.tableCell2}
+                                          style={{
+                                            textAlign: "center",
+                                          }}
+                                        >
+                                          {skuRow.suggestedInventory2}
+                                        </TableCell>
+                                        <TableCell
+                                          className={classes.tableCell2}
+                                          style={{
+                                            textAlign: "center",
+                                          }}
+                                        >
+                                          {skuRow.suggestedInventory3}
+                                        </TableCell>
+                                      </TableRow>
+                                    );
+                                  })}
                               </Table>
                             </TableContainer>
                           </TableCell>
                           {/* </Collapse>  */}
                         </TableRow>
-                        : null}
+                      ) : null}
                     </>
                   ))}
               </TableBody>
@@ -622,7 +666,13 @@ function Dashboard() {
                 <TablePagination
                   rowsPerPageOptions={[10, 45, 50, 100]}
                   component="div"
-                  count={dashboard.filter((row) => { return row.status === statusFilter || statusFilter === "All" }).length}
+                  count={
+                    dashboard.filter((row) => {
+                      return (
+                        row.status === statusFilter || statusFilter === "All"
+                      );
+                    }).length
+                  }
                   rowsPerPage={rowsPerPage}
                   page={page}
                   onChangePage={handleChangePage}
