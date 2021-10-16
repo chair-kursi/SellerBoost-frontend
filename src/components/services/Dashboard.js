@@ -47,6 +47,9 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.getContrastText(theme.palette.primary.dark),
     backgroundColor: "#11493e",
   },
+  tableHeaderCell4: {
+    padding: "15px",
+  },
   tableHeaderCell2: {
     fontWeight: "bold",
     backgroundColor: theme.palette.success.dark,
@@ -57,7 +60,9 @@ const useStyles = makeStyles((theme) => ({
     // fontWeight: "bold",
     // color: "#605600",
     backgroundColor: "#fffbcc",
+    padding: "12px",
   },
+
   status: {
     fontWeight: "bold",
     fontSize: "0.75rem",
@@ -460,9 +465,10 @@ function Dashboard() {
                     <>
                       <TableRow
                         key={row.styleCode}
-                        onClick={() => scroll.scrollTo(270)}
+                        onClick={() => scroll.scrollTo(290)}
                       >
                         <TableCell
+                          className={classes.tableHeaderCell4}
                           onClick={() => {
                             if (showSkuTraffic != page * rowsPerPage + idx)
                               setShowSkuTraffic(page * rowsPerPage + idx);
@@ -577,7 +583,7 @@ function Dashboard() {
                                   })
                                   .map((skuRow) => {
                                     return (
-                                      <TableRow>
+                                      <TableRow className={classes.tableRow1}>
                                         <TableCell
                                           className={classes.tableCell2}
                                           style={{
