@@ -86,7 +86,7 @@ function Dashboard() {
   const [collapseStatus, setCollapseStatus] = useState(0);
   const [collapseStatusSku, setCollapseStatusSku] = useState(0);
   const [statusFilter, setStatusFilter] = useState("All");
-  const [recommendedInventoryFilter, setRecommendedInventoryFilter] = useState("Raw");
+  const [recommendedInventoryFilter, setRecommendedInventoryFilter] = useState("Raw Inventory");
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
