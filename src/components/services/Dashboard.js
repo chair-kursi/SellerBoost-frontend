@@ -1,6 +1,16 @@
 import React, { useEffect, useState } from "react";
 import "../../css/services/Dashboard.css";
 import { makeStyles } from "@material-ui/core/styles";
+import * as Scroll from "react-scroll";
+import {
+  Link,
+  Button,
+  Element,
+  Events,
+  animateScroll as scroll,
+  scrollSpy,
+  scroller,
+} from "react-scroll";
 
 import axios from "axios";
 import {
@@ -29,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 15,
     margin: "0 auto",
     maxWidth: 1050,
+    cursor: "pointer",
   },
   tableHeaderCell: {
     fontWeight: "bold",
@@ -232,13 +243,13 @@ function Dashboard() {
                 <span>MarketPlace Health</span>
               </a>
             </li>
-            <li>
+            {/* <li>
               <a href="/OneClickCatlogUpdate">
                 <span className="fas fa-upload"></span>
 
                 <span>One Click Upload</span>
               </a>
-            </li>
+            </li> */}
 
             <li>
               <a href="/MarketPlaceReconciliation">
@@ -447,7 +458,10 @@ function Dashboard() {
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((row, idx) => (
                     <>
-                      <TableRow key={row.styleCode}>
+                      <TableRow
+                        key={row.styleCode}
+                        onClick={() => scroll.scrollTo(270)}
+                      >
                         <TableCell
                           onClick={() => {
                             if (showSkuTraffic != page * rowsPerPage + idx)
@@ -680,9 +694,9 @@ function Dashboard() {
                 />
               </TableFooter>
             </Table>
-            <div className="butta__container">
+            {/* <div className="butta__container">
               <button className="butta">Download CSV </button>
-            </div>
+            </div> */}
           </TableContainer>
         </div>
       </div>

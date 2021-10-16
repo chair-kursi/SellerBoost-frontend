@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Button } from "../ButtonElement";
 import { FaBars } from "react-icons/fa";
 import {
   Nav,
@@ -30,7 +31,7 @@ const Navbar = ({ toggle }) => {
     <>
       <Nav scrollNav={scrollNav}>
         <NavbarContainer>
-          <NavLogo to="/">SuperCommerce</NavLogo>
+          <NavLogo to="/">SuprCommerce</NavLogo>
           <MobileIcon onClick={toggle}>
             <FaBars />
           </MobileIcon>

@@ -43,13 +43,13 @@ function Merchandising() {
                 <span>MarketPlace Health</span>
               </a>
             </li>
-            <li>
+            {/* <li>
               <a href="/OneClickCatlogUpdate">
                 <span className="fas fa-upload"></span>
 
                 <span>One Click Upload</span>
               </a>
-            </li>
+            </li> */}
 
             <li>
               <a href="/MarketPlaceReconciliation">
