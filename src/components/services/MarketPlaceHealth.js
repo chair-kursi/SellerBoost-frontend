@@ -385,7 +385,7 @@ function MarketPlaceHealth() {
                     setCompanyCode(null);
                   } else {
                     setCompany("FirstCry");
-                    setCompanyCode("FIRSTCRY");
+                    setCompanyCode("FIRSTCRY_MARKET_PLACE");
                   }
                 }}
               >
@@ -467,38 +467,38 @@ function MarketPlaceHealth() {
                     <TableCell className={classes.tableHeaderCell}>
                       {company}
                     </TableCell>
+                    <TableCell className={classes.tableHeaderCell}>
+                        Reason
+                    </TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {userList[companyCode] && userList[companyCode].length
-                    ? userList[companyCode]
-                        .slice(
-                          page * rowsPerPage,
-                          page * rowsPerPage + rowsPerPage
-                        )
-                        .map((row) => (
-                          <TableRow key={row.styleCode}>
-                            <TableCell>{row.styleCode}</TableCell>
-                            <TableCell>{row.rank}</TableCell>
+                  {userList[companyCode] && userList[companyCode].length ?
+                    userList[companyCode]
+                      .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                      .map((row) => (
+                        <TableRow key={row.styleCode}> 
+                          <TableCell>{row.styleCode}</TableCell>
+                          <TableCell>{row.rank}</TableCell>
 
-                            <TableCell>{row.inventory}</TableCell>
-                            <TableCell>{row.baseCount}</TableCell>
-                            <TableCell>
-                              <Typography
-                                className={classes.status}
-                                style={{
-                                  backgroundColor:
-                                    row.marketplaceCount != row.baseCount
-                                      ? "#ff8282"
-                                      : "#00da25",
-                                }}
-                              >
-                                {row.marketplaceCount}
-                              </Typography>
-                            </TableCell>
-                          </TableRow>
-                        ))
-                    : null}
+                          <TableCell>{row.inventory}</TableCell>
+                          <TableCell>{row.baseCount}</TableCell>
+                          <TableCell>
+                            <Typography
+                              className={classes.status}
+                              style={{
+                                backgroundColor:
+                                  row.marketplaceCount != row.baseCount
+                                    ? "#ff8282"
+                                    : "#00da25",
+                              }}
+                            >
+                              {row.marketplaceCount}
+                            </Typography>
+                          </TableCell>
+                          <TableCell>Disabled: {row.reason.disabled.length?row.reason.disabled.join(", "): "NA"}<br/>Missing: {row.reason.missing.length?row.reason.missing.join(", "): "NA"}</TableCell> 
+                        </TableRow>
+                      )) : null}
                 </TableBody>
                 <TableFooter>
                   <TablePagination
