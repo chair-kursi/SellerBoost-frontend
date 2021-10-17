@@ -85,12 +85,14 @@ export const FormLabel = styled.label`
   font-size: 14px;
   color: #fff;
   text-align: left;
+  width: 100px;
 `;
 export const FormInput = styled.input`
   padding: 16px 16px;
   margin-bottom: 32px;
   border: none;
   border-radius: 4px;
+  width: 340px;
 `;
 export const FormButton = styled.button`
   background: #01bf71;

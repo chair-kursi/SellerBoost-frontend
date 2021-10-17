@@ -107,7 +107,7 @@ function BusinessHealth() {
             <label for="nav-toggle">
               <span class="fas fa-bars"></span>
             </label>
-            Inventory Dashboard
+            Buiness Health
           </h2>
 
           <div className="search-wrapper">
@@ -125,8 +125,86 @@ function BusinessHealth() {
             </div>
           </div>
         </header>
-
-        <h1 className="titles">hello</h1>
+        <div className="container123">
+          <div className="picklist">
+            <div className="picklistrow">
+              <div className="picklistitem">
+                <label htmlFor="date">Show Data for :</label>
+                <input type="date" id="date" />
+                <button className="repogen">Generate Report</button>
+              </div>
+              <div className="picklistitem">
+                <label htmlFor="channel">Select Channels</label>
+                <select name="channel" id="channel" placeholder="Amazon">
+                  <option value="volvo">Amazon</option>
+                  <option value="saab">Flipkart</option>
+                  <option value="opel">Snapdeal</option>
+                  <option value="audi">Myntra</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cardsssss">
+          <div className="card__container">
+            <div class="cardes card-1s">
+              <div className="cards_detail">
+                <h3>Total Sales </h3>
+                <p> </p>
+              </div>
+            </div>
+            <div class="cards_sub card-1_sub">
+              <div className="cards_detail_sub">
+                <h1>Total Sales Unit</h1>
+                <p> </p>
+              </div>
+            </div>
+          </div>
+          <div className="card__container">
+            <div class="cardes card-2s">
+              <div className="cards_detail">
+                <h3>Cancelled Invoice Amount</h3>
+                <p> </p>
+              </div>
+            </div>
+            <div class="cards_sub card-2_sub">
+              <div className="cards_detail_sub">
+                <h1>Total Units</h1>
+                <p> </p>
+              </div>
+            </div>
+          </div>
+          <div className="card__container">
+            <div class="cardes card-3s">
+              {" "}
+              <div className="cards_detail">
+                <h3>Return Invoice Amount </h3>
+                <p> </p>
+              </div>
+            </div>
+            <div class="cards_sub card-3_sub">
+              <div className="cards_detail_sub">
+                <h1>Total Units</h1>
+                <p> </p>
+              </div>
+            </div>
+          </div>
+          <div className="card__container">
+            <div class="cardes card-4s">
+              {" "}
+              <div className="cards_detail">
+                <h3>Net Sales </h3>
+                <p> </p>
+              </div>
+            </div>
+            <div class="cards_sub card-4_sub">
+              <div className="cards_detail_sub">
+                <h1>Net Sales Unites</h1>
+                <p> </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
