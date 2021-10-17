@@ -21,6 +21,8 @@ import { Auth, onAuthStateChanged } from "./components/auth/firebase";
 // import Login from "./components/auth/Login";
 import { Redirect } from "react-router";
 import SigninPage from "./components/common/LandingPage/Pages/signin";
+import BusinessHealth from "./components/services/BusinessHealth";
+import DispatchHealth from "./components/services/DispatchHealth";
 
 const customStyles = {
   content: {
@@ -110,6 +112,15 @@ function App() {
         <Route exact path="/OneClickCatlogUpdate">
           {!auth ? <Redirect to="/signin" /> : <OneClickCatlogUpdate />}
         </Route>
+
+        <Route exact path="/BusinessHealth">
+          {!auth ? <Redirect to="/signin" /> : <BusinessHealth />}
+        </Route>
+
+        <Route exact path="/DispatchHealth">
+          {!auth ? <Redirect to="/signin" /> : <DispatchHealth />}
+        </Route>
+
         {/* <Route exact path="/suprLogin">
           {auth ? <Redirect to="/" /> : <Login />}
         </Route> */}

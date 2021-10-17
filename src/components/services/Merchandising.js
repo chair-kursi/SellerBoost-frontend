@@ -43,6 +43,19 @@ function Merchandising() {
                 <span>MarketPlace Health</span>
               </a>
             </li>
+            <li>
+              <a href="/BusinessHealth">
+                <span className="fas fa-chart-bar"></span>
+                <span>Business Health</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="/DispatchHealth">
+                <span className="fas fa-shipping-fast"></span>
+                <span>Dispatch Health</span>
+              </a>
+            </li>
             {/* <li>
               <a href="/OneClickCatlogUpdate">
                 <span className="fas fa-upload"></span>

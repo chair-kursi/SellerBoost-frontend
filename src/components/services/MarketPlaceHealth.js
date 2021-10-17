@@ -126,6 +126,19 @@ function MarketPlaceHealth() {
                 <span>MarketPlace Health</span>
               </a>
             </li>
+            <li>
+              <a href="/BusinessHealth">
+                <span className="fas fa-chart-bar"></span>
+                <span>Business Health</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="/DispatchHealth">
+                <span className="fas fa-shipping-fast"></span>
+                <span>Dispatch Health</span>
+              </a>
+            </li>
             {/* <li>
               <a href="/OneClickCatlogUpdate">
                 <span className="fas fa-upload"></span>
@@ -481,37 +494,35 @@ function MarketPlaceHealth() {
                         )
                         .map((row) => (
                           <TableRow key={row.styleCode}>
-                            <TableSortLabel>
-                              <TableCell>{row.styleCode}</TableCell>
-                              <TableCell>{row.rank}</TableCell>
+                            <TableCell>{row.styleCode}</TableCell>
+                            <TableCell>{row.rank}</TableCell>
 
-                              <TableCell>{row.inventory}</TableCell>
-                              <TableCell>{row.baseCount}</TableCell>
-                              <TableCell>
-                                <Typography
-                                  className={classes.status}
-                                  style={{
-                                    backgroundColor:
-                                      row.marketplaceCount != row.baseCount
-                                        ? "#ff8282"
-                                        : "#00da25",
-                                  }}
-                                >
-                                  {row.marketplaceCount}
-                                </Typography>
-                              </TableCell>
-                              <TableCell>
-                                Disabled:{" "}
-                                {row.reason.disabled.length
-                                  ? row.reason.disabled.join(", ")
-                                  : "NA"}
-                                <br />
-                                Missing:{" "}
-                                {row.reason.missing.length
-                                  ? row.reason.missing.join(", ")
-                                  : "NA"}
-                              </TableCell>
-                            </TableSortLabel>
+                            <TableCell>{row.inventory}</TableCell>
+                            <TableCell>{row.baseCount}</TableCell>
+                            <TableCell>
+                              <Typography
+                                className={classes.status}
+                                style={{
+                                  backgroundColor:
+                                    row.marketplaceCount != row.baseCount
+                                      ? "#ff8282"
+                                      : "#00da25",
+                                }}
+                              >
+                                {row.marketplaceCount}
+                              </Typography>
+                            </TableCell>
+                            <TableCell>
+                              Disabled:{" "}
+                              {row.reason.disabled.length
+                                ? row.reason.disabled.join(", ")
+                                : "NA"}
+                              <br />
+                              Missing:{" "}
+                              {row.reason.missing.length
+                                ? row.reason.missing.join(", ")
+                                : "NA"}
+                            </TableCell>
                           </TableRow>
                         ))
                     : null}

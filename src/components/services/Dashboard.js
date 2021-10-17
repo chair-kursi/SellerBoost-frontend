@@ -27,6 +27,7 @@ import {
   MenuItem,
   Menu,
   IconButton,
+  TableSortLabel,
 } from "@material-ui/core";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 
@@ -248,6 +249,20 @@ function Dashboard() {
                 <span>MarketPlace Health</span>
               </a>
             </li>
+            <li>
+              <a href="/BusinessHealth">
+                <span className="fas fa-chart-bar"></span>
+                <span>Business Health</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="/DispatchHealth">
+                <span className="fas fa-shipping-fast"></span>
+                <span>Dispatch Health</span>
+              </a>
+            </li>
+
             {/* <li>
               <a href="/OneClickCatlogUpdate">
                 <span className="fas fa-upload"></span>
@@ -402,6 +417,7 @@ function Dashboard() {
                   <TableCell className={classes.tableHeaderCell}>
                     StyleCode
                   </TableCell>
+
                   <TableCell className={classes.tableHeaderCell}>
                     Status
                     <IconButton
