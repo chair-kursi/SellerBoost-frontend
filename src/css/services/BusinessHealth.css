@@ -53,88 +53,91 @@ select {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+  margin-top: 8px;
 }
 
 .cardes {
-  margin: 8px 20px;
+  /* margin: 8px 20px; */
   display: flex;
-  width: 500px;
-  height: 180px;
+  width: 550px;
+  height: 210px;
   align-items: center;
   border-radius: 10px;
   box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25);
   transition: all 0.2s;
-  justify-content: flex-start;
-}
-.cards_sub {
-  margin: 0 20px;
 
-  width: 500px;
-  height: 90px;
-  display: flex;
-
-  border-radius: 10px;
-  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25);
-  transition: all 0.2s;
-  align-items: center;
-  justify-content: flex-start;
+  flex-direction: column;
 }
 
 .card__container {
   display: flex;
   flex-direction: column;
-  margin: 10px;
+  margin: 6px;
 }
 .cards_detail {
   display: flex;
   color: white;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  width: 100%;
   padding: 20px;
 }
 .cards_detail_sub {
   display: flex;
   color: white;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   padding: 10px 20px;
+  width: 100%;
 }
 .cards_detail p {
+  font-size: 23px;
+  display: flex;
+}
+.cards_detail h3 {
+  font-size: 28px;
+  display: flex;
+}
+.cards_detail i {
   font-size: 25px;
+  background-color: white;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  color: black;
+  margin-right: 10px;
 }
 .cards_detail_sub p {
-  font-size: 15px;
+  font-size: 18px;
+  letter-spacing: 2px;
+  text-align: left;
 }
 .cards_detail_sub h1 {
   font-size: 19px;
+  text-align: left;
 }
 
 .card-1s {
-  background: radial-gradient(#1fe4f5, #3fbafe);
-}
-.card-1_sub {
-  background: radial-gradient(#1fe4f5, #3fbafe);
+  background: #1464f4;
+  border: 2px solid #1b3f8b;
 }
 
 .card-2s {
-  background: radial-gradient(#fbc1cc, #fa99b2);
-}
-.card-2_sub {
-  background: radial-gradient(#fbc1cc, #fa99b2);
+  background: #ff1919;
+  border: 2px solid #cc0000;
 }
 
 .card-3s {
-  background: radial-gradient(#76b2fe, #b69efe);
-}
-.card-3_sub {
-  background: radial-gradient(#76b2fe, #b69efe);
+  background: #800080;
+  border: 2px solid #4d004d;
 }
 
 .card-4s {
-  background: radial-gradient(#60efbc, #58d5c9);
-}
-.card-4_sub {
-  background: radial-gradient(#60efbc, #58d5c9);
+  background: #008000;
+  border: 2px solid #004d00;
 }
 
 .card-5 {

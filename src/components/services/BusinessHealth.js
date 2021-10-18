@@ -150,13 +150,15 @@ function BusinessHealth() {
             <div class="cardes card-1s">
               <div className="cards_detail">
                 <h3>Total Sales </h3>
-                <p> </p>
+                <p>
+                  <i class="fas fa-rupee-sign"></i> 24,76,666.19{" "}
+                </p>
               </div>
-            </div>
-            <div class="cards_sub card-1_sub">
               <div className="cards_detail_sub">
-                <h1>Total Sales Unit</h1>
-                <p> </p>
+                <h1>
+                  Total Sales Unit <i class="fas fa-chevron-circle-right"></i>
+                </h1>
+                <p>3034</p>
               </div>
             </div>
           </div>
@@ -164,13 +166,15 @@ function BusinessHealth() {
             <div class="cardes card-2s">
               <div className="cards_detail">
                 <h3>Cancelled Invoice Amount</h3>
-                <p> </p>
+                <p>
+                  <i class="fas fa-rupee-sign"></i> 150606.02{" "}
+                </p>
               </div>
-            </div>
-            <div class="cards_sub card-2_sub">
               <div className="cards_detail_sub">
-                <h1>Total Units</h1>
-                <p> </p>
+                <h1>
+                  Total Units <i class="fas fa-chevron-circle-right"></i>
+                </h1>
+                <p>181</p>
               </div>
             </div>
           </div>
@@ -179,13 +183,15 @@ function BusinessHealth() {
               {" "}
               <div className="cards_detail">
                 <h3>Return Invoice Amount </h3>
-                <p> </p>
+                <p>
+                  <i class="fas fa-rupee-sign"></i> 2,12,484.00{" "}
+                </p>
               </div>
-            </div>
-            <div class="cards_sub card-3_sub">
               <div className="cards_detail_sub">
-                <h1>Total Units</h1>
-                <p> </p>
+                <h1>
+                  Total Units <i class="fas fa-chevron-circle-right"></i>
+                </h1>
+                <p>255 </p>
               </div>
             </div>
           </div>
@@ -194,13 +200,15 @@ function BusinessHealth() {
               {" "}
               <div className="cards_detail">
                 <h3>Net Sales </h3>
-                <p> </p>
+                <p>
+                  <i class="fas fa-rupee-sign"></i> 17,26,051.17
+                </p>
               </div>
-            </div>
-            <div class="cards_sub card-4_sub">
               <div className="cards_detail_sub">
                 <h1>Net Sales Unites</h1>
-                <p> </p>
+                <p>
+                  2,169 <i class="fas fa-chevron-circle-right"></i>
+                </p>
               </div>
             </div>
           </div>
