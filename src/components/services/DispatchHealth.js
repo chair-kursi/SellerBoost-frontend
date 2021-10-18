@@ -1,6 +1,58 @@
 import React from "react";
+import "../../css/services/DispatchHealth.css";
+import { makeStyles } from "@material-ui/core/styles";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Avatar,
+  Grid,
+  Typography,
+  TablePagination,
+  TableFooter,
+  TableSortLabel,
+  Checkbox,
+} from "@material-ui/core";
+
+const useStyles = makeStyles((theme) => ({
+  table: {
+    minWidth: 650,
+    marginTop: 30,
+  },
+  tableContainer: {
+    borderRadius: 15,
+    margin: "10px 10px",
+    maxWidth: 2000,
+  },
+  tableHeaderCell: {
+    fontWeight: "bold",
+    backgroundColor: theme.palette.success.dark,
+    color: theme.palette.getContrastText(theme.palette.primary.dark),
+    backgroundColor: "#11493e",
+    padding: "16px",
+  },
+  tableRows: {
+    padding: "12px",
+  },
+  status: {
+    fontWeight: "bold",
+    fontSize: "0.75rem",
+    color: "white",
+    backgroundColor: "grey",
+    borderRadius: 8,
+    padding: "3px 10px",
+    display: "inline-block",
+    width: 97,
+    textAlign: "center",
+  },
+}));
 
 function DispatchHealth() {
+  const classes = useStyles();
   return (
     <div className="Dashboard__table">
       <input type="checkbox" id="nav-toggle" />
@@ -125,8 +177,373 @@ function DispatchHealth() {
             </div>
           </div>
         </header>
+        <div className="Dispatch_container">
+          <div className="header123">
+            <div className="CutOff">
+              <h3>CutOff</h3> <i class="fas fa-stopwatch"></i>
+              <p>10:00 AM</p>
+            </div>
+            <div className="Priority_toggle">
+              <h3>Priority Toggle</h3>
 
-        <h1 className="titles">hello tere</h1>
+              <div class="button r" id="button-6">
+                <input type="checkbox" class="checkbox" />
+                <div class="knobs"></div>
+                <div class="layer"></div>
+              </div>
+            </div>
+          </div>
+          <div className="tles">
+            <TableContainer
+              component={Paper}
+              className={classes.tableContainer}
+            >
+              <Table className={classes.table} aria-label="simple table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell className={classes.tableHeaderCell}>
+                      Channel
+                    </TableCell>
+
+                    <TableCell className={classes.tableHeaderCell}>
+                      Created
+                    </TableCell>
+                    <TableCell className={classes.tableHeaderCell}>
+                      Processing
+                    </TableCell>
+                    <TableCell className={classes.tableHeaderCell}>
+                      Dispatch
+                    </TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  <TableRow>
+                    <TableCell className={classes.tableRows}>
+                      Amazon_IN
+                    </TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>5</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className={classes.tableRows}>
+                      CLOUDTAIL_NEW
+                    </TableCell>
+                    <TableCell className={classes.tableRows}>1</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className={classes.tableRows}>
+                      FIRSTCRY_MARKET_PLACE
+                    </TableCell>
+                    <TableCell className={classes.tableRows}>4</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>4</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className={classes.tableRows}>
+                      MYNTRAPPMP
+                    </TableCell>
+                    <TableCell className={classes.tableRows}>99</TableCell>
+                    <TableCell className={classes.tableRows}>33</TableCell>
+                    <TableCell className={classes.tableRows}>110</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className={classes.tableRows}>
+                      NYKAA_FASHION
+                    </TableCell>
+                    <TableCell className={classes.tableRows}>8</TableCell>
+                    <TableCell className={classes.tableRows}>1</TableCell>
+                    <TableCell className={classes.tableRows}>9</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </div>
+
+          <div className="detail_container">
+            <div className="detail_num1">
+              <h3>Still in Created State</h3>
+              <div className="detail_filter">
+                <h5>Apply Filter</h5>
+                <label class="switch">
+                  <input type="checkbox" />
+                  <div>
+                    <span></span>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <div className="detail_num2">
+              <h3>Priority Order not Dispatch Yet</h3>
+              <div className="detail_filter">
+                <h5>Apply Filter</h5>
+                <label class="switch">
+                  <input type="checkbox" />
+                  <div>
+                    <span></span>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <div className="detail_num3">
+              <h3>SLA Breach (TAT =today)</h3>
+              <div className="detail_filter">
+                <h5>Apply Filter</h5>
+                <label class="switch">
+                  <input type="checkbox" />
+                  <div>
+                    <span></span>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <div className="detail_num4">
+              <h3>Show All</h3>
+              <div className="detail_filter">
+                <h5>Apply Filter</h5>
+                <label class="switch">
+                  <input type="checkbox" />
+                  <div>
+                    <span></span>
+                  </div>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div className="tles">
+            <TableContainer
+              component={Paper}
+              className={classes.tableContainer}
+            >
+              <Table className={classes.table} aria-label="simple table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell className={classes.tableHeaderCell}>
+                      Channel
+                    </TableCell>
+
+                    <TableCell className={classes.tableHeaderCell}>
+                      Picklist
+                    </TableCell>
+                    <TableCell className={classes.tableHeaderCell}>
+                      StyleCode
+                    </TableCell>
+                    <TableCell className={classes.tableHeaderCell}>
+                      02-03Y
+                    </TableCell>
+                    <TableCell className={classes.tableHeaderCell}>
+                      03-04Y
+                    </TableCell>
+                    <TableCell className={classes.tableHeaderCell}>
+                      04-05Y
+                    </TableCell>
+
+                    <TableCell className={classes.tableHeaderCell}>
+                      06-07Y
+                    </TableCell>
+                    <TableCell className={classes.tableHeaderCell}>
+                      07-08Y
+                    </TableCell>
+                    <TableCell className={classes.tableHeaderCell}>
+                      08-09Y
+                    </TableCell>
+                    <TableCell className={classes.tableHeaderCell}>
+                      09-10Y
+                    </TableCell>
+                    <TableCell className={classes.tableHeaderCell}>
+                      11-12Y
+                    </TableCell>
+                    <TableCell className={classes.tableHeaderCell}>
+                      13-14Y
+                    </TableCell>
+                    <TableCell className={classes.tableHeaderCell}>
+                      15-16Y
+                    </TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  <TableRow>
+                    <TableCell className={classes.tableRows}>
+                      Amazon_IN
+                    </TableCell>
+                    <TableCell className={classes.tableRows}>PK1507</TableCell>
+                    <TableCell className={classes.tableRows}>
+                      SB-000172
+                    </TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className={classes.tableRows}>
+                      Amazon_IN
+                    </TableCell>
+                    <TableCell className={classes.tableRows}>PK1507</TableCell>
+                    <TableCell className={classes.tableRows}>
+                      SB-000172
+                    </TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className={classes.tableRows}>
+                      Amazon_IN
+                    </TableCell>
+                    <TableCell className={classes.tableRows}>PK1507</TableCell>
+                    <TableCell className={classes.tableRows}>
+                      SB-000172
+                    </TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className={classes.tableRows}>
+                      Amazon_IN
+                    </TableCell>
+                    <TableCell className={classes.tableRows}>PK1507</TableCell>
+                    <TableCell className={classes.tableRows}>
+                      SB-000172
+                    </TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className={classes.tableRows}>
+                      Amazon_IN
+                    </TableCell>
+                    <TableCell className={classes.tableRows}>PK1507</TableCell>
+                    <TableCell className={classes.tableRows}>
+                      SB-000172
+                    </TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className={classes.tableRows}>
+                      Amazon_IN
+                    </TableCell>
+                    <TableCell className={classes.tableRows}>PK1507</TableCell>
+                    <TableCell className={classes.tableRows}>
+                      SB-000172
+                    </TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className={classes.tableRows}>
+                      Amazon_IN
+                    </TableCell>
+                    <TableCell className={classes.tableRows}>PK1507</TableCell>
+                    <TableCell className={classes.tableRows}>
+                      SB-000172
+                    </TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className={classes.tableRows}>
+                      Amazon_IN
+                    </TableCell>
+                    <TableCell className={classes.tableRows}>PK1507</TableCell>
+                    <TableCell className={classes.tableRows}>
+                      SB-000172
+                    </TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className={classes.tableRows}>
+                      Amazon_IN
+                    </TableCell>
+                    <TableCell className={classes.tableRows}>PK1507</TableCell>
+                    <TableCell className={classes.tableRows}>
+                      SB-000172
+                    </TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </div>
+        </div>
       </div>
     </div>
   );

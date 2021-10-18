@@ -481,7 +481,7 @@ function Dashboard() {
                     <>
                       <TableRow
                         key={row.styleCode}
-                        onClick={() => scroll.scrollTo(290)}
+                        onClick={() => scroll.scrollTo(500)}
                       >
                         <TableCell
                           className={classes.tableHeaderCell4}
@@ -495,6 +495,7 @@ function Dashboard() {
                             {row.styleCode}
                           </Typography>
                         </TableCell>
+
                         <TableCell>{row.status}</TableCell>
                         <TableCell>
                           <Typography
@@ -538,6 +539,7 @@ function Dashboard() {
                           </Typography>
                         </TableCell>
                       </TableRow>
+
                       {showSkuTraffic === page * rowsPerPage + idx ? (
                         <TableRow>
                           <TableCell colSpan={6}>
@@ -547,7 +549,7 @@ function Dashboard() {
                                 aria-label="simple table"
                               >
                                 <TableHead>
-                                  <TableRow>
+                                  <TableRow id="subrow">
                                     <TableCell
                                       className={classes.tableHeaderCell2}
                                     >
