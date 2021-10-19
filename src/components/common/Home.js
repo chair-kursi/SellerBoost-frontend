@@ -175,7 +175,7 @@ export default function Home() {
                 <div>
                   <div className="card__desc">
                     <div className="desc__numbers1">
-                      <h1>826</h1>
+                      <h1>249</h1>
                     </div>
                   </div>
 
@@ -189,7 +189,7 @@ export default function Home() {
                 <div>
                   <div className="card__desc">
                     <div className="desc__numbers4">
-                      <h1>16</h1>
+                      <h1>4</h1>
                     </div>
                   </div>
 
@@ -204,7 +204,7 @@ export default function Home() {
                 <div>
                   <div className="card__desc">
                     <div className="desc__numbers2">
-                      <h1>11</h1>
+                      <h1>2</h1>
                     </div>
                   </div>
 
@@ -219,7 +219,7 @@ export default function Home() {
                 <div>
                   <div className="card__desc">
                     <div className="desc__numbers3">
-                      <h1>5</h1>
+                      <h1>0</h1>
                     </div>
                   </div>
 
@@ -234,7 +234,7 @@ export default function Home() {
                 <div>
                   <div className="card__desc">
                     <div className="desc__numbers5">
-                      <h1>24</h1>
+                      <h1>8</h1>
                     </div>
                   </div>
 
@@ -275,7 +275,7 @@ export default function Home() {
                 <div>
                   <div className="card__desce">
                     <div className="desc__numbers4e">
-                      <h1>1</h1>
+                      <h1>3</h1>
                     </div>
                   </div>
 
@@ -295,7 +295,7 @@ export default function Home() {
                 <div>
                   <div className="card__desce">
                     <div className="desc__numbers2e">
-                      <h1>0</h1>
+                      <h1>1</h1>
                     </div>
                   </div>
 
