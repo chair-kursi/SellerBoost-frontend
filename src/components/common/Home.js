@@ -284,7 +284,7 @@ export default function Home() {
                 <div className="stylos">
                   <span>
                     <img
-                      src="https://lh3.googleusercontent.com/proxy/kmzsT7dlxAdvKI1cw7_Hk5_-hujfTMvX7jGXxwp2iTC2Bs2WsboPpV1wM4rmFayglKVxbYc6rZtz_mF8Ko_rCDLPCLk-yoPcjExJTUh_1QsZp8XNPdfDfErT"
+                      src="https://www.hindi.aamtech.net/wp-content/uploads/2017/04/Flipkart-Logo.png"
                       alt=""
                     />
                   </span>
