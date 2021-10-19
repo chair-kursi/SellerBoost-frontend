@@ -1,6 +1,6 @@
-.container123 {
+/* .container123 {
   margin-top: 90px;
-}
+} */
 .picklist {
   width: 100%;
 
@@ -59,7 +59,7 @@ select {
 .cardes {
   /* margin: 8px 20px; */
   display: flex;
-  width: 550px;
+  width: 500px;
   height: 210px;
   align-items: center;
   border-radius: 10px;

@@ -125,6 +125,13 @@ function BusinessHealth() {
             </div>
           </div>
         </header>
+        <div class="headingss">
+          <h1 class="heading__title">Business Health</h1>
+          <img
+            src="https://cdn4.iconfinder.com/data/icons/under-construction/512/coming_soon-256.png"
+            alt=""
+          />
+        </div>
         <div className="container123">
           <div className="picklist">
             <div className="picklistrow">
