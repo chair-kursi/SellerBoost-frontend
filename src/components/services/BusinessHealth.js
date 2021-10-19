@@ -10,7 +10,7 @@ function BusinessHealth() {
           <h1>
             {" "}
             <span className="fab fa-asymmetrik"> </span>{" "}
-            <span>SuperCommerce</span>
+            <span>SuprCommerce</span>
           </h1>
         </div>
 
@@ -107,7 +107,7 @@ function BusinessHealth() {
             <label for="nav-toggle">
               <span class="fas fa-bars"></span>
             </label>
-            Buiness Health
+            Business Health
           </h2>
 
           <div className="search-wrapper">
@@ -215,6 +215,42 @@ function BusinessHealth() {
                 <h1>Net Sales Unites</h1>
                 <p>
                   2,169 <i class="fas fa-chevron-circle-right"></i>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="card__container">
+            <div class="cardes card-5s">
+              {" "}
+              <div className="cards_detail">
+                <h3>Net Tax </h3>
+                <p>
+                  <i class="fas fa-rupee-sign"></i> 12,26,051.17
+                </p>
+              </div>
+              <div className="cards_detail_sub">
+                <h1>Net Tax Unites</h1>
+                <p>
+                  1,169 <i class="fas fa-chevron-circle-right"></i>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="card__container">
+            <div class="cardes card-6s">
+              {" "}
+              <div className="cards_detail">
+                <h3>Loss Making SKUs </h3>
+                <p>
+                  <i class="fas fa-rupee-sign"></i> 10,26,051.17
+                </p>
+              </div>
+              <div className="cards_detail_sub">
+                <h1>Loss Making SKUs</h1>
+                <p>
+                  1,069 <i class="fas fa-chevron-circle-right"></i>
                 </p>
               </div>
             </div>

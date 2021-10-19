@@ -41,7 +41,7 @@ export default function Home() {
           <h1>
             {" "}
             <span className="fab fa-asymmetrik"> </span>{" "}
-            <span>SuperCommerce</span>
+            <span>SuprCommerce</span>
           </h1>
         </div>
 
@@ -167,14 +167,15 @@ export default function Home() {
           </h1>
           <div className="homeCard_container">
             <h1 className="homeCard__title">
-              DashBoard <span className="fas fa-tachometer-alt"></span>
+              Inventory DashBoard{" "}
+              <span className="fas fa-tachometer-alt"></span>
             </h1>
             <div className="cardssss">
               <div className="card-singlee1">
                 <div>
                   <div className="card__desc">
                     <div className="desc__numbers1">
-                      <h1>52</h1>
+                      <h1>826</h1>
                     </div>
                   </div>
 
@@ -188,7 +189,7 @@ export default function Home() {
                 <div>
                   <div className="card__desc">
                     <div className="desc__numbers4">
-                      <h1>10</h1>
+                      <h1>16</h1>
                     </div>
                   </div>
 
@@ -203,7 +204,7 @@ export default function Home() {
                 <div>
                   <div className="card__desc">
                     <div className="desc__numbers2">
-                      <h1>14</h1>
+                      <h1>11</h1>
                     </div>
                   </div>
 
@@ -218,7 +219,7 @@ export default function Home() {
                 <div>
                   <div className="card__desc">
                     <div className="desc__numbers3">
-                      <h1>42</h1>
+                      <h1>5</h1>
                     </div>
                   </div>
 
@@ -233,7 +234,7 @@ export default function Home() {
                 <div>
                   <div className="card__desc">
                     <div className="desc__numbers5">
-                      <h1>23</h1>
+                      <h1>24</h1>
                     </div>
                   </div>
 
@@ -255,7 +256,7 @@ export default function Home() {
                 <div>
                   <div className="card__desce">
                     <div className="desc__numbers1e">
-                      <h1>52</h1>
+                      <h1>0</h1>
                     </div>
                   </div>
 
@@ -274,7 +275,7 @@ export default function Home() {
                 <div>
                   <div className="card__desce">
                     <div className="desc__numbers4e">
-                      <h1>10</h1>
+                      <h1>1</h1>
                     </div>
                   </div>
 
@@ -294,7 +295,7 @@ export default function Home() {
                 <div>
                   <div className="card__desce">
                     <div className="desc__numbers2e">
-                      <h1>14</h1>
+                      <h1>0</h1>
                     </div>
                   </div>
 
@@ -314,7 +315,7 @@ export default function Home() {
                 <div>
                   <div className="card__desce">
                     <div className="desc__numbers3e">
-                      <h1>42</h1>
+                      <h1>0</h1>
                     </div>
                   </div>
 
@@ -407,8 +408,22 @@ export default function Home() {
           </div>
 
           <div className="homeCard_container">
+            <h1 className="homeCard__title11">
+              Dispatch Health <span className="fas fa-shipping-fast"></span>
+            </h1>
+            <div className="dispatch__container">
+              <div className="detail_num33">
+                <h3>SLA Breach (TAT =today)</h3>
+              </div>
+              <div className="detail_num22">
+                <h3>Priority Order not Dispatch Yet</h3>
+              </div>
+            </div>
+          </div>
+
+          <div className="homeCard_container">
             <h1 className="homeCard__title1">
-              SKU Error <span className="fas fa-exclamation-triangle"></span>
+              Setup Error <span className="fas fa-exclamation-triangle"></span>
             </h1>
             <div className="cardssss">
               <div className="SKUcontainer">

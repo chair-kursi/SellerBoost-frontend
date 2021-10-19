@@ -53,6 +53,7 @@ const useStyles = makeStyles((theme) => ({
 
 function DispatchHealth() {
   const classes = useStyles();
+  const [toggle, setToggle] = useState(false);
   return (
     <div className="Dashboard__table">
       <input type="checkbox" id="nav-toggle" />
@@ -62,7 +63,7 @@ function DispatchHealth() {
           <h1>
             {" "}
             <span className="fab fa-asymmetrik"> </span>{" "}
-            <span>SuperCommerce</span>
+            <span>SuprCommerce</span>
           </h1>
         </div>
 
@@ -275,7 +276,7 @@ function DispatchHealth() {
               <div className="detail_filter">
                 <h5>Apply Filter</h5>
                 <label class="switch">
-                  <input type="checkbox" />
+                  <input type="radio" name="toggle" />
                   <div>
                     <span></span>
                   </div>
@@ -288,7 +289,7 @@ function DispatchHealth() {
               <div className="detail_filter">
                 <h5>Apply Filter</h5>
                 <label class="switch">
-                  <input type="checkbox" />
+                  <input type="radio" name="toggle" />
                   <div>
                     <span></span>
                   </div>
@@ -301,7 +302,7 @@ function DispatchHealth() {
               <div className="detail_filter">
                 <h5>Apply Filter</h5>
                 <label class="switch">
-                  <input type="checkbox" />
+                  <input type="radio" name="toggle" />
                   <div>
                     <span></span>
                   </div>
@@ -314,7 +315,7 @@ function DispatchHealth() {
               <div className="detail_filter">
                 <h5>Apply Filter</h5>
                 <label class="switch">
-                  <input type="checkbox" />
+                  <input type="radio" name="toggle" />
                   <div>
                     <span></span>
                   </div>
@@ -392,7 +393,7 @@ function DispatchHealth() {
                     <TableCell className={classes.tableRows}>0</TableCell>
                     <TableCell className={classes.tableRows}>0</TableCell>
                     <TableCell className={classes.tableRows}>0</TableCell>
-                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>1</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell className={classes.tableRows}>
@@ -400,32 +401,13 @@ function DispatchHealth() {
                     </TableCell>
                     <TableCell className={classes.tableRows}>PK1507</TableCell>
                     <TableCell className={classes.tableRows}>
-                      SB-000172
+                      SB-000127
                     </TableCell>
                     <TableCell className={classes.tableRows}>0</TableCell>
                     <TableCell className={classes.tableRows}>0</TableCell>
                     <TableCell className={classes.tableRows}>0</TableCell>
                     <TableCell className={classes.tableRows}>0</TableCell>
-                    <TableCell className={classes.tableRows}>0</TableCell>
-                    <TableCell className={classes.tableRows}>0</TableCell>
-                    <TableCell className={classes.tableRows}>0</TableCell>
-                    <TableCell className={classes.tableRows}>0</TableCell>
-                    <TableCell className={classes.tableRows}>0</TableCell>
-                    <TableCell className={classes.tableRows}>0</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell className={classes.tableRows}>
-                      Amazon_IN
-                    </TableCell>
-                    <TableCell className={classes.tableRows}>PK1507</TableCell>
-                    <TableCell className={classes.tableRows}>
-                      SB-000172
-                    </TableCell>
-                    <TableCell className={classes.tableRows}>0</TableCell>
-                    <TableCell className={classes.tableRows}>0</TableCell>
-                    <TableCell className={classes.tableRows}>0</TableCell>
-                    <TableCell className={classes.tableRows}>0</TableCell>
-                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>1</TableCell>
                     <TableCell className={classes.tableRows}>0</TableCell>
                     <TableCell className={classes.tableRows}>0</TableCell>
                     <TableCell className={classes.tableRows}>0</TableCell>
@@ -438,9 +420,9 @@ function DispatchHealth() {
                     </TableCell>
                     <TableCell className={classes.tableRows}>PK1507</TableCell>
                     <TableCell className={classes.tableRows}>
-                      SB-000172
+                      SB-000332
                     </TableCell>
-                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>1</TableCell>
                     <TableCell className={classes.tableRows}>0</TableCell>
                     <TableCell className={classes.tableRows}>0</TableCell>
                     <TableCell className={classes.tableRows}>0</TableCell>
@@ -453,16 +435,35 @@ function DispatchHealth() {
                   </TableRow>
                   <TableRow>
                     <TableCell className={classes.tableRows}>
-                      Amazon_IN
+                      FIRSTCRY
                     </TableCell>
-                    <TableCell className={classes.tableRows}>PK1507</TableCell>
+                    <TableCell className={classes.tableRows}>FI-NA</TableCell>
                     <TableCell className={classes.tableRows}>
-                      SB-000172
+                      SB-0000032
                     </TableCell>
                     <TableCell className={classes.tableRows}>0</TableCell>
                     <TableCell className={classes.tableRows}>0</TableCell>
                     <TableCell className={classes.tableRows}>0</TableCell>
                     <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>1</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className={classes.tableRows}>
+                      FIRSTCRY
+                    </TableCell>
+                    <TableCell className={classes.tableRows}>FI-NA</TableCell>
+                    <TableCell className={classes.tableRows}>
+                      SB-000179
+                    </TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>1</TableCell>
                     <TableCell className={classes.tableRows}>0</TableCell>
                     <TableCell className={classes.tableRows}>0</TableCell>
                     <TableCell className={classes.tableRows}>0</TableCell>
@@ -472,11 +473,11 @@ function DispatchHealth() {
                   </TableRow>
                   <TableRow>
                     <TableCell className={classes.tableRows}>
-                      Amazon_IN
+                      FIRSTCRY
                     </TableCell>
-                    <TableCell className={classes.tableRows}>PK1507</TableCell>
+                    <TableCell className={classes.tableRows}>FI-NA</TableCell>
                     <TableCell className={classes.tableRows}>
-                      SB-000172
+                      SB-000388
                     </TableCell>
                     <TableCell className={classes.tableRows}>0</TableCell>
                     <TableCell className={classes.tableRows}>0</TableCell>
@@ -485,63 +486,63 @@ function DispatchHealth() {
                     <TableCell className={classes.tableRows}>0</TableCell>
                     <TableCell className={classes.tableRows}>0</TableCell>
                     <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>1</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className={classes.tableRows}>
+                      MYNTRAPPMP
+                    </TableCell>
+                    <TableCell className={classes.tableRows}>MY-NA</TableCell>
+                    <TableCell className={classes.tableRows}>
+                      SB-000078
+                    </TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>1</TableCell>
                     <TableCell className={classes.tableRows}>0</TableCell>
                     <TableCell className={classes.tableRows}>0</TableCell>
                     <TableCell className={classes.tableRows}>0</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell className={classes.tableRows}>
-                      Amazon_IN
+                      MYNTRAPPMP
                     </TableCell>
-                    <TableCell className={classes.tableRows}>PK1507</TableCell>
+                    <TableCell className={classes.tableRows}>MY-NA</TableCell>
                     <TableCell className={classes.tableRows}>
-                      SB-000172
+                      SB-000127
                     </TableCell>
                     <TableCell className={classes.tableRows}>0</TableCell>
                     <TableCell className={classes.tableRows}>0</TableCell>
                     <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>2</TableCell>
                     <TableCell className={classes.tableRows}>0</TableCell>
                     <TableCell className={classes.tableRows}>0</TableCell>
-                    <TableCell className={classes.tableRows}>0</TableCell>
-                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>2</TableCell>
                     <TableCell className={classes.tableRows}>0</TableCell>
                     <TableCell className={classes.tableRows}>0</TableCell>
                     <TableCell className={classes.tableRows}>0</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell className={classes.tableRows}>
-                      Amazon_IN
+                      MYNTRAPPMP
                     </TableCell>
-                    <TableCell className={classes.tableRows}>PK1507</TableCell>
+                    <TableCell className={classes.tableRows}>MY-NA</TableCell>
                     <TableCell className={classes.tableRows}>
                       SB-000172
                     </TableCell>
                     <TableCell className={classes.tableRows}>0</TableCell>
                     <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>1</TableCell>
                     <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>1</TableCell>
                     <TableCell className={classes.tableRows}>0</TableCell>
-                    <TableCell className={classes.tableRows}>0</TableCell>
-                    <TableCell className={classes.tableRows}>0</TableCell>
-                    <TableCell className={classes.tableRows}>0</TableCell>
-                    <TableCell className={classes.tableRows}>0</TableCell>
-                    <TableCell className={classes.tableRows}>0</TableCell>
-                    <TableCell className={classes.tableRows}>0</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell className={classes.tableRows}>
-                      Amazon_IN
-                    </TableCell>
-                    <TableCell className={classes.tableRows}>PK1507</TableCell>
-                    <TableCell className={classes.tableRows}>
-                      SB-000172
-                    </TableCell>
-                    <TableCell className={classes.tableRows}>0</TableCell>
-                    <TableCell className={classes.tableRows}>0</TableCell>
-                    <TableCell className={classes.tableRows}>0</TableCell>
-                    <TableCell className={classes.tableRows}>0</TableCell>
-                    <TableCell className={classes.tableRows}>0</TableCell>
-                    <TableCell className={classes.tableRows}>0</TableCell>
-                    <TableCell className={classes.tableRows}>0</TableCell>
+                    <TableCell className={classes.tableRows}>1</TableCell>
                     <TableCell className={classes.tableRows}>0</TableCell>
                     <TableCell className={classes.tableRows}>0</TableCell>
                     <TableCell className={classes.tableRows}>0</TableCell>

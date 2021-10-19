@@ -11,7 +11,7 @@ function MarketPlaceReconciliation() {
           <h1>
             {" "}
             <span className="fab fa-asymmetrik"> </span>{" "}
-            <span>SuperCommerce</span>
+            <span>SuprCommerce</span>
           </h1>
         </div>
 

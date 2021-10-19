@@ -2,9 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../../css/services/Dashboard.css";
 import { makeStyles } from "@material-ui/core/styles";
 import * as Scroll from "react-scroll";
-import {
-  animateScroll as scroll
-} from "react-scroll";
+import { animateScroll as scroll } from "react-scroll";
 
 import axios from "axios";
 import {
@@ -204,7 +202,7 @@ function Dashboard() {
           <h1>
             {" "}
             <span className="fab fa-asymmetrik"> </span>{" "}
-            <span>SuperCommerce</span>
+            <span>SuprCommerce</span>
           </h1>
         </div>
 
@@ -468,7 +466,7 @@ function Dashboard() {
                     <>
                       <TableRow
                         key={row.styleCode}
-                        onClick={() => scroll.scrollTo(500)}
+                        onClick={() => scroll.scrollTo(280)}
                       >
                         <TableCell
                           className={classes.tableHeaderCell4}
@@ -478,7 +476,10 @@ function Dashboard() {
                             else setShowSkuTraffic(-1);
                           }}
                         >
-                          <Typography className={classes.name} style={{ cursor: "pointer" }}>
+                          <Typography
+                            className={classes.name}
+                            style={{ cursor: "pointer" }}
+                          >
                             {row.styleCode}
                           </Typography>
                         </TableCell>
@@ -586,7 +587,11 @@ function Dashboard() {
                                       <IconButton
                                         aria-label="More-sku"
                                         style={{ color: "#605600" }}
-                                        aria-owns={collapseStatusSku ? "long-menu-sku" : null}
+                                        aria-owns={
+                                          collapseStatusSku
+                                            ? "long-menu-sku"
+                                            : null
+                                        }
                                         aria-haspopup="true"
                                         onClick={handleClickSku}
                                       >
@@ -693,7 +698,9 @@ function Dashboard() {
                                             textAlign: "center",
                                           }}
                                         >
-                                          {skuFilter === skuOptions[1] ? skuRow.suggestedInventory1 : skuRow.suggestedSmoothInventory1}
+                                          {skuFilter === skuOptions[1]
+                                            ? skuRow.suggestedInventory1
+                                            : skuRow.suggestedSmoothInventory1}
                                         </TableCell>
                                         <TableCell
                                           className={classes.tableCell2}
@@ -701,7 +708,9 @@ function Dashboard() {
                                             textAlign: "center",
                                           }}
                                         >
-                                          {skuFilter === skuOptions[1] ? skuRow.suggestedInventory2 : skuRow.suggestedSmoothInventory2}
+                                          {skuFilter === skuOptions[1]
+                                            ? skuRow.suggestedInventory2
+                                            : skuRow.suggestedSmoothInventory2}
                                         </TableCell>
                                         <TableCell
                                           className={classes.tableCell2}
@@ -709,9 +718,13 @@ function Dashboard() {
                                             textAlign: "center",
                                           }}
                                         >
-                                          {skuFilter === skuOptions[1] ? skuRow.suggestedInventory3 : skuRow.suggestedSmoothInventory3}
+                                          {skuFilter === skuOptions[1]
+                                            ? skuRow.suggestedInventory3
+                                            : skuRow.suggestedSmoothInventory3}
                                         </TableCell>
-                                        <TableCell className={classes.tableCell2} ></TableCell>
+                                        <TableCell
+                                          className={classes.tableCell2}
+                                        ></TableCell>
                                       </TableRow>
                                     );
                                   })}
