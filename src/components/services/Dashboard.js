@@ -3,13 +3,7 @@ import "../../css/services/Dashboard.css";
 import { makeStyles } from "@material-ui/core/styles";
 import * as Scroll from "react-scroll";
 import {
-  Link,
-  Button,
-  Element,
-  Events,
-  animateScroll as scroll,
-  scrollSpy,
-  scroller,
+  animateScroll as scroll
 } from "react-scroll";
 
 import axios from "axios";
@@ -27,11 +21,11 @@ import {
   MenuItem,
   Menu,
   IconButton,
-  TableSortLabel,
 } from "@material-ui/core";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 
 const options = ["All", "Live", "Launching", "Disabled"];
+const skuOptions = ["Smooth Inventory", "Raw Inventory"];
 const useStyles = makeStyles((theme) => ({
   table: {
     minWidth: 650,
@@ -40,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 15,
     margin: "0 auto",
     maxWidth: 1050,
-    cursor: "pointer",
   },
   tableHeaderCell: {
     fontWeight: "bold",
@@ -91,6 +84,8 @@ function Dashboard() {
   const [skuTraffic, setSkuTraffic] = useState([]);
   const [collapseStatus, setCollapseStatus] = useState(0);
   const [statusFilter, setStatusFilter] = useState("All");
+  const [skuFilter, setSkuFilter] = useState("Smooth Inventory");
+  const [collapseStatusSku, setCollapseStatusSku] = useState(false);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -110,35 +105,14 @@ function Dashboard() {
     });
 
     setDashboard(dashboard.data.data);
-    let dashboardArr = dashboard.data.data;
+    // setDashboardSummary(dashboard.data.summary.dashboard);
 
-    for (
-      let i = 0;
-      i <
-      dashboardArr.filter((row) => {
-        return row.status === statusFilter || statusFilter === "All";
-      }).length;
-      i++
-    ) {
-      let color = dashboardArr[i].trafficActual,
-        prevColorCount = trafficColorCount.get(color);
-      if (!prevColorCount) prevColorCount = 0;
-
-      trafficColorCount.set(color, prevColorCount + 1);
-    }
-    const defaultTrafficColors = [
-      "SOLDOUT",
-      "RED",
-      "ORANGE",
-      "GREEN",
-      "OVERGREEN",
-    ];
-
-    setSoldoutColor(trafficColorCount.get(defaultTrafficColors[0]) || 0);
-    setRedColor(trafficColorCount.get(defaultTrafficColors[1]) || 0);
-    setOrangeColor(trafficColorCount.get(defaultTrafficColors[2]) || 0);
-    setGreenColor(trafficColorCount.get(defaultTrafficColors[3]) || 0);
-    setOverGreenColor(trafficColorCount.get(defaultTrafficColors[4]) || 0);
+    //setting colors
+    setSoldoutColor(dashboard.data.summary.dashboard["soldout"]);
+    setRedColor(dashboard.data.summary.dashboard["red"]);
+    setOrangeColor(dashboard.data.summary.dashboard["orange"]);
+    setGreenColor(dashboard.data.summary.dashboard["green"]);
+    setOverGreenColor(dashboard.data.summary.dashboard["overgreen"]);
   };
 
   const setColorCount = (statusFilter) => {
@@ -193,6 +167,19 @@ function Dashboard() {
       setColorCount(e.target.textContent);
     }
     setCollapseStatus(null);
+  };
+
+  const handleClickSku = (event) => {
+    setCollapseStatusSku(event.currentTarget);
+  };
+
+  const handleCloseSku = (e) => {
+    if (!e.target.textContent) {
+      setSkuFilter(skuFilter);
+    } else {
+      setSkuFilter(e.target.textContent);
+    }
+    setCollapseStatusSku(null);
   };
 
   const ITEM_HEIGHT = 48;
@@ -491,7 +478,7 @@ function Dashboard() {
                             else setShowSkuTraffic(-1);
                           }}
                         >
-                          <Typography className={classes.name}>
+                          <Typography className={classes.name} style={{ cursor: "pointer" }}>
                             {row.styleCode}
                           </Typography>
                         </TableCell>
@@ -593,6 +580,42 @@ function Dashboard() {
                                       Recommended Inventory
                                       <br /> (90 Days)
                                     </TableCell>
+                                    <TableCell
+                                      className={classes.tableHeaderCell2}
+                                    >
+                                      <IconButton
+                                        aria-label="More-sku"
+                                        style={{ color: "#605600" }}
+                                        aria-owns={collapseStatusSku ? "long-menu-sku" : null}
+                                        aria-haspopup="true"
+                                        onClick={handleClickSku}
+                                      >
+                                        <MoreVertIcon />
+                                      </IconButton>
+                                      <Menu
+                                        id="long-menu-sku"
+                                        anchorEl={collapseStatusSku}
+                                        open={collapseStatusSku}
+                                        onClose={handleCloseSku}
+                                        PaperProps={{
+                                          style: {
+                                            maxHeight: ITEM_HEIGHT * 4.5,
+                                            width: 200,
+                                          },
+                                        }}
+                                      >
+                                        {skuOptions.map((option) => (
+                                          <MenuItem
+                                            key={option}
+                                            value={option}
+                                            selected={option === skuFilter}
+                                            onClick={handleCloseSku}
+                                          >
+                                            {option}
+                                          </MenuItem>
+                                        ))}
+                                      </Menu>
+                                    </TableCell>
                                   </TableRow>
                                 </TableHead>
                                 {skuTraffic
@@ -670,7 +693,7 @@ function Dashboard() {
                                             textAlign: "center",
                                           }}
                                         >
-                                          {skuRow.suggestedInventory1}
+                                          {skuFilter === skuOptions[1] ? skuRow.suggestedInventory1 : skuRow.suggestedSmoothInventory1}
                                         </TableCell>
                                         <TableCell
                                           className={classes.tableCell2}
@@ -678,7 +701,7 @@ function Dashboard() {
                                             textAlign: "center",
                                           }}
                                         >
-                                          {skuRow.suggestedInventory2}
+                                          {skuFilter === skuOptions[1] ? skuRow.suggestedInventory2 : skuRow.suggestedSmoothInventory2}
                                         </TableCell>
                                         <TableCell
                                           className={classes.tableCell2}
@@ -686,8 +709,9 @@ function Dashboard() {
                                             textAlign: "center",
                                           }}
                                         >
-                                          {skuRow.suggestedInventory3}
+                                          {skuFilter === skuOptions[1] ? skuRow.suggestedInventory3 : skuRow.suggestedSmoothInventory3}
                                         </TableCell>
+                                        <TableCell className={classes.tableCell2} ></TableCell>
                                       </TableRow>
                                     );
                                   })}
