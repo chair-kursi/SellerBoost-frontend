@@ -81,7 +81,7 @@ function Dashboard() {
   const [showSkuTraffic, setShowSkuTraffic] = useState(-1);
   const [skuTraffic, setSkuTraffic] = useState([]);
   const [collapseStatus, setCollapseStatus] = useState(0);
-  const [statusFilter, setStatusFilter] = useState("All");
+  const [statusFilter, setStatusFilter] = useState("Live");
   const [skuFilter, setSkuFilter] = useState("Smooth Inventory");
   const [collapseStatusSku, setCollapseStatusSku] = useState(false);
 
@@ -103,14 +103,32 @@ function Dashboard() {
     });
 
     setDashboard(dashboard.data.data);
-    // setDashboardSummary(dashboard.data.summary.dashboard);
-
     //setting colors
-    setSoldoutColor(dashboard.data.summary.dashboard["soldout"]);
-    setRedColor(dashboard.data.summary.dashboard["red"]);
-    setOrangeColor(dashboard.data.summary.dashboard["orange"]);
-    setGreenColor(dashboard.data.summary.dashboard["green"]);
-    setOverGreenColor(dashboard.data.summary.dashboard["overgreen"]);
+    setSoldoutColor(
+      dashboard.data.data.filter((row) => {
+        return row.status === statusFilter && row.trafficActual === "SOLDOUT";
+      }).length
+    );
+    setRedColor(
+      dashboard.data.data.filter((row) => {
+        return row.status === statusFilter && row.trafficActual === "RED";
+      }).length
+    );
+    setOrangeColor(
+      dashboard.data.data.filter((row) => {
+        return row.status === statusFilter && row.trafficActual === "ORANGE";
+      }).length
+    );
+    setGreenColor(
+      dashboard.data.data.filter((row) => {
+        return row.status === statusFilter && row.trafficActual === "GREEN";
+      }).length
+    );
+    setOverGreenColor(
+      dashboard.data.data.filter((row) => {
+        return row.status === statusFilter && row.trafficActual === "OVERGREEN";
+      }).length
+    );
   };
 
   const setColorCount = (statusFilter) => {
@@ -202,7 +220,7 @@ function Dashboard() {
           <h1>
             {" "}
             <span className="fab fa-asymmetrik"> </span>{" "}
-            <span>SuprCommerce</span>
+            <span>SuperCommerce</span>
           </h1>
         </div>
 
@@ -251,7 +269,6 @@ function Dashboard() {
             {/* <li>
               <a href="/OneClickCatlogUpdate">
                 <span className="fas fa-upload"></span>
-
                 <span>One Click Upload</span>
               </a>
             </li> */}
@@ -466,7 +483,7 @@ function Dashboard() {
                     <>
                       <TableRow
                         key={row.styleCode}
-                        onClick={() => scroll.scrollTo(280)}
+                        onClick={() => scroll.scrollTo(290)}
                       >
                         <TableCell
                           className={classes.tableHeaderCell4}
@@ -483,7 +500,6 @@ function Dashboard() {
                             {row.styleCode}
                           </Typography>
                         </TableCell>
-
                         <TableCell>{row.status}</TableCell>
                         <TableCell>
                           <Typography
@@ -527,7 +543,6 @@ function Dashboard() {
                           </Typography>
                         </TableCell>
                       </TableRow>
-
                       {showSkuTraffic === page * rowsPerPage + idx ? (
                         <TableRow>
                           <TableCell colSpan={6}>
@@ -537,7 +552,7 @@ function Dashboard() {
                                 aria-label="simple table"
                               >
                                 <TableHead>
-                                  <TableRow id="subrow">
+                                  <TableRow>
                                     <TableCell
                                       className={classes.tableHeaderCell2}
                                     >
