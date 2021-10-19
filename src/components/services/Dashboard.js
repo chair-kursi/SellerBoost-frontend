@@ -83,7 +83,7 @@ function Dashboard() {
   const [showSkuTraffic, setShowSkuTraffic] = useState(-1);
   const [skuTraffic, setSkuTraffic] = useState([]);
   const [collapseStatus, setCollapseStatus] = useState(0);
-  const [statusFilter, setStatusFilter] = useState("All");
+  const [statusFilter, setStatusFilter] = useState("Live");
   const [skuFilter, setSkuFilter] = useState("Smooth Inventory");
   const [collapseStatusSku, setCollapseStatusSku] = useState(false);
 
@@ -105,14 +105,22 @@ function Dashboard() {
     });
 
     setDashboard(dashboard.data.data);
-    // setDashboardSummary(dashboard.data.summary.dashboard);
-
     //setting colors
-    setSoldoutColor(dashboard.data.summary.dashboard["soldout"]);
-    setRedColor(dashboard.data.summary.dashboard["red"]);
-    setOrangeColor(dashboard.data.summary.dashboard["orange"]);
-    setGreenColor(dashboard.data.summary.dashboard["green"]);
-    setOverGreenColor(dashboard.data.summary.dashboard["overgreen"]);
+    setSoldoutColor(dashboard.data.data.filter((row) => {
+      return (row.status === statusFilter && row.trafficActual === "SOLDOUT")
+    }).length);
+    setRedColor((dashboard.data.data.filter((row) => {
+      return (row.status === statusFilter && row.trafficActual === "RED")
+    }).length))
+    setOrangeColor((dashboard.data.data.filter((row) => {
+      return (row.status === statusFilter && row.trafficActual === "ORANGE")
+    }).length))
+    setGreenColor((dashboard.data.data.filter((row) => {
+      return (row.status === statusFilter && row.trafficActual === "GREEN")
+    }).length))
+    setOverGreenColor((dashboard.data.data.filter((row) => {
+      return (row.status === statusFilter && row.trafficActual === "OVERGREEN")
+    }).length))
   };
 
   const setColorCount = (statusFilter) => {
