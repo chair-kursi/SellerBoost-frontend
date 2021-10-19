@@ -1,6 +1,26 @@
-.Dispatch_container {
-  margin-top: 90px;
+.headingss {
+  margin-top: 60px;
 }
+.headingss {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.headingss img {
+  width: 120px;
+
+  transform: scale(0.7);
+}
+
+.heading__title {
+  font-weight: 600;
+}
+
+/* .Dispatch_container {
+  
+} */
 .header123 {
   display: flex;
   justify-content: center;

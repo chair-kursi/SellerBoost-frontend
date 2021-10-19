@@ -160,7 +160,287 @@ export default function Home() {
             </div>
           </div>
         </header>
-        <div className="products">
+
+        <div className="Home_container">
+          <h1 className="homeSummary__title">
+            <span>Summary</span>
+          </h1>
+          <div className="homeCard_container">
+            <h1 className="homeCard__title">
+              DashBoard <span className="fas fa-tachometer-alt"></span>
+            </h1>
+            <div className="cardssss">
+              <div className="card-singlee1">
+                <div>
+                  <div className="card__desc">
+                    <div className="desc__numbers1">
+                      <h1>52</h1>
+                    </div>
+                  </div>
+
+                  <span className="tis">SoldOut</span>
+                </div>
+                <div className="stylos">
+                  <span className="fas fa-broom"></span>
+                </div>
+              </div>
+              <div className="card-singlee4">
+                <div>
+                  <div className="card__desc">
+                    <div className="desc__numbers4">
+                      <h1>10</h1>
+                    </div>
+                  </div>
+
+                  <span className="tis">Red</span>
+                </div>
+                <div className="stylos">
+                  <span className="fas fa-exclamation-circle"></span>
+                </div>
+              </div>
+
+              <div className="card-singlee2">
+                <div>
+                  <div className="card__desc">
+                    <div className="desc__numbers2">
+                      <h1>14</h1>
+                    </div>
+                  </div>
+
+                  <span className="tis">Orange</span>
+                </div>
+                <div className="stylos">
+                  <span className="fas fa-tasks"></span>
+                </div>
+              </div>
+
+              <div className="card-singlee3">
+                <div>
+                  <div className="card__desc">
+                    <div className="desc__numbers3">
+                      <h1>42</h1>
+                    </div>
+                  </div>
+
+                  <span className="tis">Green</span>
+                </div>
+                <div className="stylos">
+                  <span className="fas fa-check"></span>
+                </div>
+              </div>
+
+              <div className="card-singlee5">
+                <div>
+                  <div className="card__desc">
+                    <div className="desc__numbers5">
+                      <h1>23</h1>
+                    </div>
+                  </div>
+
+                  <span className="tis">OverGreen</span>
+                </div>
+                <div className="stylos">
+                  <span className="fas fa-people-carry"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="homeCard_container">
+            <h1 className="homeCard__title">
+              MarketPlace Health <span className="fas fa-heartbeat"></span>
+            </h1>
+            <div className="cardssss">
+              <div className="card-singleee1">
+                <div>
+                  <div className="card__desce">
+                    <div className="desc__numbers1e">
+                      <h1>52</h1>
+                    </div>
+                  </div>
+
+                  <span className="tis">Amazon</span>
+                </div>
+                <div className="stylos">
+                  <span>
+                    <img
+                      src="https://thumbs.dreamstime.com/b/astana-kazakhstan-july-amazon-icon-logo-vector-symbol-198642038.jpg"
+                      alt=""
+                    />
+                  </span>
+                </div>
+              </div>
+              <div className="card-singleee4">
+                <div>
+                  <div className="card__desce">
+                    <div className="desc__numbers4e">
+                      <h1>10</h1>
+                    </div>
+                  </div>
+
+                  <span className="tis">Flipkart</span>
+                </div>
+                <div className="stylos">
+                  <span>
+                    <img
+                      src="https://lh3.googleusercontent.com/proxy/kmzsT7dlxAdvKI1cw7_Hk5_-hujfTMvX7jGXxwp2iTC2Bs2WsboPpV1wM4rmFayglKVxbYc6rZtz_mF8Ko_rCDLPCLk-yoPcjExJTUh_1QsZp8XNPdfDfErT"
+                      alt=""
+                    />
+                  </span>
+                </div>
+              </div>
+
+              <div className="card-singleee2">
+                <div>
+                  <div className="card__desce">
+                    <div className="desc__numbers2e">
+                      <h1>14</h1>
+                    </div>
+                  </div>
+
+                  <span className="tis">Myntra</span>
+                </div>
+                <div className="stylos">
+                  <span>
+                    <img
+                      src="https://iconape.com/wp-content/png_logo_vector/myntra-logo.png"
+                      alt=""
+                    />
+                  </span>
+                </div>
+              </div>
+
+              <div className="card-singleee3">
+                <div>
+                  <div className="card__desce">
+                    <div className="desc__numbers3e">
+                      <h1>42</h1>
+                    </div>
+                  </div>
+
+                  <span className="tis">Ajio</span>
+                </div>
+                <div className="stylos">
+                  <span>
+                    <img
+                      src="https://iconape.com/wp-content/files/bq/300911/png/ajio-logo.png"
+                      alt=""
+                    />
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="homeCard_container">
+            <h1 className="homeCard__title">
+              Business Health <span className="fas fa-chart-bar"></span>
+            </h1>
+            <div class="cardsssss">
+              <div className="card__container">
+                <div class="cardess card-1s">
+                  <div className="cards_detailss">
+                    <h3>Total Sales </h3>
+                    <p>
+                      <i class="fas fa-rupee-sign"></i> 24,76,666.19{" "}
+                    </p>
+                  </div>
+                  <div className="cards_detail_subs">
+                    <h1>
+                      Total Sales Unit{" "}
+                      <i class="fas fa-chevron-circle-right"></i>
+                    </h1>
+                    <p>3034</p>
+                  </div>
+                </div>
+              </div>
+              <div className="card__container">
+                <div class="cardess card-2s">
+                  <div className="cards_detailss">
+                    <h3>Cancelled Invoice Amount</h3>
+                    <p>
+                      <i class="fas fa-rupee-sign"></i> 150606.02{" "}
+                    </p>
+                  </div>
+                  <div className="cards_detail_subs">
+                    <h1>
+                      Total Units <i class="fas fa-chevron-circle-right"></i>
+                    </h1>
+                    <p>181</p>
+                  </div>
+                </div>
+              </div>
+              <div className="card__container">
+                <div class="cardess card-3s">
+                  {" "}
+                  <div className="cards_detailss">
+                    <h3>Return Invoice Amount </h3>
+                    <p>
+                      <i class="fas fa-rupee-sign"></i> 2,12,484.00{" "}
+                    </p>
+                  </div>
+                  <div className="cards_detail_subs">
+                    <h1>
+                      Total Units <i class="fas fa-chevron-circle-right"></i>
+                    </h1>
+                    <p>255 </p>
+                  </div>
+                </div>
+              </div>
+              <div className="card__container">
+                <div class="cardess card-4s">
+                  {" "}
+                  <div className="cards_detailss">
+                    <h3>Net Sales </h3>
+                    <p>
+                      <i class="fas fa-rupee-sign"></i> 17,26,051.17
+                    </p>
+                  </div>
+                  <div className="cards_detail_subs">
+                    <h1>Net Sales Unites</h1>
+                    <p>
+                      2,169 <i class="fas fa-chevron-circle-right"></i>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="homeCard_container">
+            <h1 className="homeCard__title1">
+              SKU Error <span className="fas fa-exclamation-triangle"></span>
+            </h1>
+            <div className="cardssss">
+              <div className="SKUcontainer">
+                <div className="SKUtotalContainer">
+                  <div className="SKUtotal">
+                    <h1>553</h1>
+                    <p>Total SKU</p>
+                  </div>
+                  <div className="SKUtotalIcon">
+                    <span>
+                      <i class="fas fa-people-carry"></i>
+                    </span>
+                  </div>
+                </div>
+
+                <div className="SKUtotalContainer">
+                  <div className="SKUtotal">
+                    <h1>123</h1>
+                    <p>SKU error</p>
+                  </div>
+                  <div className="SKUtotalIcon">
+                    <span>
+                      <i class="fas fa-exclamation-triangle"></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* <div className="products">
           <div className="banner-page">
             <div className="side1">
               <h2>
@@ -169,13 +449,10 @@ export default function Home() {
               </h2>
             </div>
             <div className="side2">
-              {/* <img className="side2" src="\undraw_coolness_dtmq (1).png" alt="" /> */}
-
               <lottie-player
                 src="https://assets3.lottiefiles.com/packages/lf20_sk5h1kfn.json"
                 background="transparent"
                 speed="1"
-                // style="width: 300px; height: 300px;"
                 hover
                 loop
                 autoplay
@@ -188,7 +465,7 @@ export default function Home() {
                 return <Product key={ele._id} ele={ele} />;
               })
             : null}
-        </div>
+        </div> */}
       </div>
     </>
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../css/services/DispatchHealth.css";
 import { makeStyles } from "@material-ui/core/styles";
 import {
@@ -159,7 +159,7 @@ function DispatchHealth() {
             <label for="nav-toggle">
               <span class="fas fa-bars"></span>
             </label>
-            Inventory Dashboard
+            Dispatch Health
           </h2>
 
           <div className="search-wrapper">
@@ -177,6 +177,13 @@ function DispatchHealth() {
             </div>
           </div>
         </header>
+        <div class="headingss">
+          <h1 class="heading__title">Dispatch Health</h1>
+          <img
+            src="https://cdn4.iconfinder.com/data/icons/under-construction/512/coming_soon-256.png"
+            alt=""
+          />
+        </div>
         <div className="Dispatch_container">
           <div className="header123">
             <div className="CutOff">

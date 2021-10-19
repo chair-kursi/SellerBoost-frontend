@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import faker from "faker";
+
 import "../../css/services/MarketPlaceHealth.css";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -28,9 +28,8 @@ const channels = [
   "MYNTRA_B2B",
   "AJIO",
   "FIRSTCRY_MARKET_PLACE",
-  "NYKAA_FASHION"
-]
-
+  "NYKAA_FASHION",
+];
 
 const useStyles = makeStyles((theme) => ({
   table: {
@@ -230,7 +229,15 @@ function MarketPlaceHealth() {
               <div>
                 <div className="card__desc">
                   <div className="desc__numbers">
-                    <h1>{(summary.dashboard && summary.dashboard.green + summary.dashboard.soldout + summary.dashboard.overgreen + summary.dashboard.red + summary.dashboard.orange) || 0}</h1>
+                    <h1>
+                      {(summary.dashboard &&
+                        summary.dashboard.green +
+                          summary.dashboard.soldout +
+                          summary.dashboard.overgreen +
+                          summary.dashboard.red +
+                          summary.dashboard.orange) ||
+                        0}
+                    </h1>
                   </div>
                 </div>
 
@@ -241,8 +248,9 @@ function MarketPlaceHealth() {
               </div>
             </div>
             <div
-              className={`card-single ${company === "Amazon" ? "company" : ""
-                } `}
+              className={`card-single ${
+                company === "Amazon" ? "company" : ""
+              } `}
               onClick={(event) => {
                 if (company === "Amazon") {
                   setCompany(null);
@@ -256,7 +264,11 @@ function MarketPlaceHealth() {
               <div>
                 <div className="card__desc">
                   <div className="desc__number">
-                    <h1>{userList["AMAZON_IN"] && userList["AMAZON_IN"].length || 0}</h1>
+                    <h1>
+                      {(userList["AMAZON_IN"] &&
+                        userList["AMAZON_IN"].length) ||
+                        0}
+                    </h1>
                   </div>
                 </div>
 
@@ -271,8 +283,9 @@ function MarketPlaceHealth() {
               </div>
             </div>
             <div
-              className={`card-single ${company === "Flipkart" ? "company" : ""
-                } `}
+              className={`card-single ${
+                company === "Flipkart" ? "company" : ""
+              } `}
               onClick={(event) => {
                 if (company === "Flipkart") {
                   setCompany(null);
@@ -286,7 +299,10 @@ function MarketPlaceHealth() {
               <div>
                 <div className="card__desc">
                   <div className="desc__number">
-                    <h1>{userList["FLIPKART"] && userList["FLIPKART"].length || 0}</h1>
+                    <h1>
+                      {(userList["FLIPKART"] && userList["FLIPKART"].length) ||
+                        0}
+                    </h1>
                   </div>
                 </div>
 
@@ -302,8 +318,9 @@ function MarketPlaceHealth() {
               </div>
             </div>
             <div
-              className={`card-single ${company === "Snapdeal" ? "company" : ""
-                } `}
+              className={`card-single ${
+                company === "Snapdeal" ? "company" : ""
+              } `}
               onClick={(event) => {
                 if (company === "Snapdeal") {
                   setCompany(null);
@@ -317,7 +334,10 @@ function MarketPlaceHealth() {
               <div>
                 <div className="card__desc">
                   <div className="desc__number">
-                    <h1>{userList["SNAPDEAL"] && userList["SNAPDEAL"].length || 0}</h1>
+                    <h1>
+                      {(userList["SNAPDEAL"] && userList["SNAPDEAL"].length) ||
+                        0}
+                    </h1>
                   </div>
                 </div>
 
@@ -333,8 +353,9 @@ function MarketPlaceHealth() {
             </div>
             <>
               <div
-                className={`card-single ${company === "Myntra" ? "company" : ""
-                  } `}
+                className={`card-single ${
+                  company === "Myntra" ? "company" : ""
+                } `}
                 onClick={(event) => {
                   if (company === "Myntra") {
                     setCompany(null);
@@ -348,7 +369,11 @@ function MarketPlaceHealth() {
                 <div>
                   <div className="card__desc">
                     <div className="desc__number">
-                      <h1>{userList["MYNTRA_B2B"] && userList["MYNTRA_B2B"].length || 0}</h1>
+                      <h1>
+                        {(userList["MYNTRA_B2B"] &&
+                          userList["MYNTRA_B2B"].length) ||
+                          0}
+                      </h1>
                     </div>
                   </div>
 
@@ -365,8 +390,9 @@ function MarketPlaceHealth() {
 
               <div
                 c
-                className={`card-single ${company === "Ajio" ? "company" : ""
-                  } `}
+                className={`card-single ${
+                  company === "Ajio" ? "company" : ""
+                } `}
                 onClick={(event) => {
                   if (company === "Ajio") {
                     setCompany(null);
@@ -380,7 +406,9 @@ function MarketPlaceHealth() {
                 <div>
                   <div className="card__desc">
                     <div className="desc__number">
-                      <h1>{userList["AJIO"] && userList["AJIO"].length || 0}</h1>
+                      <h1>
+                        {(userList["AJIO"] && userList["AJIO"].length) || 0}
+                      </h1>
                     </div>
                   </div>
 
@@ -396,8 +424,9 @@ function MarketPlaceHealth() {
               </div>
 
               <div
-                className={`card-single ${company === "FirstCry" ? "company" : ""
-                  } `}
+                className={`card-single ${
+                  company === "FirstCry" ? "company" : ""
+                } `}
                 onClick={(event) => {
                   if (company === "FirstCry") {
                     setCompany(null);
@@ -411,7 +440,11 @@ function MarketPlaceHealth() {
                 <div>
                   <div className="card__desc">
                     <div className="desc__number">
-                      <h1>{userList["FIRSTCRY_MARKET_PLACE"] && userList["FIRSTCRY_MARKET_PLACE"].length || 0}</h1>
+                      <h1>
+                        {(userList["FIRSTCRY_MARKET_PLACE"] &&
+                          userList["FIRSTCRY_MARKET_PLACE"].length) ||
+                          0}
+                      </h1>
                     </div>
                   </div>
 
@@ -427,8 +460,9 @@ function MarketPlaceHealth() {
               </div>
 
               <div
-                className={`card-single ${company === "Nykaa Fashion" ? "company" : ""
-                  } `}
+                className={`card-single ${
+                  company === "Nykaa Fashion" ? "company" : ""
+                } `}
                 onClick={() => {
                   if (company === "Nykaa Fashion") {
                     setCompany(null);
@@ -442,7 +476,11 @@ function MarketPlaceHealth() {
                 <div>
                   <div className="card__desc">
                     <div className="desc__number">
-                      <h1>{userList["NYKAA_FASHION"] && userList["NYKAA_FASHION"].length || 0}</h1>
+                      <h1>
+                        {(userList["NYKAA_FASHION"] &&
+                          userList["NYKAA_FASHION"].length) ||
+                          0}
+                      </h1>
                     </div>
                   </div>
 
@@ -493,43 +531,43 @@ function MarketPlaceHealth() {
                 <TableBody>
                   {userList[companyCode] && userList[companyCode].length
                     ? userList[companyCode]
-                      .slice(
-                        page * rowsPerPage,
-                        page * rowsPerPage + rowsPerPage
-                      )
-                      .map((row) => (
-                        <TableRow key={row.styleCode}>
-                          <TableCell>{row.styleCode}</TableCell>
-                          <TableCell>{row.rank}</TableCell>
+                        .slice(
+                          page * rowsPerPage,
+                          page * rowsPerPage + rowsPerPage
+                        )
+                        .map((row) => (
+                          <TableRow key={row.styleCode}>
+                            <TableCell>{row.styleCode}</TableCell>
+                            <TableCell>{row.rank}</TableCell>
 
-                          <TableCell>{row.inventory}</TableCell>
-                          <TableCell>{row.baseCount}</TableCell>
-                          <TableCell>
-                            <Typography
-                              className={classes.status}
-                              style={{
-                                backgroundColor:
-                                  row.marketplaceCount != row.baseCount
-                                    ? "#ff8282"
-                                    : "#00da25",
-                              }}
-                            >
-                              {row.marketplaceCount}
-                            </Typography>
-                          </TableCell>
-                          <TableCell>
-                            Disabled:{" "}
-                            {row.reason.disabled.length
-                              ? row.reason.disabled.join(", ")
-                              : "NA"}
-                            <br />
-                            Missing:{" "}
-                            {row.reason.missing.length
-                              ? row.reason.missing.join(", ")
-                              : "NA"}
-                          </TableCell>
-                        </TableRow>
-                      ))
+                            <TableCell>{row.inventory}</TableCell>
+                            <TableCell>{row.baseCount}</TableCell>
+                            <TableCell>
+                              <Typography
+                                className={classes.status}
+                                style={{
+                                  backgroundColor:
+                                    row.marketplaceCount != row.baseCount
+                                      ? "#ff8282"
+                                      : "#00da25",
+                                }}
+                              >
+                                {row.marketplaceCount}
+                              </Typography>
+                            </TableCell>
+                            <TableCell>
+                              Disabled:{" "}
+                              {row.reason.disabled.length
+                                ? row.reason.disabled.join(", ")
+                                : "NA"}
+                              <br />
+                              Missing:{" "}
+                              {row.reason.missing.length
+                                ? row.reason.missing.join(", ")
+                                : "NA"}
+                            </TableCell>
+                          </TableRow>
+                        ))
                     : null}
                 </TableBody>
                 <TableFooter>
