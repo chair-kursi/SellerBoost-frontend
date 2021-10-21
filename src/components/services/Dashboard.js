@@ -71,6 +71,7 @@ const useStyles = makeStyles((theme) => ({
 function Dashboard() {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
+  const [open, setOpen] = useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [dashboard, setDashboard] = useState([]);
   const [soldoutColor, setSoldoutColor] = useState(0);
@@ -245,7 +246,12 @@ function Dashboard() {
                 <span>Inventory Dashboard </span>
               </a>
             </li>
-
+            <li>
+              <a href="/SetUp">
+                <span className="fas fa-tools"></span>
+                <span>Set Up</span>
+              </a>
+            </li>
             <li>
               <a href="/MarketPlaceHealth">
                 <span className="fas fa-heartbeat"></span>
@@ -336,35 +342,60 @@ function Dashboard() {
         </header>
 
         <div className="homeCard_container11">
-          <h1 className="homeCard__title11">
-            Upload <span className="fas fa-upload"></span>
-          </h1>
-          <div className="dispatch__container1">
-            <label htmlFor="">
-              Inventory <span className="fas fa-tachometer-alt"></span>
-            </label>
-
-            <div className="dispatch__containerInput">
-              <span>URL</span>
-              <input type="text" placeholder="Enter URL" />
-              <span className="dispatch_containerOR">OR</span>
-              <input type="file" />
-            </div>
+          <div className="uploadShowmore">
+            <h1 className="homeCard__title11">
+              Upload <span className="fas fa-upload"></span>
+            </h1>
+            <button onClick={() => setOpen(!open)}>
+              {open ? (
+                <>
+                  Show Less{" "}
+                  <span>
+                    <i class="fas fa-angle-up"></i>
+                  </span>
+                </>
+              ) : (
+                <>
+                  Show More{" "}
+                  <span>
+                    <i class="fas fa-angle-down"></i>{" "}
+                  </span>
+                </>
+              )}
+            </button>
           </div>
-          <div className="dispatch__container1">
-            <label htmlFor="">
-              Sales <span className="fas fa-percent"></span>
-            </label>
+          {open ? (
+            <>
+              <div className="dispatch__container1">
+                <label htmlFor="">
+                  Inventory <span className="fas fa-tachometer-alt"></span>
+                </label>
 
-            <div className="dispatch__containerInput1">
-              <span>URL</span>
-              <input type="text" placeholder="Enter URL" />
-              <span className="dispatch_containerOR">OR</span>
+                <div className="dispatch__containerInput">
+                  <span>URL</span>
+                  <input type="text" placeholder="Enter URL" />
+                  <span className="dispatch_containerOR">OR</span>
+                  <input type="file" />
+                </div>
+              </div>
 
-              <input type="file" />
-            </div>
-          </div>
-          <button className="DispatchContainerButton">Submit</button>
+              <div className="dispatch__container1">
+                <label htmlFor="">
+                  Sales <span className="fas fa-percent"></span>
+                </label>
+
+                <div className="dispatch__containerInput1">
+                  <span>URL</span>
+                  <input type="text" placeholder="Enter URL" />
+                  <span className="dispatch_containerOR">OR</span>
+
+                  <input type="file" />
+                </div>
+              </div>
+
+              <button className="DispatchContainerButton"> Submit</button>
+            </>
+          ) : null}
         </div>
 
         <div className="cardsss">

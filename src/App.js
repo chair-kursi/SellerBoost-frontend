@@ -23,6 +23,7 @@ import { Redirect } from "react-router";
 import SigninPage from "./components/common/LandingPage/Pages/signin";
 import BusinessHealth from "./components/services/BusinessHealth";
 import DispatchHealth from "./components/services/DispatchHealth";
+import SetUp from "./components/services/SetUp";
 
 const customStyles = {
   content: {
@@ -126,6 +127,9 @@ function App() {
         </Route> */}
         <Route exact path="/Home">
           {!auth ? <Redirect to="/signin" /> : <Home />}
+        </Route>
+        <Route exact path="/SetUp">
+          {!auth ? <Redirect to="/signin" /> : <SetUp />}
         </Route>
         <Route exact path="/">
           <Home1 />

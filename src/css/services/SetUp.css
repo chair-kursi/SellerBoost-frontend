@@ -1,0 +1,29 @@
+.SetupContainer {
+  display: flex;
+}
+.dwnCSV {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dwnCSV button {
+  border: none;
+  background-color: #191919;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+}
+.dwnCSV button span {
+  font-size: 20px;
+  margin-left: 5px;
+}
+.tless {
+  padding: 20px 40px;
+  margin-right: 20px;
+  margin-left: 20px;
+  background-color: #ededed;
+  border-radius: 10px;
+  margin-top: 40px;
+}

@@ -88,7 +88,12 @@ function DispatchHealth() {
                 <span>Inventory Dashboard </span>
               </a>
             </li>
-
+            <li>
+              <a href="/SetUp">
+                <span className="fas fa-tools"></span>
+                <span>Set Up</span>
+              </a>
+            </li>
             <li>
               <a href="/MarketPlaceHealth">
                 <span className="fas fa-heartbeat"></span>

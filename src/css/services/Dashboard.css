@@ -32,6 +32,7 @@
   box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
   padding: 10px 29px;
   outline: none;
+  font-size: 17px;
 }
 .csvbutton {
   width: 30%;
@@ -316,4 +317,24 @@
     margin-bottom: 20px;
     width: 400px;
   }
+}
+.uploadShowmore {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.uploadShowmore button {
+  background-color: #191919;
+  color: white;
+  border: none;
+  padding: 10px 40px;
+  border-radius: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.uploadShowmore button span {
+  margin-left: 6px;
+  font-size: 18px;
 }

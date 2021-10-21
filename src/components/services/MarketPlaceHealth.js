@@ -28,9 +28,8 @@ const channels = [
   "MYNTRAPPMP",
   "AJIO",
   "FIRSTCRY_MARKET_PLACE",
-  "NYKAA_FASHION"
-]
-
+  "NYKAA_FASHION",
+];
 
 const useStyles = makeStyles((theme) => ({
   table: {
@@ -129,6 +128,12 @@ function MarketPlaceHealth() {
               <a href="/Dashboard">
                 <span className="fas fa-tachometer-alt"></span>
                 <span>Inventory Dashboard </span>
+              </a>
+            </li>
+            <li>
+              <a href="/SetUp">
+                <span className="fas fa-tools"></span>
+                <span>Set Up</span>
               </a>
             </li>
 
@@ -242,8 +247,9 @@ function MarketPlaceHealth() {
               </div>
             </div>
             <div
-              className={`card-single ${company === "Myntra" ? "company" : ""
-                } `}
+              className={`card-single ${
+                company === "Myntra" ? "company" : ""
+              } `}
               onClick={(event) => {
                 if (company === "Myntra") {
                   setCompany(null);
@@ -257,7 +263,11 @@ function MarketPlaceHealth() {
               <div>
                 <div className="card__desc">
                   <div className="desc__number">
-                    <h1>{userList["MYNTRAPPMP"] && userList["MYNTRAPPMP"].length || 0}</h1>
+                    <h1>
+                      {(userList["MYNTRAPPMP"] &&
+                        userList["MYNTRAPPMP"].length) ||
+                        0}
+                    </h1>
                   </div>
                 </div>
 
@@ -272,8 +282,9 @@ function MarketPlaceHealth() {
               </div>
             </div>
             <div
-              className={`card-single ${company === "FirstCry" ? "company" : ""
-                } `}
+              className={`card-single ${
+                company === "FirstCry" ? "company" : ""
+              } `}
               onClick={(event) => {
                 if (company === "FirstCry") {
                   setCompany(null);
@@ -287,7 +298,11 @@ function MarketPlaceHealth() {
               <div>
                 <div className="card__desc">
                   <div className="desc__number">
-                    <h1>{userList["FIRSTCRY_MARKET_PLACE"] && userList["FIRSTCRY_MARKET_PLACE"].length || 0}</h1>
+                    <h1>
+                      {(userList["FIRSTCRY_MARKET_PLACE"] &&
+                        userList["FIRSTCRY_MARKET_PLACE"].length) ||
+                        0}
+                    </h1>
                   </div>
                 </div>
 
@@ -302,8 +317,9 @@ function MarketPlaceHealth() {
               </div>
             </div>
             <div
-              className={`card-single ${company === "Flipkart" ? "company" : ""
-                } `}
+              className={`card-single ${
+                company === "Flipkart" ? "company" : ""
+              } `}
               onClick={(event) => {
                 if (company === "Flipkart") {
                   setCompany(null);
@@ -316,8 +332,12 @@ function MarketPlaceHealth() {
             >
               <div>
                 <div className="card__desc">
-                  <div className="desc__number"> 
-                    <h1>{userList["FLIPKART_SMART"] && userList["FLIPKART_SMART"].length || 0}</h1>
+                  <div className="desc__number">
+                    <h1>
+                      {(userList["FLIPKART_SMART"] &&
+                        userList["FLIPKART_SMART"].length) ||
+                        0}
+                    </h1>
                   </div>
                 </div>
 
@@ -335,8 +355,9 @@ function MarketPlaceHealth() {
 
             <>
               <div
-                className={`card-single ${company === "Nykaa Fashion" ? "company" : ""
-                  } `}
+                className={`card-single ${
+                  company === "Nykaa Fashion" ? "company" : ""
+                } `}
                 onClick={() => {
                   if (company === "Nykaa Fashion") {
                     setCompany(null);
@@ -350,7 +371,11 @@ function MarketPlaceHealth() {
                 <div>
                   <div className="card__desc">
                     <div className="desc__number">
-                      <h1>{userList["NYKAA_FASHION"] && userList["NYKAA_FASHION"].length || 0}</h1>
+                      <h1>
+                        {(userList["NYKAA_FASHION"] &&
+                          userList["NYKAA_FASHION"].length) ||
+                          0}
+                      </h1>
                     </div>
                   </div>
 
@@ -365,8 +390,9 @@ function MarketPlaceHealth() {
                 </div>
               </div>
               <div
-                className={`card-single ${company === "Amazon" ? "company" : ""
-                  } `}
+                className={`card-single ${
+                  company === "Amazon" ? "company" : ""
+                } `}
                 onClick={(event) => {
                   if (company === "Amazon") {
                     setCompany(null);
@@ -397,8 +423,9 @@ function MarketPlaceHealth() {
               </div>
 
               <div
-                className={`card-single ${company === "Snapdeal" ? "company" : ""
-                  } `}
+                className={`card-single ${
+                  company === "Snapdeal" ? "company" : ""
+                } `}
                 onClick={(event) => {
                   if (company === "Snapdeal") {
                     setCompany(null);
@@ -429,8 +456,9 @@ function MarketPlaceHealth() {
               </div>
               <div
                 c
-                className={`card-single ${company === "Ajio" ? "company" : ""
-                  } `}
+                className={`card-single ${
+                  company === "Ajio" ? "company" : ""
+                } `}
                 onClick={(event) => {
                   if (company === "Ajio") {
                     setCompany(null);
@@ -459,8 +487,6 @@ function MarketPlaceHealth() {
                   />
                 </div>
               </div>
-
-
             </>
           </div>
           <div className="cards__title1">
@@ -498,43 +524,43 @@ function MarketPlaceHealth() {
                 <TableBody>
                   {userList[companyCode] && userList[companyCode].length
                     ? userList[companyCode]
-                      .slice(
-                        page * rowsPerPage,
-                        page * rowsPerPage + rowsPerPage
-                      )
-                      .map((row) => (
-                        <TableRow key={row.styleCode}>
-                          <TableCell>{row.styleCode}</TableCell>
-                          <TableCell>{row.rank}</TableCell>
+                        .slice(
+                          page * rowsPerPage,
+                          page * rowsPerPage + rowsPerPage
+                        )
+                        .map((row) => (
+                          <TableRow key={row.styleCode}>
+                            <TableCell>{row.styleCode}</TableCell>
+                            <TableCell>{row.rank}</TableCell>
 
-                          <TableCell>{row.inventory}</TableCell>
-                          <TableCell>{row.baseCount}</TableCell>
-                          <TableCell>
-                            <Typography
-                              className={classes.status}
-                              style={{
-                                backgroundColor:
-                                  row.marketplaceCount != row.baseCount
-                                    ? "#ff8282"
-                                    : "#00da25",
-                              }}
-                            >
-                              {row.marketplaceCount}
-                            </Typography>
-                          </TableCell>
-                          <TableCell>
-                            Disabled:{" "}
-                            {row.reason.disabled.length
-                              ? row.reason.disabled.join(", ")
-                              : "NA"}
-                            <br />
-                            Missing:{" "}
-                            {row.reason.missing.length
-                              ? row.reason.missing.join(", ")
-                              : "NA"}
-                          </TableCell>
-                        </TableRow>
-                      ))
+                            <TableCell>{row.inventory}</TableCell>
+                            <TableCell>{row.baseCount}</TableCell>
+                            <TableCell>
+                              <Typography
+                                className={classes.status}
+                                style={{
+                                  backgroundColor:
+                                    row.marketplaceCount != row.baseCount
+                                      ? "#ff8282"
+                                      : "#00da25",
+                                }}
+                              >
+                                {row.marketplaceCount}
+                              </Typography>
+                            </TableCell>
+                            <TableCell>
+                              Disabled:{" "}
+                              {row.reason.disabled.length
+                                ? row.reason.disabled.join(", ")
+                                : "NA"}
+                              <br />
+                              Missing:{" "}
+                              {row.reason.missing.length
+                                ? row.reason.missing.join(", ")
+                                : "NA"}
+                            </TableCell>
+                          </TableRow>
+                        ))
                     : null}
                 </TableBody>
                 <TableFooter>
