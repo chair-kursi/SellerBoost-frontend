@@ -335,6 +335,38 @@ function Dashboard() {
           </div>
         </header>
 
+        <div className="homeCard_container11">
+          <h1 className="homeCard__title11">
+            Upload <span className="fas fa-upload"></span>
+          </h1>
+          <div className="dispatch__container1">
+            <label htmlFor="">
+              Inventory <span className="fas fa-tachometer-alt"></span>
+            </label>
+
+            <div className="dispatch__containerInput">
+              <span>URL</span>
+              <input type="text" placeholder="Enter URL" />
+              <span className="dispatch_containerOR">OR</span>
+              <input type="file" />
+            </div>
+          </div>
+          <div className="dispatch__container1">
+            <label htmlFor="">
+              Sales <span className="fas fa-percent"></span>
+            </label>
+
+            <div className="dispatch__containerInput1">
+              <span>URL</span>
+              <input type="text" placeholder="Enter URL" />
+              <span className="dispatch_containerOR">OR</span>
+
+              <input type="file" />
+            </div>
+          </div>
+          <button className="DispatchContainerButton">Submit</button>
+        </div>
+
         <div className="cardsss">
           <div className="card-singlee1">
             <div>
