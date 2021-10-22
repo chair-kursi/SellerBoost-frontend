@@ -22,6 +22,12 @@ function BusinessHealth() {
                 <span>Home</span>
               </a>
             </li>
+            <li>
+              <a href="/SetUp">
+                <span className="fas fa-tools"></span>
+                <span>Set Up</span>
+              </a>
+            </li>
             {/* <li>
           <a href="/Onboarding">
             <span className="fas fa-stream"></span>
@@ -33,12 +39,6 @@ function BusinessHealth() {
               <a href="/Dashboard">
                 <span className="fas fa-tachometer-alt"></span>
                 <span>Inventory Dashboard </span>
-              </a>
-            </li>
-            <li>
-              <a href="/SetUp">
-                <span className="fas fa-tools"></span>
-                <span>Set Up</span>
               </a>
             </li>
 

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../../css/services/SetUp.css";
 import { makeStyles } from "@material-ui/core/styles";
+import axios from "axios";
 import {
   Table,
   TableBody,
@@ -42,6 +43,17 @@ const useStyles = makeStyles((theme) => ({
 
 function SetUp() {
   const classes = useStyles();
+  const [csvSelected, setCsvSelected] = useState("");
+  const uploadCSV = (files) => {
+    console.log(files[0]);
+    const formData = new FormData();
+    formData.append("file", csvSelected);
+    axios
+      .post("https://jsonplaceholder.typicode.com/todos/1", formData)
+      .then((res) => {
+        console.log(res);
+      });
+  };
   return (
     <div>
       <input type="checkbox" id="nav-toggle" />
@@ -69,17 +81,17 @@ function SetUp() {
           <span>OnBoarding</span>
         </a>
       </li> */}
+            <li>
+              <a href="/SetUp">
+                <span className="fas fa-tools"></span>
+                <span>Set Up</span>
+              </a>
+            </li>
 
             <li>
               <a href="/Dashboard">
                 <span className="fas fa-tachometer-alt"></span>
                 <span>Inventory Dashboard </span>
-              </a>
-            </li>
-            <li>
-              <a href="/SetUp">
-                <span className="fas fa-tools"></span>
-                <span>Set Up</span>
               </a>
             </li>
 
@@ -180,9 +192,24 @@ function SetUp() {
           </div>
           <div className="tless">
             <div className="dwnCSV">
-              <input type="file" />
+              <div className="csvInput">
+                <input
+                  type="file"
+                  onChange={(event) => {
+                    setCsvSelected(event.target.files[0]);
+                  }}
+                />
+                <button onClick={uploadCSV}>
+                  Upload File{" "}
+                  <span>
+                    <i class="fas fa-upload"></i>
+                  </span>{" "}
+                </button>
+              </div>
               <button>
-                Download CSV{" "}
+                <a href="\sample.csv" download className="downloadCSV">
+                  Download CSV
+                </a>
                 <span>
                   <i class="fas fa-arrow-circle-down"></i>
                 </span>

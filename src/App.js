@@ -24,6 +24,7 @@ import SigninPage from "./components/common/LandingPage/Pages/signin";
 import BusinessHealth from "./components/services/BusinessHealth";
 import DispatchHealth from "./components/services/DispatchHealth";
 import SetUp from "./components/services/SetUp";
+import axios from "axios";
 
 const customStyles = {
   content: {
@@ -41,10 +42,20 @@ const customStyles = {
 function App() {
   const [auth, setAuth] = useState(-1);
 
+  const setClientId = async (localId) => {
+    await axios({
+      method: "GET",
+      url: "http://localhost:3002/clientId",
+      //set cookies here for==> LocalId: "RvvwQ2XVc7hPHCDIfTDO8qnb4c83"
+    });
+  };
+
   useEffect(() => {
     onAuthStateChanged(Auth, (user) => {
-      if (user) setAuth(true);
-      else setAuth(false);
+      if (user) {
+        setAuth(true);
+        setClientId(user.reloadUserInfo.localId);
+      } else setAuth(false);
     });
   }, []);
 

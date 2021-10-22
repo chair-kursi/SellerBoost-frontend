@@ -123,17 +123,17 @@ function MarketPlaceHealth() {
                 <span>OnBoarding</span>
               </a>
             </li> */}
+            <li>
+              <a href="/SetUp">
+                <span className="fas fa-tools"></span>
+                <span>Set Up</span>
+              </a>
+            </li>
 
             <li>
               <a href="/Dashboard">
                 <span className="fas fa-tachometer-alt"></span>
                 <span>Inventory Dashboard </span>
-              </a>
-            </li>
-            <li>
-              <a href="/SetUp">
-                <span className="fas fa-tools"></span>
-                <span>Set Up</span>
               </a>
             </li>
 

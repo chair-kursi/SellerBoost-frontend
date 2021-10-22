@@ -6,7 +6,11 @@
   justify-content: space-between;
   align-items: center;
 }
-
+.csvInput {
+  background-color: white;
+  padding: 13px 50px;
+  border-radius: 50px;
+}
 .dwnCSV button {
   border: none;
   background-color: #191919;
@@ -26,4 +30,14 @@
   background-color: #ededed;
   border-radius: 10px;
   margin-top: 40px;
+}
+.downloadCSV {
+  color: white;
+  text-decoration: none;
+  border: none;
+}
+.downloadCSV:hover {
+  color: white;
+  text-decoration: none;
+  border: none;
 }
