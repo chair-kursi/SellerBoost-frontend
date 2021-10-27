@@ -7,16 +7,17 @@ import { Avatar } from "@material-ui/core";
 import "../../css/home.css";
 import { Link, useHistory } from "react-router-dom";
 import { Auth, onAuthStateChanged, handleSignOut } from "../auth/firebase";
+axios.defaults.withCredentials = true;
 export default function Home() {
   const [styles, setStyles] = useState(null);
   const [client, setClient] = useState(null);
   const [user, setUser] = useState(null);
 
   const getStyles = async () => {
-    const stylesArr = await axios({
-      method: "get",
-      url: "http://15.206.171.9:3002/style",
-    });
+    const stylesArr = await axios.get(
+      "http://apidev.suprcommerce.com:3002/style",
+      { withCredentials: true }
+    );
     setStyles(stylesArr.data);
   };
 

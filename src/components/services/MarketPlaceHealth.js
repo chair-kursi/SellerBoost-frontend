@@ -4,6 +4,7 @@ import "../../css/services/MarketPlaceHealth.css";
 import { makeStyles } from "@material-ui/core/styles";
 
 import axios from "axios";
+
 import {
   Table,
   TableBody,
@@ -20,7 +21,7 @@ import {
   TableSortLabel,
   Checkbox,
 } from "@material-ui/core";
-
+axios.defaults.withCredentials = true;
 const channels = [
   "AMAZON_IN",
   "FLIPKART",
@@ -80,10 +81,10 @@ function MarketPlaceHealth() {
 
   const getHealth = async () => {
     try {
-      const health = await axios({
-        method: "get",
-        url: "http://15.206.171.9:3002/api/marketplaceHealth",
-      });
+      const health = await axios.get(
+        "http://apidev.suprcommerce.com:3002/marketplaceHealth",
+        { withCredentials: true }
+      );
       if (health && health.data && health.data.data)
         setUserList(health.data.data);
       if (health && health.data && health.data.summary)

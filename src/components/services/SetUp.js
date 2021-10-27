@@ -18,6 +18,7 @@ import {
   TableSortLabel,
   Checkbox,
 } from "@material-ui/core";
+axios.defaults.withCredentials = true;
 
 const useStyles = makeStyles((theme) => ({
   table: {
@@ -47,12 +48,10 @@ function SetUp() {
   const uploadCSV = (files) => {
     console.log(files[0]);
     const formData = new FormData();
-    formData.append("file", csvSelected);
-    axios
-      .post("https://jsonplaceholder.typicode.com/todos/1", formData)
-      .then((res) => {
-        console.log(res);
-      });
+    formData.append("csvFile", csvSelected);
+    axios.post("http://15.206.171.9:3002/setUp", formData).then((res) => {
+      console.log(res);
+    });
   };
   return (
     <div>

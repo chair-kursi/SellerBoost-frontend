@@ -25,7 +25,7 @@ import BusinessHealth from "./components/services/BusinessHealth";
 import DispatchHealth from "./components/services/DispatchHealth";
 import SetUp from "./components/services/SetUp";
 import axios from "axios";
-
+import Cookies from "universal-cookie";
 const customStyles = {
   content: {
     top: "50%",
@@ -38,6 +38,7 @@ const customStyles = {
     transform: "translate(-50%, -50%)",
   },
 };
+const cookies = new Cookies();
 
 function App() {
   const [auth, setAuth] = useState(-1);
@@ -45,7 +46,7 @@ function App() {
   const setClientId = async (localId) => {
     await axios({
       method: "GET",
-      url: "http://localhost:3002/clientId",
+      url: "http://apidev.suprcommerce.com:3002/clientId",
       //set cookies here for==> LocalId: "RvvwQ2XVc7hPHCDIfTDO8qnb4c83"
     });
   };
@@ -142,6 +143,9 @@ function App() {
         <Route exact path="/SetUp">
           {!auth ? <Redirect to="/signin" /> : <SetUp />}
         </Route>
+        <Route exact path="/signin">
+          <SigninPage />
+        </Route>
         <Route exact path="/">
           <Home1 />
 
@@ -151,10 +155,6 @@ function App() {
                 <Home />
             )
           } */}
-        </Route>
-
-        <Route exact path="/signin">
-          <SigninPage />
         </Route>
       </div>
     </BrowserRouter>

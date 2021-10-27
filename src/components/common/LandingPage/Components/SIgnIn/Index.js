@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import axios from "axios";
+import Cookies from "universal-cookie";
 import { useHistory } from "react-router";
 import { handleSignIn } from "../../../../auth/firebase";
 
@@ -14,6 +16,8 @@ import {
   FormButton,
   Text,
 } from "./SignInElements";
+axios.defaults.withCredentials = true;
+
 const SignIn = () => {
   const history = useHistory();
   const [email, setEmail] = useState("");
@@ -23,6 +27,23 @@ const SignIn = () => {
     const signin = handleSignIn(email, pass);
     if (signin) history.push("/Home");
   };
+
+  // const creatCookie = () => {
+  //   cookies.set("LocalId", "6N9yuxkxf6MhmSdOZuvAuze3l943", {
+  //     path: "/",
+  //     sameSite: "strict",
+  //     expires: new Date(new Date().setFullYear(new Date().getFullYear() + 1)),
+  //     secure: true,
+  //     // domain: "15.206.171.9",
+  //   });
+  // };
+  axios
+    .get("http://apidev.suprcommerce.com:3002/client", {
+      withCredentials: true,
+    })
+    .then((res) => {
+      console.log(res.data);
+    });
 
   return (
     <>

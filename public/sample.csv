@@ -1,6 +1,1 @@
-Column_Name,Description,Required
-SKU,SKU,TRUE
-Style,Style,TRUE
-Size,Size,TRUE
-Barcode,Barcode,False
-FrontImageURl,FrontImageURl,False
+SKU*,Style*,Size*,Barcode,FrontImgURl
