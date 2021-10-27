@@ -23,9 +23,12 @@ const SignIn = () => {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
 
-  var doSignIn = (email, pass) => {
-    const signin = handleSignIn(email, pass);
-    if (signin) history.push("/Home");
+  var doSignIn = (email, pass, e) => {
+    e.preventDefault();
+    console.log(email, pass);
+    handleSignIn(email, pass).then((signedIn) => {
+      if (signedIn) history.push("/Home");
+    });
   };
 
   // const creatCookie = () => {
@@ -37,13 +40,13 @@ const SignIn = () => {
   //     // domain: "15.206.171.9",
   //   });
   // };
-  axios
-    .get("http://api.suprcommerce.com:3002/client", {
-      withCredentials: true,
-    })
-    .then((res) => {
-      console.log(res.data);
-    });
+  // axios
+  //   .get("http://api.suprcommerce.com:3002/client", {
+  //     withCredentials: true,
+  //   })
+  //   .then((res) => {
+  //     console.log(res.data);
+  //   });
 
   return (
     <>
@@ -67,7 +70,7 @@ const SignIn = () => {
                 onChange={(e) => setPass(e.target.value)}
               />
 
-              <FormButton onClick={() => doSignIn(email, pass)}>
+              <FormButton onClick={(e) => doSignIn(email, pass, e)}>
                 Continue
               </FormButton>
               <Text>Forgot Password</Text>

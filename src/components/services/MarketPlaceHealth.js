@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import faker from "faker";
 import "../../css/services/MarketPlaceHealth.css";
 import { makeStyles } from "@material-ui/core/styles";
-
 import axios from "axios";
-
+import { Auth, onAuthStateChanged, handleSignOut } from "../auth/firebase";
+import { Link, useHistory } from "react-router-dom";
 import {
   Table,
   TableBody,
@@ -69,6 +69,8 @@ function MarketPlaceHealth() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [summary, setSummary] = useState({});
+  const [user, setUser] = useState(null);
+  const history = useHistory();
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -95,6 +97,12 @@ function MarketPlaceHealth() {
   };
   useEffect(() => {
     getHealth();
+    onAuthStateChanged(Auth, (user) => {
+      if (user) {
+        setUser(user);
+        console.log("user", user);
+      }
+    });
   }, []);
 
   return (
@@ -190,10 +198,16 @@ function MarketPlaceHealth() {
                 <span>Password</span>
               </a>
             </li>
-            <li>
-              <a href="#">
+            <li
+              onClick={() => {
+                if (user) {
+                  handleSignOut();
+                } else history.push("/signin");
+              }}
+            >
+              <a href={`${user ? "/" : "/signin"}`}>
                 <span className="fas fa-sign-out-alt"></span>
-                <span>Sign-out</span>
+                <span>{user ? "Sign-Out" : "Sign-in"}</span>
               </a>
             </li>
           </ul>

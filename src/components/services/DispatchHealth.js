@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../css/services/DispatchHealth.css";
 import { makeStyles } from "@material-ui/core/styles";
 import {
@@ -17,6 +17,8 @@ import {
   TableSortLabel,
   Checkbox,
 } from "@material-ui/core";
+import { Auth, onAuthStateChanged, handleSignOut } from "../auth/firebase";
+import { Link, useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   table: {
@@ -54,6 +56,16 @@ const useStyles = makeStyles((theme) => ({
 function DispatchHealth() {
   const classes = useStyles();
   const [toggle, setToggle] = useState(false);
+  const [user, setUser] = useState(null);
+  const history = useHistory();
+  useEffect(() => {
+    onAuthStateChanged(Auth, (user) => {
+      if (user) {
+        setUser(user);
+        console.log("user", user);
+      }
+    });
+  }, []);
   return (
     <div className="Dashboard__table">
       <input type="checkbox" id="nav-toggle" />
@@ -150,10 +162,16 @@ function DispatchHealth() {
                 <span>Password</span>
               </a>
             </li>
-            <li>
-              <a href="#">
+            <li
+              onClick={() => {
+                if (user) {
+                  handleSignOut();
+                } else history.push("/signin");
+              }}
+            >
+              <a href={`${user ? "/" : "/signin"}`}>
                 <span className="fas fa-sign-out-alt"></span>
-                <span>Sign-out</span>
+                <span>{user ? "Sign-Out" : "Sign-in"}</span>
               </a>
             </li>
           </ul>

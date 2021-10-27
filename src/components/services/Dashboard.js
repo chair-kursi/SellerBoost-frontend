@@ -2,6 +2,8 @@ import React, { useEffect, useState, useRef } from "react";
 import "../../css/services/Dashboard.css";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-scroll";
+import { useHistory } from "react-router-dom";
+import { Auth, onAuthStateChanged, handleSignOut } from "../auth/firebase";
 import axios from "axios";
 
 import {
@@ -86,6 +88,8 @@ function Dashboard() {
   const [collapseStatusSku, setCollapseStatusSku] = useState(false);
   const [csvSelected1, setCsvSelected1] = useState("");
   const [csvSelected2, setCsvSelected2] = useState("");
+  const [user, setUser] = useState(null);
+  const history = useHistory();
 
   const uploadCSV = (files) => {
     console.log(files[0]);
@@ -193,12 +197,6 @@ function Dashboard() {
     setSkuTraffic(skuTraffic.data.data);
   };
 
-  // const dashboard = await axios.get(
-  //   //  "http://15.206.171.9:3002/styleTraffic",
-  //   "http://api.suprcommerce.com:3002/styleTraffic",
-  //   { withCredentials: true }
-  // );
-
   const handleClick = (event) => {
     setCollapseStatus(event.currentTarget);
   };
@@ -232,13 +230,13 @@ function Dashboard() {
   useEffect(() => {
     getDashboard();
     getSkuTraffic();
+    onAuthStateChanged(Auth, (user) => {
+      if (user) {
+        setUser(user);
+        console.log("user", user);
+      }
+    });
   }, []);
-
-  // useEffect(() => {
-  //     console.log("page", page);
-  //     setShowSkuTraffic(-1);
-
-  // }, [page])
 
   return (
     <div className="Dashboard__table">
@@ -335,10 +333,16 @@ function Dashboard() {
                 <span>Password</span>
               </a>
             </li>
-            <li>
-              <a href="#">
+            <li
+              onClick={() => {
+                if (user) {
+                  handleSignOut();
+                } else history.push("/signin");
+              }}
+            >
+              <a href={`${user ? "/" : "/signin"}`}>
                 <span className="fas fa-sign-out-alt"></span>
-                <span>Sign-out</span>
+                <span>{user ? "Sign-Out" : "Sign-in"}</span>
               </a>
             </li>
           </ul>

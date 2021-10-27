@@ -127,17 +127,16 @@ export default function Home() {
                 <span>Password</span>
               </a>
             </li>
-            <li>
-              <a href={`${user ? "/" : "/suprLogin"}`}>
+            <li
+              onClick={() => {
+                if (user) {
+                  handleSignOut();
+                } else history.push("/signin");
+              }}
+            >
+              <a href={`${user ? "/" : "/signin"}`}>
                 <span className="fas fa-sign-out-alt"></span>
-                <span
-                  onClick={() => {
-                    if (user) handleSignOut();
-                    else history.push("/suprLogin");
-                  }}
-                >
-                  {user ? "Sign-Out" : "Sign-in"}
-                </span>
+                <span>{user ? "Sign-Out" : "Sign-in"}</span>
               </a>
             </li>
           </ul>

@@ -1,7 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../../css/services/Merchandising.css";
+import { Auth, onAuthStateChanged, handleSignOut } from "../auth/firebase";
+import { Link, useHistory } from "react-router-dom";
 
 function Merchandising() {
+  const [user, setUser] = useState(null);
+  const history = useHistory();
+
+  useEffect(() => {
+    onAuthStateChanged(Auth, (user) => {
+      if (user) {
+        setUser(user);
+        console.log("user", user);
+      }
+    });
+  }, []);
   return (
     <div>
       <input type="checkbox" id="nav-toggle" />
@@ -95,10 +108,16 @@ function Merchandising() {
                 <span>Password</span>
               </a>
             </li>
-            <li>
-              <a href="#">
+            <li
+              onClick={() => {
+                if (user) {
+                  handleSignOut();
+                } else history.push("/signin");
+              }}
+            >
+              <a href={`${user ? "/" : "/signin"}`}>
                 <span className="fas fa-sign-out-alt"></span>
-                <span>Sign-out</span>
+                <span>{user ? "Sign-Out" : "Sign-in"}</span>
               </a>
             </li>
           </ul>

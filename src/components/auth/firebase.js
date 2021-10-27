@@ -39,8 +39,14 @@ export const handleSignIn = async (email, pass) => {
     });
 };
 
-export { handleSignOut, onAuthStateChanged };
-
 const handleSignOut = () => {
+  alert("successfully signed out");
+  const cookies = new Cookies();
+  cookies.remove("LocalId", {
+    path: "/",
+    sameSite: "strict",
+    domain: ".suprcommerce.com",
+  });
   return signOut(auth);
 };
+export { handleSignOut, onAuthStateChanged };

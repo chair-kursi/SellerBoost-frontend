@@ -147,14 +147,7 @@ function App() {
           <SigninPage />
         </Route>
         <Route exact path="/">
-          <Home1 />
-
-          {/* {
-            (
-              !auth ? <Redirect to="/suprLogin" /> :
-                <Home />
-            )
-          } */}
+          {!auth ? <Redirect to="/signin" /> : <Home1 />}
         </Route>
       </div>
     </BrowserRouter>

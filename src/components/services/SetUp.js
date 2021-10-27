@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../css/services/SetUp.css";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
@@ -18,6 +18,8 @@ import {
   TableSortLabel,
   Checkbox,
 } from "@material-ui/core";
+import { Auth, onAuthStateChanged, handleSignOut } from "../auth/firebase";
+import { Link, useHistory } from "react-router-dom";
 axios.defaults.withCredentials = true;
 
 const useStyles = makeStyles((theme) => ({
@@ -45,6 +47,8 @@ const useStyles = makeStyles((theme) => ({
 function SetUp() {
   const classes = useStyles();
   const [csvSelected, setCsvSelected] = useState("");
+  const [user, setUser] = useState(null);
+  const history = useHistory();
   const uploadCSV = (files) => {
     console.log(files[0]);
     const formData = new FormData();
@@ -57,6 +61,14 @@ function SetUp() {
         console.log(res);
       });
   };
+  useEffect(() => {
+    onAuthStateChanged(Auth, (user) => {
+      if (user) {
+        setUser(user);
+        console.log("user", user);
+      }
+    });
+  }, []);
   return (
     <div>
       <input type="checkbox" id="nav-toggle" />
@@ -152,10 +164,16 @@ function SetUp() {
                 <span>Password</span>
               </a>
             </li>
-            <li>
-              <a href="#">
+            <li
+              onClick={() => {
+                if (user) {
+                  handleSignOut();
+                } else history.push("/signin");
+              }}
+            >
+              <a href={`${user ? "/" : "/signin"}`}>
                 <span className="fas fa-sign-out-alt"></span>
-                <span>Sign-out</span>
+                <span>{user ? "Sign-Out" : "Sign-in"}</span>
               </a>
             </li>
           </ul>
