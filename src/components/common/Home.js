@@ -9,22 +9,19 @@ import { Link, useHistory } from "react-router-dom";
 import { Auth, onAuthStateChanged, handleSignOut } from "../auth/firebase";
 axios.defaults.withCredentials = true;
 export default function Home() {
-  const [styles, setStyles] = useState(null);
-  const [client, setClient] = useState(null);
+  const history = useHistory();
   const [user, setUser] = useState(null);
 
-  const getStyles = async () => {
-    const stylesArr = await axios.get(
-      "http://api.suprcommerce.com:3002/style",
-      { withCredentials: true }
-    );
-    setStyles(stylesArr.data);
+  const homee = async () => {
+    axios
+      .get("http://api.suprcommerce.com:3002/summaryForHome", {
+        withCredentials: true,
+      })
+      .then((res) => console.log(res));
   };
 
-  const history = useHistory();
-
   useEffect(() => {
-    getStyles();
+    homee();
     onAuthStateChanged(Auth, (user) => {
       if (user) {
         setUser(user);
@@ -74,7 +71,7 @@ export default function Home() {
               </a>
             </li>
 
-            <li>
+            {/* <li>
               <a href="/MarketPlaceHealth">
                 <span className="fas fa-heartbeat"></span>
                 <span>MarketPlace Health</span>
@@ -92,7 +89,7 @@ export default function Home() {
                 <span className="fas fa-shipping-fast"></span>
                 <span>Dispatch Health</span>
               </a>
-            </li>
+            </li> */}
             {/* <li>
               <a href="/OneClickCatlogUpdate">
                 <span className="fas fa-upload"></span>
@@ -100,7 +97,7 @@ export default function Home() {
                 <span>One Click Upload</span>
               </a>
             </li> */}
-            <li>
+            {/* <li>
               <a href="/MarketPlaceReconciliation">
                 <span className="fas fa-hand-holding-usd"></span>
 
@@ -126,7 +123,7 @@ export default function Home() {
                 <span className="fas fa-key"></span>
                 <span>Password</span>
               </a>
-            </li>
+            </li> */}
             <li
               onClick={() => {
                 if (user) {
@@ -152,11 +149,11 @@ export default function Home() {
             Home
           </h2>
 
-          <div className="search-wrapper">
+          {/* <div className="search-wrapper">
             <span class="fas fa-search"> </span>
             <input type="search" placeholder="Search..." />
-          </div>
-          <div className="user-wrapper">
+          </div> */}
+          {/* <div className="user-wrapper">
             <div className="user__wrapperImg">
               <img src="https://bit.ly/3bvT89p" alt="profile-img" />
             </div>
@@ -164,7 +161,7 @@ export default function Home() {
               <h4>Ayan Khan</h4>
               <small>Super Admin</small>
             </div>
-          </div>
+          </div> */}
         </header>
 
         <div className="Home_container">

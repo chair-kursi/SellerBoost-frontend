@@ -99,7 +99,7 @@
   align-items: center;
   justify-content: space-around;
   display: flex;
-  margin-left: 103px;
+  margin-left: 68px;
 }
 .dispatch_containerOR {
   background-color: white;
@@ -137,8 +137,8 @@
   display: flex;
   background-color: #11493e;
   color: white;
-  width: 100px;
-  padding: 10px 100px;
+  width: 180px;
+  padding: 12px 5px;
   text-align: center;
   align-items: center;
   justify-content: center;

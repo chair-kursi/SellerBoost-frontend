@@ -30,7 +30,7 @@ export const handleSignIn = async (email, pass) => {
         sameSite: "strict",
         domain: ".suprcommerce.com",
       });
-      alert("Successfully Signed In!!..");
+      // alert("Successfully Signed In!!..");
       return true;
     })
     .catch(() => {

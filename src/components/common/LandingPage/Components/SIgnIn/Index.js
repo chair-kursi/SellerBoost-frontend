@@ -3,6 +3,8 @@ import axios from "axios";
 import Cookies from "universal-cookie";
 import { useHistory } from "react-router";
 import { handleSignIn } from "../../../../auth/firebase";
+import "bootstrap/dist/css/bootstrap.min.css";
+import * as ReactBootStrap from "react-bootstrap";
 
 import {
   Container,
@@ -16,46 +18,35 @@ import {
   FormButton,
   Text,
 } from "./SignInElements";
+import "../SIgnIn/SignIn.css";
 axios.defaults.withCredentials = true;
 
 const SignIn = () => {
   const history = useHistory();
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
+  const [signIn, setSignIn] = useState("");
 
   var doSignIn = (email, pass, e) => {
     e.preventDefault();
     console.log(email, pass);
     handleSignIn(email, pass).then((signedIn) => {
-      if (signedIn) history.push("/Home");
+      if (signedIn) {
+        history.push("/Home");
+
+        setSignIn(signedIn);
+      }
     });
   };
-
-  // const creatCookie = () => {
-  //   cookies.set("LocalId", "6N9yuxkxf6MhmSdOZuvAuze3l943", {
-  //     path: "/",
-  //     sameSite: "strict",
-  //     expires: new Date(new Date().setFullYear(new Date().getFullYear() + 1)),
-  //     secure: true,
-  //     // domain: "15.206.171.9",
-  //   });
-  // };
-  // axios
-  //   .get("http://api.suprcommerce.com:3002/client", {
-  //     withCredentials: true,
-  //   })
-  //   .then((res) => {
-  //     console.log(res.data);
-  //   });
 
   return (
     <>
       <Container>
         <FormWrap>
-          <Icon to="/">SuperCommerce</Icon>
+          <Icon to="/">SuprCommerce</Icon>
           <FormContent>
             <Form action="">
-              <FormH1>Sign In To Your Account</FormH1>
+              <FormH1>SignIn To Your Account</FormH1>
               <FormLabel htmlFor="for">Email</FormLabel>
               <FormInput
                 type="email"
@@ -64,14 +55,23 @@ const SignIn = () => {
               />
 
               <FormLabel htmlFor="for">Password</FormLabel>
-              <FormInput
-                type="passowrd"
-                required
+              <input
+                className="passwrd"
+                type="password"
                 onChange={(e) => setPass(e.target.value)}
+                required
               />
 
               <FormButton onClick={(e) => doSignIn(email, pass, e)}>
-                Continue
+                Continue &emsp;
+                {signIn ? (
+                  ""
+                ) : (
+                  <ReactBootStrap.Spinner
+                    animation="border"
+                    variant="warning"
+                  />
+                )}
               </FormButton>
               <Text>Forgot Password</Text>
             </Form>

@@ -5,6 +5,8 @@ import { Link } from "react-scroll";
 import { useHistory } from "react-router-dom";
 import { Auth, onAuthStateChanged, handleSignOut } from "../auth/firebase";
 import axios from "axios";
+import "bootstrap/dist/css/bootstrap.min.css";
+import * as ReactBootStrap from "react-bootstrap";
 
 import {
   Table,
@@ -22,9 +24,11 @@ import {
   IconButton,
 } from "@material-ui/core";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
+
 axios.defaults.withCredentials = true;
 const options = ["All", "Live", "Launching", "Disabled"];
 const skuOptions = ["Smooth Inventory", "Raw Inventory"];
+
 const useStyles = makeStyles((theme) => ({
   table: {
     minWidth: 650,
@@ -89,6 +93,7 @@ function Dashboard() {
   const [csvSelected1, setCsvSelected1] = useState("");
   const [csvSelected2, setCsvSelected2] = useState("");
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(false);
   const history = useHistory();
 
   const uploadCSV = (files) => {
@@ -279,7 +284,7 @@ function Dashboard() {
               </a>
             </li>
 
-            <li>
+            {/* <li>
               <a href="/MarketPlaceHealth">
                 <span className="fas fa-heartbeat"></span>
                 <span>MarketPlace Health</span>
@@ -297,7 +302,7 @@ function Dashboard() {
                 <span className="fas fa-shipping-fast"></span>
                 <span>Dispatch Health</span>
               </a>
-            </li>
+            </li> */}
 
             {/* <li>
               <a href="/OneClickCatlogUpdate">
@@ -306,7 +311,7 @@ function Dashboard() {
               </a>
             </li> */}
 
-            <li>
+            {/* <li>
               <a href="/MarketPlaceReconciliation">
                 <span className="fas fa-hand-holding-usd"></span>
 
@@ -332,7 +337,7 @@ function Dashboard() {
                 <span className="fas fa-key"></span>
                 <span>Password</span>
               </a>
-            </li>
+            </li> */}
             <li
               onClick={() => {
                 if (user) {
@@ -358,7 +363,7 @@ function Dashboard() {
             Inventory Dashboard
           </h2>
 
-          <div className="search-wrapper">
+          {/* <div className="search-wrapper">
             <span class="fas fa-search"> </span>
             <input type="search" placeholder="Search..." />
           </div>
@@ -371,7 +376,7 @@ function Dashboard() {
               <h4>Ayan Khan</h4>
               <small>Super Admin</small>
             </div>
-          </div>
+          </div> */}
         </header>
 
         <div className="homeCard_container11">
@@ -406,8 +411,8 @@ function Dashboard() {
 
                 <div className="dispatch__containerInput">
                   <span>URL</span>
-                  <input type="text" placeholder="Enter URL" />
-                  <span className="dispatch_containerOR">OR</span>
+                  {/* <input type="text" placeholder="Enter URL" />
+                  <span className="dispatch_containerOR">OR</span> */}
                   <input
                     type="file"
                     onChange={(event) => {
@@ -424,8 +429,8 @@ function Dashboard() {
 
                 <div className="dispatch__containerInput1">
                   <span>URL</span>
-                  <input type="text" placeholder="Enter URL" />
-                  <span className="dispatch_containerOR">OR</span>
+                  {/* <input type="text" placeholder="Enter URL" />
+                  <span className="dispatch_containerOR">OR</span> */}
 
                   <input
                     type="file"
@@ -438,7 +443,15 @@ function Dashboard() {
 
               <button className="DispatchContainerButton" onClick={uploadCSV}>
                 {" "}
-                Submit
+                Submit &emsp;
+                {loading ? (
+                  uploadCSV
+                ) : (
+                  <ReactBootStrap.Spinner
+                    animation="border"
+                    variant="warning"
+                  />
+                )}
               </button>
             </>
           ) : null}

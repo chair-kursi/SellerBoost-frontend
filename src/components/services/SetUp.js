@@ -20,6 +20,9 @@ import {
 } from "@material-ui/core";
 import { Auth, onAuthStateChanged, handleSignOut } from "../auth/firebase";
 import { Link, useHistory } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import * as ReactBootStrap from "react-bootstrap";
+
 axios.defaults.withCredentials = true;
 
 const useStyles = makeStyles((theme) => ({
@@ -48,6 +51,7 @@ function SetUp() {
   const classes = useStyles();
   const [csvSelected, setCsvSelected] = useState("");
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(false);
   const history = useHistory();
   const uploadCSV = (files) => {
     console.log(files[0]);
@@ -59,6 +63,7 @@ function SetUp() {
       })
       .then((res) => {
         console.log(res);
+        setLoading(true);
       });
   };
   useEffect(() => {
@@ -110,7 +115,7 @@ function SetUp() {
               </a>
             </li>
 
-            <li>
+            {/* <li>
               <a href="/MarketPlaceHealth">
                 <span className="fas fa-heartbeat"></span>
                 <span>MarketPlace Health</span>
@@ -128,7 +133,7 @@ function SetUp() {
                 <span className="fas fa-shipping-fast"></span>
                 <span>Dispatch Health</span>
               </a>
-            </li>
+            </li> */}
             {/* <li>
         <a href="/OneClickCatlogUpdate">
           <span className="fas fa-upload"></span>
@@ -137,7 +142,7 @@ function SetUp() {
         </a>
       </li> */}
 
-            <li>
+            {/* <li>
               <a href="/MarketPlaceReconciliation">
                 <span className="fas fa-hand-holding-usd"></span>
 
@@ -163,7 +168,7 @@ function SetUp() {
                 <span className="fas fa-key"></span>
                 <span>Password</span>
               </a>
-            </li>
+            </li> */}
             <li
               onClick={() => {
                 if (user) {
@@ -189,7 +194,7 @@ function SetUp() {
             Set Up
           </h2>
 
-          <div className="search-wrapper">
+          {/* <div className="search-wrapper">
             <span class="fas fa-search"> </span>
             <input type="search" placeholder="Search..." />
           </div>
@@ -202,7 +207,7 @@ function SetUp() {
               <h4>Ayan Khan</h4>
               <small>Super Admin</small>
             </div>
-          </div>
+          </div> */}
         </header>
 
         <div class="main-container">
@@ -225,6 +230,15 @@ function SetUp() {
                   <span>
                     <i class="fas fa-upload"></i>
                   </span>{" "}
+                  &emsp;
+                  {loading ? (
+                    uploadCSV
+                  ) : (
+                    <ReactBootStrap.Spinner
+                      animation="border"
+                      variant="warning"
+                    />
+                  )}
                 </button>
               </div>
               <button>

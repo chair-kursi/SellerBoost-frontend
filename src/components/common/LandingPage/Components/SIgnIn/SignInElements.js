@@ -93,6 +93,7 @@ export const FormInput = styled.input`
   border: none;
   border-radius: 4px;
   width: 340px;
+  outline: none;
 `;
 export const FormButton = styled.button`
   background: #01bf71;
@@ -102,6 +103,9 @@ export const FormButton = styled.button`
   color: #fff;
   font-size: 20px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 export const Text = styled.span`
   text-align: center;
