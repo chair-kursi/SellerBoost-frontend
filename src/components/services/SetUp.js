@@ -49,9 +49,13 @@ function SetUp() {
     console.log(files[0]);
     const formData = new FormData();
     formData.append("csvFile", csvSelected);
-    axios.post("http://15.206.171.9:3002/setUp", formData).then((res) => {
-      console.log(res);
-    });
+    axios
+      .post("http://apidev.suprcommerce.com:3002/setUp", formData, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        console.log(res);
+      });
   };
   return (
     <div>
