@@ -38,7 +38,7 @@ const SignIn = () => {
   //   });
   // };
   axios
-    .get("http://apidev.suprcommerce.com:3002/client", {
+    .get("http://api.suprcommerce.com:3002/client", {
       withCredentials: true,
     })
     .then((res) => {

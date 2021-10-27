@@ -46,7 +46,7 @@ function App() {
   const setClientId = async (localId) => {
     await axios({
       method: "GET",
-      url: "http://apidev.suprcommerce.com:3002/clientId",
+      url: "http://api.suprcommerce.com:3002/clientId",
       //set cookies here for==> LocalId: "RvvwQ2XVc7hPHCDIfTDO8qnb4c83"
     });
   };

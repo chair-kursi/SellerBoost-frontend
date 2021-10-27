@@ -82,7 +82,7 @@ function MarketPlaceHealth() {
   const getHealth = async () => {
     try {
       const health = await axios.get(
-        "http://apidev.suprcommerce.com:3002/marketplaceHealth",
+        "http://api.suprcommerce.com:3002/marketplaceHealth",
         { withCredentials: true }
       );
       if (health && health.data && health.data.data)

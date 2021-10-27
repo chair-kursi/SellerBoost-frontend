@@ -15,7 +15,7 @@ export default function Home() {
 
   const getStyles = async () => {
     const stylesArr = await axios.get(
-      "http://apidev.suprcommerce.com:3002/style",
+      "http://api.suprcommerce.com:3002/style",
       { withCredentials: true }
     );
     setStyles(stylesArr.data);

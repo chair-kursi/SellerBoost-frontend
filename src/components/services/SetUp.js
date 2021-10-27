@@ -50,7 +50,7 @@ function SetUp() {
     const formData = new FormData();
     formData.append("csvFile", csvSelected);
     axios
-      .post("http://apidev.suprcommerce.com:3002/setUp", formData, {
+      .post("http://api.suprcommerce.com:3002/setUp", formData, {
         withCredentials: true,
       })
       .then((res) => {

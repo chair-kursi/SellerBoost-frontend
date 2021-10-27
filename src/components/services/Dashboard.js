@@ -93,7 +93,7 @@ function Dashboard() {
     formData.append("skuSales", csvSelected1);
     formData.append("skuInventory", csvSelected2);
     axios
-      .post("http://apidev.suprcommerce.com:3002/dashboardUploads", formData, {
+      .post("http://api.suprcommerce.com:3002/dashboardUploads", formData, {
         withCredentials: true,
       })
       .then((res) => {
@@ -115,7 +115,7 @@ function Dashboard() {
   const getDashboard = async () => {
     const dashboard = await axios.get(
       //  "http://15.206.171.9:3002/styleTraffic",
-      "http://apidev.suprcommerce.com:3002/styleTraffic",
+      "http://api.suprcommerce.com:3002/styleTraffic",
       { withCredentials: true }
     );
 
@@ -185,7 +185,7 @@ function Dashboard() {
 
   const getSkuTraffic = async () => {
     const skuTraffic = await axios.get(
-      "http://apidev.suprcommerce.com:3002/skuTraffic",
+      "http://api.suprcommerce.com:3002/skuTraffic",
       {
         withCredentials: true,
       }
@@ -195,7 +195,7 @@ function Dashboard() {
 
   // const dashboard = await axios.get(
   //   //  "http://15.206.171.9:3002/styleTraffic",
-  //   "http://apidev.suprcommerce.com:3002/styleTraffic",
+  //   "http://api.suprcommerce.com:3002/styleTraffic",
   //   { withCredentials: true }
   // );
 
