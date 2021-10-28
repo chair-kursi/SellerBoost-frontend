@@ -51,7 +51,7 @@ function SetUp() {
   const classes = useStyles();
   const [csvSelected, setCsvSelected] = useState("");
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState("");
   const history = useHistory();
   const uploadCSV = (files) => {
     console.log(files[0]);
@@ -63,7 +63,7 @@ function SetUp() {
       })
       .then((res) => {
         console.log(res);
-        setLoading(true);
+        setLoading(res);
       });
   };
   useEffect(() => {
@@ -232,7 +232,7 @@ function SetUp() {
                   </span>{" "}
                   &emsp;
                   {loading ? (
-                    uploadCSV
+                    ""
                   ) : (
                     <ReactBootStrap.Spinner
                       animation="border"

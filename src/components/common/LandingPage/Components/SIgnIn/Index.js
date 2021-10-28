@@ -30,11 +30,10 @@ const SignIn = () => {
   var doSignIn = (email, pass, e) => {
     e.preventDefault();
     console.log(email, pass);
+    setSignIn(email, pass);
     handleSignIn(email, pass).then((signedIn) => {
       if (signedIn) {
         history.push("/Home");
-
-        setSignIn(signedIn);
       }
     });
   };
@@ -65,12 +64,12 @@ const SignIn = () => {
               <FormButton onClick={(e) => doSignIn(email, pass, e)}>
                 Continue &emsp;
                 {signIn ? (
-                  ""
-                ) : (
                   <ReactBootStrap.Spinner
                     animation="border"
                     variant="warning"
                   />
+                ) : (
+                  ""
                 )}
               </FormButton>
               <Text>Forgot Password</Text>

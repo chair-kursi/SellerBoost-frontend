@@ -93,7 +93,7 @@ function Dashboard() {
   const [csvSelected1, setCsvSelected1] = useState("");
   const [csvSelected2, setCsvSelected2] = useState("");
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState("");
   const history = useHistory();
 
   const uploadCSV = (files) => {
@@ -107,6 +107,7 @@ function Dashboard() {
       })
       .then((res) => {
         console.log(res);
+        setLoading(res);
       });
   };
 
@@ -445,7 +446,7 @@ function Dashboard() {
                 {" "}
                 Submit &emsp;
                 {loading ? (
-                  uploadCSV
+                  ""
                 ) : (
                   <ReactBootStrap.Spinner
                     animation="border"
