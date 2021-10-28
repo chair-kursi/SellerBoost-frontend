@@ -24,6 +24,7 @@ import {
   IconButton,
 } from "@material-ui/core";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
+import download from "js-file-download";
 
 axios.defaults.withCredentials = true;
 const options = ["All", "Live", "Launching", "Disabled"];
@@ -99,6 +100,7 @@ function Dashboard() {
   const uploadCSV = (files) => {
     console.log(files[0]);
     const formData = new FormData();
+    setLoading("in Progress");
     formData.append("skuSales", csvSelected1);
     formData.append("skuInventory", csvSelected2);
     axios
@@ -108,6 +110,7 @@ function Dashboard() {
       .then((res) => {
         console.log(res);
         setLoading(res);
+        download(res.data, "error.csv");
       });
   };
 
@@ -253,7 +256,7 @@ function Dashboard() {
           <h1>
             {" "}
             <span className="fab fa-asymmetrik"> </span>{" "}
-            <span>SuperCommerce</span>
+            <span>SuprCommerce</span>
           </h1>
         </div>
 
@@ -274,7 +277,7 @@ function Dashboard() {
             <li>
               <a href="/SetUp">
                 <span className="fas fa-tools"></span>
-                <span>Set Up</span>
+                <span>SKU SetUp</span>
               </a>
             </li>
 
@@ -411,7 +414,6 @@ function Dashboard() {
                 </label>
 
                 <div className="dispatch__containerInput">
-                  <span>URL</span>
                   {/* <input type="text" placeholder="Enter URL" />
                   <span className="dispatch_containerOR">OR</span> */}
                   <input
@@ -429,7 +431,6 @@ function Dashboard() {
                 </label>
 
                 <div className="dispatch__containerInput1">
-                  <span>URL</span>
                   {/* <input type="text" placeholder="Enter URL" />
                   <span className="dispatch_containerOR">OR</span> */}
 
@@ -445,13 +446,13 @@ function Dashboard() {
               <button className="DispatchContainerButton" onClick={uploadCSV}>
                 {" "}
                 Submit &emsp;
-                {loading ? (
-                  ""
-                ) : (
+                {loading === "in Progress" ? (
                   <ReactBootStrap.Spinner
                     animation="border"
                     variant="warning"
                   />
+                ) : (
+                  ""
                 )}
               </button>
             </>

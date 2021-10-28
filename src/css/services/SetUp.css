@@ -46,3 +46,108 @@
   text-decoration: none;
   border: none;
 }
+.Setup_info {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: white;
+  padding: 15px 5px;
+  margin-top: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.card-singlee44 {
+  display: flex;
+  justify-content: center;
+  width: 250px;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  align-items: center;
+  margin-right: 20px;
+  height: 120px;
+  cursor: pointer;
+  background-color: #ff8282;
+  border: 2px solid #ff5252;
+}
+.desc__numbers44 > h2 {
+  color: white;
+  font-weight: 600;
+  margin-right: 10px;
+  display: flex;
+}
+.card-singlee44 div:first-child span {
+  color: white;
+  margin-right: 40px;
+  font-size: 15px;
+}
+.card-singlee44 div:last-child span {
+  color: #ff5252;
+  font-size: 2.7rem;
+}
+
+.card-singlee33 {
+  display: flex;
+  justify-content: center;
+  width: 250px;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  align-items: center;
+  margin-right: 15px;
+  height: 120px;
+  cursor: pointer;
+  background-color: #00da25;
+  border: 2px solid #40916c;
+}
+.card-singlee33 div:last-child span {
+  color: #40916c;
+  font-size: 2.7rem;
+}
+.card-singlee33 div:first-child span {
+  color: white;
+  margin-right: 40px;
+  font-size: 15px;
+}
+.desc__numbers33 > h3 {
+  color: white;
+  font-weight: 600;
+  margin-right: 10px;
+}
+.card-singlee22 {
+  display: flex;
+  justify-content: center;
+  width: 250px;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  align-items: center;
+  margin-right: 20px;
+  height: 120px;
+  cursor: pointer;
+  color: white;
+  background-color: orange;
+  border: 2px solid #ff6d00;
+}
+.card-singlee22 div:last-child span {
+  color: #ff6d00;
+  font-size: 2.7rem;
+}
+.card-singlee22 div:first-child span {
+  color: white;
+  margin-right: 40px;
+  font-size: 15px;
+}
+.desc__numbers2 > h3 {
+  color: white;
+  font-weight: 600;
+  width: 150px;
+  margin-right: 10px;
+  display: flex;
+
+  padding-left: 20px;
+}

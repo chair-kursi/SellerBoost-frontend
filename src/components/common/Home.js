@@ -11,15 +11,19 @@ axios.defaults.withCredentials = true;
 export default function Home() {
   const history = useHistory();
   const [user, setUser] = useState(null);
+  const [homeData, sethomeData] = useState("");
 
   const homee = async () => {
     axios
       .get("http://api.suprcommerce.com:3002/summaryForHome", {
         withCredentials: true,
       })
-      .then((res) => console.log(res));
+      .then((res) => {
+        // sethomeData(res.data);
+        sethomeData(res.data.data[0].dashboard);
+      });
   };
-
+  console.log(homeData);
   useEffect(() => {
     homee();
     onAuthStateChanged(Auth, (user) => {
@@ -60,7 +64,7 @@ export default function Home() {
             <li>
               <a href="/SetUp">
                 <span className="fas fa-tools"></span>
-                <span>Set Up</span>
+                <span>SKU setUp</span>
               </a>
             </li>
 
@@ -178,7 +182,7 @@ export default function Home() {
                 <div>
                   <div className="card__desc">
                     <div className="desc__numbers1">
-                      <h1>249</h1>
+                      <h1>{homeData.soldout}</h1>
                     </div>
                   </div>
 
@@ -192,7 +196,7 @@ export default function Home() {
                 <div>
                   <div className="card__desc">
                     <div className="desc__numbers4">
-                      <h1>4</h1>
+                      <h1>{homeData.red}</h1>
                     </div>
                   </div>
 
@@ -207,7 +211,7 @@ export default function Home() {
                 <div>
                   <div className="card__desc">
                     <div className="desc__numbers2">
-                      <h1>2</h1>
+                      <h1>{homeData.orange}</h1>
                     </div>
                   </div>
 
@@ -222,7 +226,7 @@ export default function Home() {
                 <div>
                   <div className="card__desc">
                     <div className="desc__numbers3">
-                      <h1>0</h1>
+                      <h1>{homeData.green}</h1>
                     </div>
                   </div>
 
@@ -237,7 +241,7 @@ export default function Home() {
                 <div>
                   <div className="card__desc">
                     <div className="desc__numbers5">
-                      <h1>8</h1>
+                      <h1>{homeData.overgreen}</h1>
                     </div>
                   </div>
 
@@ -250,7 +254,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="homeCard_container">
+          {/* <div className="homeCard_container">
             <h1 className="homeCard__title">
               MarketPlace Health <span className="fas fa-heartbeat"></span>
             </h1>
@@ -334,8 +338,8 @@ export default function Home() {
                 </div>
               </div>
             </div>
-          </div>
-          <div className="homeCard_container">
+          </div> */}
+          {/* <div className="homeCard_container">
             <h1 className="homeCard__title">
               Business Health <span className="fas fa-chart-bar"></span>
             </h1>
@@ -408,9 +412,9 @@ export default function Home() {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
 
-          <div className="homeCard_container">
+          {/* <div className="homeCard_container">
             <h1 className="homeCard__title11">
               Dispatch Health <span className="fas fa-shipping-fast"></span>
             </h1>
@@ -422,9 +426,9 @@ export default function Home() {
                 <h3>Priority Order not Dispatch Yet</h3>
               </div>
             </div>
-          </div>
+          </div> */}
 
-          <div className="homeCard_container">
+          {/* <div className="homeCard_container">
             <h1 className="homeCard__title1">
               Setup Error <span className="fas fa-exclamation-triangle"></span>
             </h1>
@@ -455,7 +459,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
 
         {/* <div className="products">

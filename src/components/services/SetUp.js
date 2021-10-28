@@ -22,6 +22,7 @@ import { Auth, onAuthStateChanged, handleSignOut } from "../auth/firebase";
 import { Link, useHistory } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import * as ReactBootStrap from "react-bootstrap";
+import download from "js-file-download";
 
 axios.defaults.withCredentials = true;
 
@@ -57,6 +58,7 @@ function SetUp() {
     console.log(files[0]);
     const formData = new FormData();
     formData.append("csvFile", csvSelected);
+    setLoading("in Progress");
     axios
       .post("http://api.suprcommerce.com:3002/setUp", formData, {
         withCredentials: true,
@@ -64,6 +66,8 @@ function SetUp() {
       .then((res) => {
         console.log(res);
         setLoading(res);
+        console.log(loading);
+        download(res.data, "error.csv");
       });
   };
   useEffect(() => {
@@ -104,7 +108,7 @@ function SetUp() {
             <li>
               <a href="/SetUp">
                 <span className="fas fa-tools"></span>
-                <span>Set Up</span>
+                <span>SKU SetUp</span>
               </a>
             </li>
 
@@ -191,7 +195,7 @@ function SetUp() {
             <label for="nav-toggle">
               <span class="fas fa-bars"></span>
             </label>
-            Set Up
+            SKU setup
           </h2>
 
           {/* <div className="search-wrapper">
@@ -231,13 +235,13 @@ function SetUp() {
                     <i class="fas fa-upload"></i>
                   </span>{" "}
                   &emsp;
-                  {loading ? (
-                    ""
-                  ) : (
+                  {loading === "in Progress" ? (
                     <ReactBootStrap.Spinner
                       animation="border"
                       variant="warning"
                     />
+                  ) : (
+                    ""
                   )}
                 </button>
               </div>
@@ -250,6 +254,52 @@ function SetUp() {
                 </span>
               </button>
             </div>
+
+            {/* <div className="Setup_info">
+              <div className="card-singlee22">
+                <div>
+                  <div className="card__desc">
+                    <div className="desc__numbers2">
+                      <h3>28</h3>
+                    </div>
+                  </div>
+
+                  <span className="tis">Total Rows</span>
+                </div>
+                <div className="stylos">
+                  <span className="fas fa-tasks"></span>
+                </div>
+              </div>
+
+              <div className="card-singlee33">
+                <div>
+                  <div className="card__desc">
+                    <div className="desc__numbers33">
+                      <h3>25</h3>
+                    </div>
+                  </div>
+
+                  <span className="tis">Successful</span>
+                </div>
+                <div className="stylos">
+                  <span className="fas fa-check"></span>
+                </div>
+              </div>
+              <div className="card-singlee44">
+                <div>
+                  <div className="card__desc4">
+                    <div className="desc__numbers44">
+                      <h2>3</h2>
+                    </div>
+                  </div>
+
+                  <span className="tis">Error</span>
+                </div>
+                <div className="stylos">
+                  <span className="fas fa-exclamation-circle"></span>
+                </div>
+              </div>
+            </div> */}
             <TableContainer
               component={Paper}
               className={classes.tableContainer}
