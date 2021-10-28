@@ -338,3 +338,14 @@
   margin-left: 6px;
   font-size: 18px;
 }
+.template {
+  background-color: black;
+  padding: 10px 20px;
+  border-radius: 50px;
+}
+.iconss {
+  background-color: white;
+  padding: 5px;
+  border-radius: 50%;
+  margin-left: 20px;
+}

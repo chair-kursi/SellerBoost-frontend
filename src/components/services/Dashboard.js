@@ -423,6 +423,18 @@ function Dashboard() {
                     }}
                   />
                 </div>
+                <button className="template">
+                  <a
+                    href="\inventory-template.csv"
+                    download
+                    className="downloadCSV"
+                  >
+                    Download Template
+                  </a>
+                  <span className="iconss">
+                    <i class="fas fa-arrow-circle-down"></i>
+                  </span>
+                </button>
               </div>
 
               <div className="dispatch__container1">
@@ -441,6 +453,18 @@ function Dashboard() {
                     }}
                   />
                 </div>
+                <button className="template">
+                  <a
+                    href="\sales-template.csv"
+                    download
+                    className="downloadCSV"
+                  >
+                    Download Template
+                  </a>
+                  <span className="iconss">
+                    <i class="fas fa-arrow-circle-down"></i>
+                  </span>
+                </button>
               </div>
 
               <button className="DispatchContainerButton" onClick={uploadCSV}>

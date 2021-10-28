@@ -247,9 +247,9 @@ function SetUp() {
               </div>
               <button>
                 <a href="\sample.csv" download className="downloadCSV">
-                  Download CSV
+                  Download Template
                 </a>
-                <span>
+                <span className="iconsss">
                   <i class="fas fa-arrow-circle-down"></i>
                 </span>
               </button>
