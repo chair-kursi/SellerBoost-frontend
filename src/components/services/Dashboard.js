@@ -103,6 +103,7 @@ function Dashboard() {
     setLoading("in Progress");
     formData.append("skuSales", csvSelected1);
     formData.append("skuInventory", csvSelected2);
+
     axios
       .post("http://api.suprcommerce.com:3002/dashboardUploads", formData, {
         withCredentials: true,
@@ -468,7 +469,10 @@ function Dashboard() {
                 </button>
               </div>
 
-              <button className="DispatchContainerButton" onClick={uploadCSV}>
+              <button
+                className="DispatchContainerButton"
+                onClick={csvSelected1 && csvSelected2 ? uploadCSV : null}
+              >
                 {" "}
                 Submit &emsp;
                 {loading === "in Progress" ? (
