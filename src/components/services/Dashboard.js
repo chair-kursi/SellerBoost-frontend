@@ -112,6 +112,10 @@ function Dashboard() {
         console.log(res);
         setLoading(res);
         download(res.data, "error.csv");
+        alert("successfully uploaded");
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
 
@@ -471,7 +475,11 @@ function Dashboard() {
 
               <button
                 className="DispatchContainerButton"
-                onClick={csvSelected1 && csvSelected2 ? uploadCSV : null}
+                onClick={
+                  csvSelected1 && csvSelected2
+                    ? uploadCSV
+                    : alert("Please Choose Both File")
+                }
               >
                 {" "}
                 Submit &emsp;

@@ -68,6 +68,7 @@ function SetUp() {
         setLoading(res);
         console.log(loading);
         download(res.data, "error.csv");
+        alert("successfully uploaded");
       });
   };
   useEffect(() => {
@@ -229,7 +230,7 @@ function SetUp() {
                     setCsvSelected(event.target.files[0]);
                   }}
                 />
-                <button onClick={uploadCSV}>
+                <button onClick={csvSelected ? uploadCSV : ""}>
                   Upload File{" "}
                   <span>
                     <i class="fas fa-upload"></i>
