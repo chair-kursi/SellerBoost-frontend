@@ -475,11 +475,7 @@ function Dashboard() {
 
               <button
                 className="DispatchContainerButton"
-                onClick={
-                  csvSelected1 && csvSelected2
-                    ? uploadCSV
-                    : alert("Please Choose Both File")
-                }
+                onClick={csvSelected1 && csvSelected2 ? uploadCSV : ""}
               >
                 {" "}
                 Submit &emsp;
