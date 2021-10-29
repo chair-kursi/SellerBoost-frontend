@@ -246,7 +246,7 @@ function SetUp() {
                 </button>
               </div>
               <button>
-                <a href="\sample.csv" download className="downloadCSV">
+                <a href="\sku-template.csv" download className="downloadCSV">
                   Download Template
                 </a>
                 <span className="iconsss">
