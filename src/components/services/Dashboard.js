@@ -456,7 +456,7 @@ function Dashboard() {
                 </div>
                 <button className="template">
                   <a
-                    href="\sales-template.csv"
+                    href="\sales-template (3).csv"
                     download
                     className="downloadCSV"
                   >
