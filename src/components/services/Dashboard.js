@@ -204,6 +204,7 @@ function Dashboard() {
       }
     );
     setSkuTraffic(skuTraffic.data.data);
+    console.log(skuTraffic.data.data, "data");
   };
 
   const handleClick = (event) => {

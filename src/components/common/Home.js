@@ -19,8 +19,9 @@ export default function Home() {
         withCredentials: true,
       })
       .then((res) => {
-        // sethomeData(res.data);
-        sethomeData(res.data.data[0].dashboard);
+        sethomeData(res);
+        // sethomeData(res.data.data[0].dashboard);
+        // console.log(res.data.data.length);
       });
   };
   console.log(homeData);
@@ -182,7 +183,11 @@ export default function Home() {
                 <div>
                   <div className="card__desc">
                     <div className="desc__numbers1">
-                      <h1>{homeData.soldout}</h1>
+                      <h1>
+                        {homeData.data.data.length === 0
+                          ? "0"
+                          : homeData.data.data[0].dashboard.soldout}
+                      </h1>
                     </div>
                   </div>
 
@@ -196,7 +201,12 @@ export default function Home() {
                 <div>
                   <div className="card__desc">
                     <div className="desc__numbers4">
-                      <h1>{homeData.red}</h1>
+                      <h1>
+                        {" "}
+                        {homeData.data.data.length === 0
+                          ? "0"
+                          : homeData.data.data[0].dashboard.red}
+                      </h1>
                     </div>
                   </div>
 
@@ -211,7 +221,11 @@ export default function Home() {
                 <div>
                   <div className="card__desc">
                     <div className="desc__numbers2">
-                      <h1>{homeData.orange}</h1>
+                      <h1>
+                        {homeData.data.data.length === 0
+                          ? "0"
+                          : homeData.data.data[0].dashboard.orange}
+                      </h1>
                     </div>
                   </div>
 
@@ -226,7 +240,11 @@ export default function Home() {
                 <div>
                   <div className="card__desc">
                     <div className="desc__numbers3">
-                      <h1>{homeData.green}</h1>
+                      <h1>
+                        {homeData.data.data.length === 0
+                          ? "0"
+                          : homeData.data.data[0].dashboard.green}
+                      </h1>
                     </div>
                   </div>
 
@@ -241,7 +259,11 @@ export default function Home() {
                 <div>
                   <div className="card__desc">
                     <div className="desc__numbers5">
-                      <h1>{homeData.overgreen}</h1>
+                      <h1>
+                        {homeData.data.data.length === 0
+                          ? "0"
+                          : homeData.data.data[0].dashboard.overgreen}
+                      </h1>
                     </div>
                   </div>
 
