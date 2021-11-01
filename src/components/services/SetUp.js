@@ -23,6 +23,8 @@ import { Link, useHistory } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import * as ReactBootStrap from "react-bootstrap";
 import download from "js-file-download";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 axios.defaults.withCredentials = true;
 
@@ -54,6 +56,7 @@ function SetUp() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState("");
   const history = useHistory();
+
   const uploadCSV = (files) => {
     console.log(files[0]);
     const formData = new FormData();
@@ -68,9 +71,22 @@ function SetUp() {
         setLoading(res);
         console.log(loading);
         download(res.data, "error.csv");
-        alert("successfully uploaded");
+        diffToast1();
+      })
+      .catch((err) => {
+        diffToast2();
       });
   };
+  const diffToast = () => {
+    toast.warn("Please Select CSV File");
+  };
+  const diffToast1 = () => {
+    toast.success("Successfuly Uploaded");
+  };
+  const diffToast2 = () => {
+    toast.error("Something went Wrong");
+  };
+
   useEffect(() => {
     onAuthStateChanged(Auth, (user) => {
       if (user) {
@@ -178,7 +194,9 @@ function SetUp() {
               onClick={() => {
                 if (user) {
                   handleSignOut();
-                } else history.push("/signin");
+                } else {
+                  history.push("/signin");
+                }
               }}
             >
               <a href={`${user ? "/" : "/signin"}`}>
@@ -230,7 +248,7 @@ function SetUp() {
                     setCsvSelected(event.target.files[0]);
                   }}
                 />
-                <button onClick={csvSelected ? uploadCSV : ""}>
+                <button onClick={csvSelected ? uploadCSV : diffToast}>
                   Upload File{" "}
                   <span>
                     <i class="fas fa-upload"></i>
@@ -245,6 +263,18 @@ function SetUp() {
                     ""
                   )}
                 </button>
+                <ToastContainer
+                  position="top-right"
+                  autoClose={5000}
+                  hideProgressBar={false}
+                  newestOnTop
+                  closeOnClick
+                  rtl={false}
+                  pauseOnFocusLoss
+                  draggable
+                  pauseOnHover
+                  theme="colored"
+                />
               </div>
               <button>
                 <a href="\sku-template.csv" download className="downloadCSV">

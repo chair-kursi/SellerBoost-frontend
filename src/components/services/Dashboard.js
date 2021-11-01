@@ -7,6 +7,8 @@ import { Auth, onAuthStateChanged, handleSignOut } from "../auth/firebase";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import * as ReactBootStrap from "react-bootstrap";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import {
   Table,
@@ -22,6 +24,7 @@ import {
   MenuItem,
   Menu,
   IconButton,
+  TableSortLabel,
 } from "@material-ui/core";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import download from "js-file-download";
@@ -95,7 +98,29 @@ function Dashboard() {
   const [csvSelected2, setCsvSelected2] = useState("");
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState("");
+  const [orderDirection, setOrderDirection] = useState("asc");
+  const [valueToOrderBy, setValueToOrderBy] = useState("stylecode");
+
+  const diffToast = () => {
+    toast.warn("Please Select CSV File");
+  };
+  const diffToast1 = () => {
+    toast.success("Successfuly Uploaded");
+  };
+  const diffToast2 = () => {
+    toast.error("Something went Wrong");
+  };
+
   const history = useHistory();
+
+  const handleRequestSort = (event, property) => {
+    const isAscending = valueToOrderBy === property && orderDirection === "asc";
+    setValueToOrderBy(property);
+    setOrderDirection(isAscending ? "desc" : "asc");
+  };
+  const createSortHandler = (property) => (event) => {
+    handleRequestSort(event, property);
+  };
 
   const uploadCSV = (files) => {
     console.log(files[0]);
@@ -112,10 +137,12 @@ function Dashboard() {
         console.log(res);
         setLoading(res);
         download(res.data, "error.csv");
-        alert("successfully uploaded");
+
+        diffToast1();
       })
       .catch((err) => {
         console.log(err);
+        diffToast2();
       });
   };
 
@@ -475,7 +502,7 @@ function Dashboard() {
 
               <button
                 className="DispatchContainerButton"
-                onClick={csvSelected1 && csvSelected2 ? uploadCSV : ""}
+                onClick={csvSelected1 && csvSelected2 ? uploadCSV : diffToast}
               >
                 {" "}
                 Submit &emsp;
@@ -491,6 +518,18 @@ function Dashboard() {
             </>
           ) : null}
         </div>
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
 
         <div className="cardsss">
           <div className="card-singlee1">
@@ -573,8 +612,20 @@ function Dashboard() {
             <Table className={classes.table} aria-label="simple table">
               <TableHead href="#subtable">
                 <TableRow>
-                  <TableCell className={classes.tableHeaderCell}>
-                    StyleCode
+                  <TableCell
+                    className={classes.tableHeaderCell}
+                    key="stylecode"
+                  >
+                    <TableSortLabel
+                      style={{ color: "white" }}
+                      active={valueToOrderBy === "stylecode"}
+                      direction={
+                        valueToOrderBy === "stylecode" ? orderDirection : "asc"
+                      }
+                      // onClick={createSortHandler("stylecode")}
+                    >
+                      StyleCode
+                    </TableSortLabel>
                   </TableCell>
 
                   <TableCell className={classes.tableHeaderCell}>

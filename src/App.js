@@ -26,6 +26,8 @@ import DispatchHealth from "./components/services/DispatchHealth";
 import SetUp from "./components/services/SetUp";
 import axios from "axios";
 import Cookies from "universal-cookie";
+import LoadingPage from "./components/common/LoadingPage";
+
 const customStyles = {
   content: {
     top: "50%",
@@ -60,7 +62,13 @@ function App() {
     });
   }, []);
 
-  if (auth === -1) return <h1>Checking Auth</h1>;
+  if (auth === -1)
+    return (
+      <>
+        {" "}
+        <LoadingPage />
+      </>
+    );
 
   return (
     <BrowserRouter>

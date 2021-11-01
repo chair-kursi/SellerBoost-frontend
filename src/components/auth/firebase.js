@@ -6,6 +6,8 @@ import {
   signOut,
 } from "firebase/auth";
 import Cookies from "universal-cookie";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCHhkCsDlBigYJzYhy9fw0bK2nI0y_xL8A",
@@ -16,7 +18,9 @@ const firebaseConfig = {
   appId: process.env.REACT_APP_APP_ID,
 };
 const app = initializeApp(firebaseConfig);
-
+const diffToast = () => {
+  toast.success("LOGED OUT");
+};
 const auth = getAuth();
 export const Auth = getAuth();
 export const handleSignIn = async (email, pass) => {
@@ -40,7 +44,7 @@ export const handleSignIn = async (email, pass) => {
 };
 
 const handleSignOut = () => {
-  alert("successfully signed out");
+  diffToast();
   const cookies = new Cookies();
   cookies.remove("LocalId", {
     path: "/",
@@ -49,4 +53,16 @@ const handleSignOut = () => {
   });
   return signOut(auth);
 };
+<ToastContainer
+  position="top-right"
+  autoClose={5000}
+  hideProgressBar={false}
+  newestOnTop
+  closeOnClick
+  rtl={false}
+  pauseOnFocusLoss
+  draggable
+  pauseOnHover
+  theme="colored"
+/>;
 export { handleSignOut, onAuthStateChanged };

@@ -5,7 +5,8 @@ import { useHistory } from "react-router";
 import { handleSignIn } from "../../../../auth/firebase";
 import "bootstrap/dist/css/bootstrap.min.css";
 import * as ReactBootStrap from "react-bootstrap";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   Container,
   FormWrap,
@@ -33,11 +34,14 @@ const SignIn = () => {
     setSignIn(email, pass);
     handleSignIn(email, pass).then((signedIn) => {
       if (signedIn) {
+        diffToast3();
         history.push("/Home");
       }
     });
   };
-
+  const diffToast3 = () => {
+    toast.info("Successfully Signed In");
+  };
   return (
     <>
       <Container>
@@ -72,6 +76,18 @@ const SignIn = () => {
                   ""
                 )}
               </FormButton>
+              <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+              />
               <Text>Forgot Password</Text>
             </Form>
           </FormContent>
