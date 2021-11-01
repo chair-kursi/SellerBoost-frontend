@@ -3,15 +3,20 @@ import React, { useEffect, useState } from "react";
 import Product from "./Product";
 import SearchIcon from "@material-ui/icons/Search";
 import { Avatar } from "@material-ui/core";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "../../css/home.css";
 import { Link, useHistory } from "react-router-dom";
 import { Auth, onAuthStateChanged, handleSignOut } from "../auth/firebase";
+
 axios.defaults.withCredentials = true;
+
 export default function Home() {
   const history = useHistory();
   const [user, setUser] = useState(null);
   const [homeData, sethomeData] = useState("");
+
+  const [notification, setNotification] = useState("");
 
   const homee = async () => {
     axios
@@ -31,7 +36,8 @@ export default function Home() {
     onAuthStateChanged(Auth, (user) => {
       if (user) {
         setUser(user);
-        console.log("user", user);
+        toast.success("Welcome To the SuprCommerce");
+        console.log("user ascfa", user);
       }
     });
   }, []);
@@ -134,7 +140,7 @@ export default function Home() {
               onClick={() => {
                 if (user) {
                   handleSignOut();
-                } else history.push("/signin");
+                }
               }}
             >
               <a href={`${user ? "/" : "/signin"}`}>
@@ -145,7 +151,19 @@ export default function Home() {
           </ul>
         </div>
       </div>
-
+      {/* {user ? diffToast3() : ""} */}
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
       <div className="main-content">
         <header>
           <h2>

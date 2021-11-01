@@ -8,6 +8,7 @@ import {
 import Cookies from "universal-cookie";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Link, useHistory } from "react-router-dom";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCHhkCsDlBigYJzYhy9fw0bK2nI0y_xL8A",
@@ -19,7 +20,7 @@ const firebaseConfig = {
 };
 const app = initializeApp(firebaseConfig);
 const diffToast = () => {
-  toast.success("LOGED OUT");
+  toast.success("Successfully Logged In");
 };
 const auth = getAuth();
 export const Auth = getAuth();
@@ -34,17 +35,17 @@ export const handleSignIn = async (email, pass) => {
         sameSite: "strict",
         domain: ".suprcommerce.com",
       });
+
       // alert("Successfully Signed In!!..");
       return true;
     })
     .catch(() => {
-      alert("Invalid Email/Password!!..");
+      // alert("Invalid Email/Password!!..");
       return false;
     });
 };
 
 const handleSignOut = () => {
-  diffToast();
   const cookies = new Cookies();
   cookies.remove("LocalId", {
     path: "/",
@@ -53,16 +54,5 @@ const handleSignOut = () => {
   });
   return signOut(auth);
 };
-<ToastContainer
-  position="top-right"
-  autoClose={5000}
-  hideProgressBar={false}
-  newestOnTop
-  closeOnClick
-  rtl={false}
-  pauseOnFocusLoss
-  draggable
-  pauseOnHover
-  theme="colored"
-/>;
+
 export { handleSignOut, onAuthStateChanged };
