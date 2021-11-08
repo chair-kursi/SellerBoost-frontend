@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import "../../css/services/Dashboard.css";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-scroll";
+import { animateScroll as scroll } from "react-scroll";
 import { useHistory } from "react-router-dom";
 import { Auth, onAuthStateChanged, handleSignOut } from "../auth/firebase";
 import axios from "axios";
@@ -47,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.success.dark,
     color: theme.palette.getContrastText(theme.palette.primary.dark),
     backgroundColor: "#11493e",
+    width: "111px",
   },
   tableHeaderCell4: {
     padding: "15px",
@@ -100,6 +102,9 @@ function Dashboard() {
   const [loading, setLoading] = useState("");
   const [orderDirection, setOrderDirection] = useState("asc");
   const [valueToOrderBy, setValueToOrderBy] = useState("stylecode");
+  const [datePicker, setDatePicker] = useState(true);
+  const [datePicked, setDatePicked] = useState();
+  const [handleClick2, setHandleClick2] = useState();
 
   const diffToast = () => {
     toast.warn("Please Select CSV File");
@@ -675,9 +680,14 @@ function Dashboard() {
                   <TableCell className={classes.tableHeaderCell}>
                     Traffic Actual
                   </TableCell>
+                  <TableCell className={classes.tableHeaderCell}>
+                    Plan Status
+                  </TableCell>
                 </TableRow>
               </TableHead>
-
+              {/* onClick={() => {
+                              scroll.scrollToTop();
+                            }} */}
               <TableBody>
                 {dashboard &&
                   dashboard.length &&
@@ -754,13 +764,61 @@ function Dashboard() {
                               {row.trafficActual}
                             </Typography>
                           </TableCell>
+                          <TableCell
+                            style={{
+                              textAlign: "center",
+                            }}
+                          >
+                            {handleClick2 ? (
+                              <h5 className="progressText">In Progress</h5>
+                            ) : (
+                              <button
+                                className="SetPlan"
+                                onClick={() => setDatePicker(!datePicker)}
+                              >
+                                Set Plan
+                              </button>
+                            )}
+                          </TableCell>
                         </TableRow>
 
                         {showSkuTraffic === page * rowsPerPage + idx ? (
                           <TableRow>
-                            <TableCell colSpan={6}>
+                            <TableCell colSpan={7}>
                               <TableContainer>
                                 <section id="subtable">
+                                  {!datePicker && !handleClick2 ? (
+                                    <>
+                                      <div className="datepicker__container">
+                                        <div className="datepicker__label">
+                                          Please Select Date{" "}
+                                          <i class="far fa-calendar-alt"></i>
+                                        </div>
+                                        <div className="date__items">
+                                          <div className="date__item1">
+                                            <h5>Date</h5>
+                                            <input
+                                              type="date"
+                                              onChange={(e) =>
+                                                setDatePicked(e.target.value)
+                                              }
+                                            />
+                                          </div>
+                                          <div className="date__item2">
+                                            <button
+                                              onClick={() =>
+                                                setHandleClick2(datePicked)
+                                              }
+                                            >
+                                              Submit
+                                            </button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </>
+                                  ) : (
+                                    ""
+                                  )}
                                   <Table
                                     className={classes.table}
                                     aria-label="simple table"

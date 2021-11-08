@@ -16,8 +16,6 @@ export default function Home() {
   const [user, setUser] = useState(null);
   const [homeData, sethomeData] = useState("");
 
-  const [notification, setNotification] = useState("");
-
   const homee = async () => {
     axios
       .get("http://api.suprcommerce.com:3002/summaryForHome", {
@@ -25,12 +23,9 @@ export default function Home() {
       })
       .then((res) => {
         sethomeData(res.data.data);
-        console.log(res.data.data, "data");
-        // sethomeData(res.data.data[0].dashboard);
-        // console.log(res.data.data.length);
       });
   };
-  console.log(homeData);
+
   useEffect(() => {
     homee();
     onAuthStateChanged(Auth, (user) => {

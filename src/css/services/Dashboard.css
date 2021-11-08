@@ -349,3 +349,88 @@
   border-radius: 50%;
   margin-left: 20px;
 }
+
+.datepicker__label {
+  background-color: #ffbc77;
+  padding: 20px 10px;
+  color: #605600;
+  font-weight: 700;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.datepicker__label i {
+  background-color: white;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  margin-left: 13px;
+  transform: scale(1.2);
+}
+
+.datepicker__container {
+  display: flex;
+  flex-direction: column;
+  height: 143px;
+  border: 1px solid lightgray;
+  margin-bottom: 20px;
+}
+.date__items {
+  display: flex;
+  align-items: center;
+  padding: 15px 40px;
+  justify-content: space-between;
+  background-color: #fffbcc;
+}
+.date__item1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+}
+.date__item1 h5 {
+  font-size: 17px;
+  margin-bottom: 0;
+  margin-right: 20px;
+}
+.date__item1 input {
+  padding: 10px 40px;
+  border: 1px solid lightgray;
+  border-radius: 20px;
+  outline: none;
+}
+.date__item2 button {
+  background-color: #605600;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 30px;
+  font-size: 16px;
+  font-weight: 500;
+}
+.progressText {
+  font-weight: bold;
+  font-size: 13px;
+  border-radius: 8px;
+  padding: 5px 10px;
+  margin-top: 5px;
+  width: 97px;
+  text-align: center;
+  color: white;
+  background-color: #00da25;
+}
+.SetPlan {
+  background-color: #605600;
+  font-weight: bold;
+  font-size: 13px;
+  border-radius: 8px;
+  padding: 5px 10px;
+  margin-top: 5px;
+  width: 97px;
+  text-align: center;
+  color: white;
+}
