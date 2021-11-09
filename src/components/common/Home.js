@@ -72,10 +72,10 @@ export default function Home() {
             </li>
 
             <li>
-              <a href="/Dashboard">
+              <Link to="/Dashboard">
                 <span className="fas fa-tachometer-alt"></span>
                 <span>Inventory Dashboard </span>
-              </a>
+              </Link>
             </li>
 
             {/* <li>

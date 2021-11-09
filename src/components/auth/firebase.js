@@ -24,6 +24,31 @@ const diffToast = () => {
 };
 const auth = getAuth();
 export const Auth = getAuth();
+// firebase.auth().setPersistence(firebase.auth.Auth.Persistence.NONE);
+
+// export const handleSignIn = async (login, password) => {
+//   return await getAuth()
+//     .signInWithEmailAndPassword(login, password)
+//     .then(({ user }) => {
+//       return user.getIdToken().then((idToken) => {
+//         return fetch("api.suprcommerce.com:3002/sessionLogin", {
+//           method: "POST",
+//           headers: {
+//             Accept: "application/json",
+//             "Content-Type": "application/json",
+//             "CSRF-Token": Cookies.get("XSRF-TOKEN"),
+//           },
+//           body: JSON.stringify({ idToken }),
+//         });
+//       });
+//     })
+//     .then(() => {
+//       return auth.signOut();
+//     })
+//     .then(() => {
+//       window.location.assign("/profile");
+//     });
+// };
 export const handleSignIn = async (email, pass) => {
   return await signInWithEmailAndPassword(auth, email, pass)
     .then((userCredential) => {

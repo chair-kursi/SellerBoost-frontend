@@ -115,7 +115,9 @@ function Dashboard() {
   const diffToast2 = () => {
     toast.error("Something went Wrong");
   };
-
+  const diffToast3 = () => {
+    toast.error("Date Successfully Updated");
+  };
   const history = useHistory();
 
   const handleRequestSort = (event, property) => {
@@ -806,9 +808,9 @@ function Dashboard() {
                                           </div>
                                           <div className="date__item2">
                                             <button
-                                              onClick={() =>
-                                                setHandleClick2(datePicked)
-                                              }
+                                              onClick={() => {
+                                                setHandleClick2(datePicked);
+                                              }}
                                             >
                                               Submit
                                             </button>

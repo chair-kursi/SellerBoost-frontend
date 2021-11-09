@@ -152,7 +152,7 @@ function App() {
           {!auth ? <Redirect to="/signin" /> : <SetUp />}
         </Route>
         <Route exact path="/signin">
-          {!auth ? <SigninPage /> : <Home />}
+          {!auth ? <SigninPage /> : <Redirect to="/Home" />}
           {/* <SigninPage /> */}
         </Route>
         <Route exact path="/">
