@@ -48,17 +48,17 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.success.dark,
     color: theme.palette.getContrastText(theme.palette.primary.dark),
     backgroundColor: "#11493e",
-    width: "111px",
+    width: "124px",
+    padding: "20px 5px",
   },
-  tableHeaderCell4: {
-    padding: "15px",
-  },
+
   tableHeaderCell2: {
     fontWeight: "bold",
     backgroundColor: theme.palette.success.dark,
     color: "#605600",
     backgroundColor: "#ffbc77",
   },
+
   tableCell2: {
     // fontWeight: "bold",
     // color: "#605600",
@@ -105,6 +105,7 @@ function Dashboard() {
   const [datePicker, setDatePicker] = useState(true);
   const [datePicked, setDatePicked] = useState();
   const [handleClick2, setHandleClick2] = useState();
+  const [completed, setCompleted] = useState(true);
 
   const diffToast = () => {
     toast.warn("Please Select CSV File");
@@ -235,6 +236,8 @@ function Dashboard() {
     setOverGreenColor(trafficColorCount.get(defaultTrafficColors[4]) || 0);
   };
 
+  // SKU Traffic get API Call
+
   const getSkuTraffic = async () => {
     const skuTraffic = await axios.get(
       "http://api.suprcommerce.com:3002/skuTraffic",
@@ -244,6 +247,17 @@ function Dashboard() {
     );
     setSkuTraffic(skuTraffic.data.data);
     console.log(skuTraffic.data.data, "data");
+  };
+  // Style Traffic Patch API Call
+
+  const PatchSkuTraffic = async () => {
+    await axios
+      .patch("http://api.suprcommerce.com:3002/styleTraffic", {
+        withCredentials: true,
+      })
+      .then((res) => {
+        console.log(res, "patch response");
+      });
   };
 
   const handleClick = (event) => {
@@ -279,6 +293,7 @@ function Dashboard() {
   useEffect(() => {
     getDashboard();
     getSkuTraffic();
+    PatchSkuTraffic();
     onAuthStateChanged(Auth, (user) => {
       if (user) {
         setUser(user);
@@ -621,6 +636,7 @@ function Dashboard() {
                 <TableRow>
                   <TableCell
                     className={classes.tableHeaderCell}
+                    style={{ textAlign: "center" }}
                     key="stylecode"
                   >
                     <TableSortLabel
@@ -682,7 +698,12 @@ function Dashboard() {
                   <TableCell className={classes.tableHeaderCell}>
                     Traffic Actual
                   </TableCell>
-                  <TableCell className={classes.tableHeaderCell}>
+                  <TableCell
+                    className={classes.tableHeaderCell}
+                    style={{
+                      textAlign: "center",
+                    }}
+                  >
                     Plan Status
                   </TableCell>
                 </TableRow>
@@ -708,6 +729,7 @@ function Dashboard() {
                         <TableRow key={row.styleCode}>
                           <TableCell
                             className={classes.tableHeaderCell4}
+                            style={{ textAlign: "center" }}
                             onClick={() => {
                               if (showSkuTraffic != page * rowsPerPage + idx)
                                 setShowSkuTraffic(page * rowsPerPage + idx);
@@ -723,7 +745,11 @@ function Dashboard() {
                           </TableCell>
 
                           <TableCell>{row.status}</TableCell>
-                          <TableCell>
+                          <TableCell
+                            style={{
+                              padding: "10px",
+                            }}
+                          >
                             <Typography
                               variant="body2"
                               style={{
@@ -767,12 +793,42 @@ function Dashboard() {
                             </Typography>
                           </TableCell>
                           <TableCell
-                            style={{
-                              textAlign: "center",
-                            }}
+                          // style={{
+                          //   textAlign: "center",
+                          //   width: 120,
+                          // }}
                           >
                             {handleClick2 ? (
-                              <h5 className="progressText">In Progress</h5>
+                              <>
+                                {" "}
+                                {completed ? (
+                                  <>
+                                    <div className="progressContainer">
+                                      <p className="progressText">
+                                        In Progress
+                                      </p>{" "}
+                                      <span className="hashss">/</span>
+                                      <button
+                                        className="progressTextComplete"
+                                        onClick={() => {
+                                          setCompleted(false);
+                                        }}
+                                      >
+                                        Mark Complete{" "}
+                                        <i class="fas fa-hand-pointer"></i>
+                                      </button>
+                                    </div>
+                                    <p className="ExpiryDetails">
+                                      Expires in 45 Days
+                                    </p>
+                                  </>
+                                ) : (
+                                  <p className="progressText2">
+                                    Completed{" "}
+                                    <i class="fas fa-check-circle"></i>
+                                  </p>
+                                )}
+                              </>
                             ) : (
                               <button
                                 className="SetPlan"

@@ -416,13 +416,42 @@
   font-weight: bold;
   font-size: 13px;
   border-radius: 8px;
-  padding: 5px 10px;
+
   margin-top: 5px;
   width: 97px;
   text-align: center;
-  color: white;
-  background-color: #00da25;
+  color: #00da25;
 }
+.progressText2 {
+  font-weight: bold;
+  font-size: 13px;
+  border-radius: 8px;
+
+  margin-top: 5px;
+  width: 97px;
+  text-align: center;
+  background-color: #00da25;
+  color: white;
+  padding: 5px;
+  margin-bottom: 0;
+}
+.progressTextComplete {
+  font-weight: bold;
+  font-size: 13px;
+  border-radius: 8px;
+  margin-top: 5px;
+  width: 120px;
+  text-align: center;
+  background-color: #00da25;
+  /* backgroundcolor: #00da25; */
+  color: white;
+  border: none;
+  padding: 0;
+  height: 24px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+}
+
 .SetPlan {
   background-color: #605600;
   font-weight: bold;
@@ -433,4 +462,17 @@
   width: 97px;
   text-align: center;
   color: white;
+}
+.ExpiryDetails {
+  margin-top: -8px;
+  font-size: 13px;
+  text-align: center;
+  margin-bottom: 0;
+}
+.progressContainer {
+  display: flex;
+}
+.hashss {
+  margin-top: 5px;
+  margin-right: 7px;
 }
