@@ -155,8 +155,11 @@ function App() {
           {!auth ? <SigninPage /> : <Redirect to="/Home" />}
           {/* <SigninPage /> */}
         </Route>
-        <Route exact path="/">
+        {/* <Route exact path="/">
           {!auth ? <Redirect to="/signin" /> : <Home1 />}
+        </Route> */}
+        <Route exact path="/">
+          {<Home1 />}
         </Route>
       </div>
     </BrowserRouter>

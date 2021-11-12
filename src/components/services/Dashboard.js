@@ -102,10 +102,13 @@ function Dashboard() {
   const [loading, setLoading] = useState("");
   const [orderDirection, setOrderDirection] = useState("asc");
   const [valueToOrderBy, setValueToOrderBy] = useState("stylecode");
-  const [datePicker, setDatePicker] = useState(true);
+  const [datePicker, setDatePicker] = useState();
   const [datePicked, setDatePicked] = useState();
   const [handleClick2, setHandleClick2] = useState();
   const [completed, setCompleted] = useState(true);
+  const [stylecode, setStylecode] = useState();
+  const [patchresponse, setPatchresponse] = useState();
+  const [checkstylecode, setCheckstylecode] = useState();
 
   const diffToast = () => {
     toast.warn("Please Select CSV File");
@@ -248,15 +251,18 @@ function Dashboard() {
     setSkuTraffic(skuTraffic.data.data);
     console.log(skuTraffic.data.data, "data");
   };
-  // Style Traffic Patch API Call
 
   const PatchSkuTraffic = async () => {
     await axios
       .patch("http://api.suprcommerce.com:3002/styleTraffic", {
         withCredentials: true,
+        date: `${datePicked}`,
+        status: "NA",
+        styleCode: `${stylecode}`,
       })
       .then((res) => {
-        console.log(res, "patch response");
+        setPatchresponse(res.data.data.planStatus);
+        setCheckstylecode(res.data.data.styleCode);
       });
   };
 
@@ -293,7 +299,7 @@ function Dashboard() {
   useEffect(() => {
     getDashboard();
     getSkuTraffic();
-    PatchSkuTraffic();
+
     onAuthStateChanged(Auth, (user) => {
       if (user) {
         setUser(user);
@@ -731,6 +737,7 @@ function Dashboard() {
                             className={classes.tableHeaderCell4}
                             style={{ textAlign: "center" }}
                             onClick={() => {
+                              setStylecode(row.styleCode);
                               if (showSkuTraffic != page * rowsPerPage + idx)
                                 setShowSkuTraffic(page * rowsPerPage + idx);
                               else setShowSkuTraffic(-1);
@@ -793,19 +800,17 @@ function Dashboard() {
                             </Typography>
                           </TableCell>
                           <TableCell
-                          // style={{
-                          //   textAlign: "center",
-                          //   width: 120,
-                          // }}
+                            style={{
+                              textAlign: "center",
+                            }}
                           >
-                            {handleClick2 ? (
+                            {row.styleCode === checkstylecode ? (
                               <>
-                                {" "}
                                 {completed ? (
                                   <>
                                     <div className="progressContainer">
                                       <p className="progressText">
-                                        In Progress
+                                        {patchresponse}
                                       </p>{" "}
                                       <span className="hashss">/</span>
                                       <button
@@ -832,7 +837,9 @@ function Dashboard() {
                             ) : (
                               <button
                                 className="SetPlan"
-                                onClick={() => setDatePicker(!datePicker)}
+                                onClick={() => {
+                                  setDatePicker(true);
+                                }}
                               >
                                 Set Plan
                               </button>
@@ -845,7 +852,7 @@ function Dashboard() {
                             <TableCell colSpan={7}>
                               <TableContainer>
                                 <section id="subtable">
-                                  {!datePicker && !handleClick2 ? (
+                                  {datePicker ? (
                                     <>
                                       <div className="datepicker__container">
                                         <div className="datepicker__label">
@@ -865,7 +872,13 @@ function Dashboard() {
                                           <div className="date__item2">
                                             <button
                                               onClick={() => {
-                                                setHandleClick2(datePicked);
+                                                PatchSkuTraffic();
+                                                setDatePicker(false);
+                                                // setHandleClick2(datePicked);
+                                                // PatchSkuTraffic();
+                                                // if (patchdata) {
+                                                //   PatchSkuTraffic();
+                                                // }
                                               }}
                                             >
                                               Submit
