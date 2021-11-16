@@ -36,12 +36,13 @@ const skuOptions = ["Smooth Inventory", "Raw Inventory"];
 
 const useStyles = makeStyles((theme) => ({
   table: {
-    minWidth: 650,
+    minWidth: 1000,
   },
   tableContainer: {
     borderRadius: 15,
-    margin: "0 auto",
-    maxWidth: 1050,
+    display: "flex",
+    maxWidth: 2000,
+    marginRight: 20,
   },
   tableHeaderCell: {
     fontWeight: "bold",
@@ -107,8 +108,9 @@ function Dashboard() {
   const [handleClick2, setHandleClick2] = useState();
   const [completed, setCompleted] = useState(true);
   const [stylecode, setStylecode] = useState();
-  const [patchresponse, setPatchresponse] = useState();
+  const [patchresponse, setPatchresponse] = useState("NA");
   const [checkstylecode, setCheckstylecode] = useState();
+  const [complete, setComplete] = useState();
 
   const diffToast = () => {
     toast.warn("Please Select CSV File");
@@ -261,6 +263,7 @@ function Dashboard() {
         styleCode: `${stylecode}`,
       })
       .then((res) => {
+        planStatusMap.set(res.data.data.styleCode, res.data.data.planStatus);
         setPatchresponse(res.data.data.planStatus);
         setCheckstylecode(res.data.data.styleCode);
       });
@@ -307,6 +310,10 @@ function Dashboard() {
       }
     });
   }, []);
+  const planStatusMap = new Map();
+  const setPlanStatusMap = (styleCode, planStatus) => {
+    planStatusMap.set(styleCode, planStatus);
+  };
 
   return (
     <div className="Dashboard__table">
@@ -732,6 +739,9 @@ function Dashboard() {
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((row, idx) => (
                       <>
+                        {setPlanStatusMap(row.styleCode, row.planStatus)}
+
+                        {/* {setPatchresponse(row.planStatus)} */}
                         <TableRow key={row.styleCode}>
                           <TableCell
                             className={classes.tableHeaderCell4}
@@ -806,7 +816,7 @@ function Dashboard() {
                           >
                             {row.styleCode === checkstylecode ? (
                               <>
-                                {completed ? (
+                                {/* {completed ? (
                                   <>
                                     <div className="progressContainer">
                                       <p className="progressText">
@@ -829,11 +839,56 @@ function Dashboard() {
                                   </>
                                 ) : (
                                   <p className="progressText2">
-                                    Completed{" "}
+                                    Completed {console.log(row.planStatus)}
                                     <i class="fas fa-check-circle"></i>
                                   </p>
-                                )}
+                                )} */}
                               </>
+                            ) : planStatusMap.get(row.styleCode) !== "NA" ? (
+                              planStatusMap.get(row.styleCode) ===
+                              "In Progress" ? (
+                                <>
+                                  <div className="progressContainer">
+                                    <p className="progressText">
+                                      {/* {console.log(
+                                        row.styleCode,
+                                        planStatusMap.get(row.styleCode)
+                                      )} */}
+
+                                      {planStatusMap.get(row.styleCode)}
+                                    </p>{" "}
+                                    <span className="hashss">/</span>
+                                    <button
+                                      className="progressTextComplete"
+                                      onClick={() => {
+                                        PatchSkuTraffic();
+                                        setComplete("Completed");
+                                        setPlanStatusMap(
+                                          row.styleCode,
+                                          complete
+                                        );
+                                        {
+                                          console.log(
+                                            planStatusMap.get(row.styleCode)
+                                          );
+                                        }
+                                      }}
+                                    >
+                                      Mark Complete{" "}
+                                      <i class="fas fa-hand-pointer"></i>
+                                    </button>
+                                  </div>
+                                  <p className="ExpiryDetails">
+                                    Expires in 45 Days
+                                  </p>
+                                </>
+                              ) : planStatusMap.get(row.styleCode) ===
+                                "Completed" ? (
+                                <p className="progressText2">
+                                  Completed {console.log(row.planStatus)}
+                                  <i class="fas fa-check-circle"></i>
+                                </p>
+                              ) : null
                             ) : (
                               <button
                                 className="SetPlan"
@@ -841,9 +896,11 @@ function Dashboard() {
                                   setDatePicker(true);
                                 }}
                               >
+                                {console.log(row.styleCode, row.planStatus)}
                                 Set Plan
                               </button>
                             )}
+                            {console.log(row.planStatus)}
                           </TableCell>
                         </TableRow>
 
